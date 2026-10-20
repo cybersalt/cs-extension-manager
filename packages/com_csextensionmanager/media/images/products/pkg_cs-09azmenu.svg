@@ -1,0 +1,27 @@
+<!--
+  cs-09azmenu (Cybersalt 0-9 and A-Z Menu) — canonical duotone logo
+  Source: Tabler Icons "sort-a-z" letter strokes (MIT licensed) + hand-drawn filter-funnel corner badge.
+  Cybersalt duotone: cobalt #0102E1 A-Z letters, orange #FE9904 funnel badge.
+  Reads as: "filter the list by letter, A to Z."
+  Letters shifted down 2.5 units so the badge knockout never clips the Z's top bar.
+  Badge at cx=18, cy=5.5, r=3.5 (the revised edge-cache-marker position, full circle at every size).
+  Drafted by Claude 2026-09-30, pending Tim's approval.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200"
+     viewBox="0 0 1200 1200" fill="none"
+     stroke-linecap="round" stroke-linejoin="round">
+  <g transform="scale(50)">
+    <!-- Cobalt A - Z letters (Tabler sort-a-z, shifted down) -->
+    <g stroke="#0102E1" stroke-width="2" transform="translate(0 2.5)">
+      <path d="M16 8h4l-4 8h4" />
+      <path d="M4 16v-6a2 2 0 1 1 4 0v6" />
+      <path d="M4 13h4" />
+      <path d="M11 12h2" />
+    </g>
+    <!-- White knockout circle behind badge -->
+    <circle cx="18" cy="5.5" r="3.5" fill="#ffffff" stroke="#ffffff" stroke-width="1" />
+    <!-- Filter-funnel badge -->
+    <path d="M15.8 3.4h4.4l-1.6 2.2v1.7l-1.2 0.6v-2.3z"
+          stroke="#FE9904" stroke-width="0.9" fill="#FE9904" fill-opacity="0.18" />
+  </g>
+</svg>

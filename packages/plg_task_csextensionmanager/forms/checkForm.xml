@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="params">
+        <fieldset name="task_params">
+            <field
+                name="mode"
+                type="list"
+                label="PLG_TASK_CSEXTENSIONMANAGER_MODE_LABEL"
+                description="PLG_TASK_CSEXTENSIONMANAGER_MODE_DESC"
+                default="notify"
+                validate="options"
+            >
+                <option value="notify">PLG_TASK_CSEXTENSIONMANAGER_MODE_NOTIFY</option>
+                <option value="patch">PLG_TASK_CSEXTENSIONMANAGER_MODE_PATCH</option>
+                <option value="minor">PLG_TASK_CSEXTENSIONMANAGER_MODE_MINOR</option>
+                <option value="all">PLG_TASK_CSEXTENSIONMANAGER_MODE_ALL</option>
+            </field>
+
+            <field
+                name="notify"
+                type="list"
+                label="PLG_TASK_CSEXTENSIONMANAGER_NOTIFY_LABEL"
+                description="PLG_TASK_CSEXTENSIONMANAGER_NOTIFY_DESC"
+                default="changes"
+                validate="options"
+            >
+                <option value="changes">PLG_TASK_CSEXTENSIONMANAGER_NOTIFY_CHANGES</option>
+                <option value="always">PLG_TASK_CSEXTENSIONMANAGER_NOTIFY_ALWAYS</option>
+                <option value="never">PLG_TASK_CSEXTENSIONMANAGER_NOTIFY_NEVER</option>
+            </field>
+
+            <field
+                name="mode_note"
+                type="note"
+                class="alert alert-info"
+                description="PLG_TASK_CSEXTENSIONMANAGER_NOTE"
+            />
+        </fieldset>
+    </fields>
+</form>

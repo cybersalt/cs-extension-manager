@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config addfieldprefix="Cybersalt\Component\Csextensionmanager\Administrator\Field">
+    <fieldset name="account" label="COM_CSEXTENSIONMANAGER_FIELDSET_ACCOUNT" description="COM_CSEXTENSIONMANAGER_FIELDSET_ACCOUNT_DESC">
+        <field name="brand_account" type="Brandheader" subtitle="COM_CSEXTENSIONMANAGER_FIELDSET_ACCOUNT_SUBTITLE" />
+
+        <field
+            name="download_id"
+            type="text"
+            label="COM_CSEXTENSIONMANAGER_FIELD_DOWNLOAD_ID_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_DOWNLOAD_ID_DESC"
+            hint="COM_CSEXTENSIONMANAGER_FIELD_DOWNLOAD_ID_HINT"
+            filter="string"
+            maxlength="200"
+            autocomplete="off"
+            spellcheck="false"
+        />
+
+        <field
+            name="use_mcpforj_activation"
+            type="radio"
+            class="btn-group btn-group-yesno"
+            label="COM_CSEXTENSIONMANAGER_FIELD_USE_MCPFORJ_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_USE_MCPFORJ_DESC"
+            default="1"
+            filter="integer"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <field
+            name="sync_update_sites"
+            type="radio"
+            class="btn-group btn-group-yesno"
+            label="COM_CSEXTENSIONMANAGER_FIELD_SYNC_UPDATE_SITES_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_SYNC_UPDATE_SITES_DESC"
+            default="1"
+            filter="integer"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <!-- Written by the activation flow, not by hand. Hidden so an
+             Options save keeps them (com_config drops unknown keys). -->
+        <field name="account_installation_id" type="hidden" filter="string" />
+        <field name="account_email" type="hidden" filter="string" />
+        <field name="account_email_hash" type="hidden" filter="string" />
+        <field name="account_status" type="hidden" filter="string" />
+        <field name="account_message" type="hidden" filter="string" />
+        <field name="account_entitled" type="hidden" filter="string" />
+        <field name="account_renewal_url" type="hidden" filter="string" />
+        <field name="account_signup_url" type="hidden" filter="string" />
+        <field name="account_verified_at" type="hidden" filter="string" />
+        <field name="account_verified_for" type="hidden" filter="string" />
+    </fieldset>
+
+    <fieldset name="catalog" label="COM_CSEXTENSIONMANAGER_FIELDSET_CATALOG" description="COM_CSEXTENSIONMANAGER_FIELDSET_CATALOG_DESC">
+        <field name="brand_catalog" type="Brandheader" subtitle="COM_CSEXTENSIONMANAGER_FIELDSET_CATALOG_SUBTITLE" />
+
+        <field
+            name="cache_hours"
+            type="number"
+            label="COM_CSEXTENSIONMANAGER_FIELD_CACHE_HOURS_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_CACHE_HOURS_DESC"
+            default="6"
+            min="1"
+            max="168"
+            filter="integer"
+        />
+
+        <field
+            name="show_addons"
+            type="list"
+            label="COM_CSEXTENSIONMANAGER_FIELD_SHOW_ADDONS_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_SHOW_ADDONS_DESC"
+            default="all"
+            validate="options"
+        >
+            <option value="all">COM_CSEXTENSIONMANAGER_FIELD_SHOW_ADDONS_ALL</option>
+            <option value="relevant">COM_CSEXTENSIONMANAGER_FIELD_SHOW_ADDONS_RELEVANT</option>
+            <option value="none">COM_CSEXTENSIONMANAGER_FIELD_SHOW_ADDONS_NONE</option>
+        </field>
+
+        <field
+            name="include_beta"
+            type="radio"
+            class="btn-group btn-group-yesno"
+            label="COM_CSEXTENSIONMANAGER_FIELD_INCLUDE_BETA_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_INCLUDE_BETA_DESC"
+            default="0"
+            filter="integer"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <field
+            name="http_timeout"
+            type="number"
+            label="COM_CSEXTENSIONMANAGER_FIELD_HTTP_TIMEOUT_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_HTTP_TIMEOUT_DESC"
+            default="10"
+            min="3"
+            max="60"
+            filter="integer"
+        />
+
+        <field
+            name="store_url"
+            type="url"
+            label="COM_CSEXTENSIONMANAGER_FIELD_STORE_URL_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_STORE_URL_DESC"
+            default="https://www.cybersalt.com"
+            filter="url"
+            validate="url"
+            scheme="https"
+        />
+    </fieldset>
+
+    <fieldset name="updates" label="COM_CSEXTENSIONMANAGER_FIELDSET_UPDATES" description="COM_CSEXTENSIONMANAGER_FIELDSET_UPDATES_DESC">
+        <field name="brand_updates" type="Brandheader" subtitle="COM_CSEXTENSIONMANAGER_FIELDSET_UPDATES_SUBTITLE" />
+
+        <field
+            name="updates_note"
+            type="note"
+            class="alert alert-info"
+            description="COM_CSEXTENSIONMANAGER_FIELD_UPDATES_NOTE"
+        />
+
+        <field
+            name="notify_emails"
+            type="textarea"
+            label="COM_CSEXTENSIONMANAGER_FIELD_NOTIFY_EMAILS_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_NOTIFY_EMAILS_DESC"
+            hint="COM_CSEXTENSIONMANAGER_FIELD_NOTIFY_EMAILS_HINT"
+            rows="3"
+            filter="string"
+        />
+
+        <field
+            name="exclude_auto"
+            type="Catalogitems"
+            multiple="true"
+            layout="joomla.form.field.list-fancy-select"
+            label="COM_CSEXTENSIONMANAGER_FIELD_EXCLUDE_AUTO_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_EXCLUDE_AUTO_DESC"
+        />
+    </fieldset>
+
+    <fieldset name="logging" label="COM_CSEXTENSIONMANAGER_FIELDSET_LOGGING" description="COM_CSEXTENSIONMANAGER_FIELDSET_LOGGING_DESC">
+        <field name="brand_logging" type="Brandheader" subtitle="COM_CSEXTENSIONMANAGER_FIELDSET_LOGGING_SUBTITLE" />
+
+        <field
+            name="retention_days"
+            type="number"
+            label="COM_CSEXTENSIONMANAGER_FIELD_RETENTION_DAYS_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_RETENTION_DAYS_DESC"
+            default="365"
+            min="0"
+            max="3650"
+            filter="integer"
+        />
+
+        <field
+            name="actionlogs"
+            type="radio"
+            class="btn-group btn-group-yesno"
+            label="COM_CSEXTENSIONMANAGER_FIELD_ACTIONLOGS_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_ACTIONLOGS_DESC"
+            default="1"
+            filter="integer"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="support" label="COM_CSEXTENSIONMANAGER_FIELDSET_SUPPORT" description="COM_CSEXTENSIONMANAGER_FIELDSET_SUPPORT_DESC">
+        <field name="brand_support" type="Brandheader" subtitle="COM_CSEXTENSIONMANAGER_FIELDSET_SUPPORT_SUBTITLE" />
+
+        <field
+            name="support_label"
+            type="text"
+            label="COM_CSEXTENSIONMANAGER_FIELD_SUPPORT_LABEL_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_SUPPORT_LABEL_DESC"
+            hint="COM_CSEXTENSIONMANAGER_SUPPORT_FALLBACK_LABEL"
+            filter="string"
+        />
+
+        <field
+            name="support_email"
+            type="email"
+            label="COM_CSEXTENSIONMANAGER_FIELD_SUPPORT_EMAIL_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_SUPPORT_EMAIL_DESC"
+            default="support@cybersalt.com"
+            filter="string"
+            validate="email"
+        />
+
+        <field
+            name="support_url"
+            type="url"
+            label="COM_CSEXTENSIONMANAGER_FIELD_SUPPORT_URL_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FIELD_SUPPORT_URL_DESC"
+            default="https://www.cybersalt.com/services/support-request-form"
+            filter="url"
+            validate="url"
+        />
+    </fieldset>
+
+    <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+        <field
+            name="rules"
+            type="rules"
+            label="JCONFIG_PERMISSIONS_LABEL"
+            filter="rules"
+            validate="rules"
+            component="com_csextensionmanager"
+            section="component"
+        />
+    </fieldset>
+</config>

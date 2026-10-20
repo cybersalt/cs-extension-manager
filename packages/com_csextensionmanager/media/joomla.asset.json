@@ -1,0 +1,27 @@
+{
+  "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+  "name": "com_csextensionmanager",
+  "version": "0.1.0",
+  "description": "Cybersalt Extension Manager assets",
+  "license": "GPL-2.0-or-later",
+  "assets": [
+    {
+      "name": "com_csextensionmanager.admin",
+      "type": "style",
+      "uri": "com_csextensionmanager/admin.css",
+      "version": "auto"
+    },
+    {
+      "name": "com_csextensionmanager.admin",
+      "type": "script",
+      "uri": "com_csextensionmanager/admin.js",
+      "version": "auto",
+      "dependencies": [
+        "core"
+      ],
+      "attributes": {
+        "defer": true
+      }
+    }
+  ]
+}

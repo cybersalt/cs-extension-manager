@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+  <update>
+    <name>Cybersalt Page Protector</name>
+    <description>Cybersalt Page Protector v0.2.1</description>
+    <element>pkg_cspageprotector</element>
+    <type>package</type>
+    <client>site</client>
+    <version>0.2.1</version>
+    <downloads>
+      <downloadurl type="full" format="zip">https://www.cybersalt.com/index.php?option=com_csreleasemanager&amp;task=api.userdownload&amp;format=raw&amp;element=pkg_cspageprotector&amp;version=0.2.1</downloadurl>
+    </downloads>
+    <sha256>299185008a8afdc26c0dfa16f115f2469dbb079bbdd58d43ff46bda77464b780</sha256>
+    <targetplatform name="joomla" version="(5|6)\.[0-9]+" />
+    <php_minimum>8.1</php_minimum>
+    <tags>
+      <tag>stable</tag>
+    </tags>
+  </update>
+</updates>

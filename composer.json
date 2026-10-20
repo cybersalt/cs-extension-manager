@@ -1,0 +1,23 @@
+{
+    "name": "cybersalt/cs-extension-manager",
+    "type": "joomla-package",
+    "description": "Install, update and look after every Cybersalt Joomla extension from one screen",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Cybersalt Consulting Ltd.",
+            "email": "support@cybersalt.com",
+            "homepage": "https://cybersalt.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "scripts": {
+        "lint:php": "find packages -name '*.php' -print0 | xargs -0 -n1 php -l",
+        "lint:phpcs": "phpcs --standard=phpcs.xml"
+    }
+}

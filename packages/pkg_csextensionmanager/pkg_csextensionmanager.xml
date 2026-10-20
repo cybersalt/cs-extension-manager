@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="package" method="upgrade">
+    <name>PKG_CSEXTENSIONMANAGER</name>
+    <packagename>csextensionmanager</packagename>
+    <author>Cybersalt</author>
+    <creationDate>October 2026</creationDate>
+    <copyright>Copyright (C) 2026 Cybersalt. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <authorEmail>support@cybersalt.com</authorEmail>
+    <authorUrl>https://cybersalt.com</authorUrl>
+    <version>0.1.0</version>
+    <description>PKG_CSEXTENSIONMANAGER_XML_DESCRIPTION</description>
+    <scriptfile>script.php</scriptfile>
+    <blockChildUninstall>true</blockChildUninstall>
+
+    <files folder="packages">
+        <file type="component" id="com_csextensionmanager">com_csextensionmanager.zip</file>
+        <file type="plugin" id="csextensionmanager" group="installer">plg_installer_csextensionmanager.zip</file>
+        <file type="plugin" id="csextensionmanager" group="quickicon">plg_quickicon_csextensionmanager.zip</file>
+        <file type="plugin" id="csextensionmanager" group="task">plg_task_csextensionmanager.zip</file>
+    </files>
+
+    <languages folder="language">
+        <language tag="en-GB">en-GB/pkg_csextensionmanager.sys.ini</language>
+    </languages>
+
+    <changelogurl>https://www.cybersalt.com/index.php?option=com_csreleasemanager&amp;task=api.changelogxml&amp;format=raw&amp;element=pkg_csextensionmanager</changelogurl>
+
+    <updateservers>
+        <server type="extension" priority="1" name="Cybersalt Extension Manager Updates">https://www.cybersalt.com/index.php?option=com_csreleasemanager&amp;task=api.updatexml&amp;format=raw&amp;element=pkg_csextensionmanager</server>
+    </updateservers>
+</extension>

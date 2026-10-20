@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+  <update>
+    <name>Cybersalt SiteGround Cache</name>
+    <description>Cybersalt SiteGround Cache v2.2.2</description>
+    <element>sgcache</element>
+    <type>plugin</type>
+    <folder>system</folder>
+    <client>site</client>
+    <version>2.2.2</version>
+    <downloads>
+      <downloadurl type="full" format="zip">https://www.cybersalt.com/index.php?option=com_csreleasemanager&amp;task=api.userdownload&amp;format=raw&amp;element=sgcache&amp;version=2.2.2</downloadurl>
+    </downloads>
+    <sha256>fac1af2d05cb8075b19ddaee39f5bda22c01a183fec875153f8e8229270db340</sha256>
+    <targetplatform name="joomla" version="(5|6)\.[0-9]+" />
+    <php_minimum>8.1</php_minimum>
+    <tags>
+      <tag>stable</tag>
+    </tags>
+  </update>
+</updates>

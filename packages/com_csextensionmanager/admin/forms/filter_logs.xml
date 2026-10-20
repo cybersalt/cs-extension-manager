@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addfieldprefix="Cybersalt\Component\Csextensionmanager\Administrator\Field">
+    <fields name="filter">
+        <field
+            name="search"
+            type="text"
+            label="COM_CSEXTENSIONMANAGER_FILTER_SEARCH_LABEL"
+            description="COM_CSEXTENSIONMANAGER_FILTER_SEARCH_DESC"
+            hint="JSEARCH_FILTER"
+        />
+
+        <field
+            name="action"
+            type="list"
+            label="COM_CSEXTENSIONMANAGER_FILTER_ACTION"
+            onchange="this.form.submit();"
+        >
+            <option value="">COM_CSEXTENSIONMANAGER_FILTER_ACTION_SELECT</option>
+            <option value="install">COM_CSEXTENSIONMANAGER_ACTION_INSTALL</option>
+            <option value="update">COM_CSEXTENSIONMANAGER_ACTION_UPDATE</option>
+            <option value="downgrade">COM_CSEXTENSIONMANAGER_ACTION_DOWNGRADE</option>
+            <option value="reinstall">COM_CSEXTENSIONMANAGER_ACTION_REINSTALL</option>
+            <option value="uninstall">COM_CSEXTENSIONMANAGER_ACTION_UNINSTALL</option>
+            <option value="enable">COM_CSEXTENSIONMANAGER_ACTION_ENABLE</option>
+            <option value="disable">COM_CSEXTENSIONMANAGER_ACTION_DISABLE</option>
+            <option value="refresh">COM_CSEXTENSIONMANAGER_ACTION_REFRESH</option>
+            <option value="fix">COM_CSEXTENSIONMANAGER_ACTION_FIX</option>
+            <option value="account">COM_CSEXTENSIONMANAGER_ACTION_ACCOUNT</option>
+            <option value="notify">COM_CSEXTENSIONMANAGER_ACTION_NOTIFY</option>
+        </field>
+
+        <field
+            name="status"
+            type="list"
+            label="COM_CSEXTENSIONMANAGER_FILTER_STATUS"
+            onchange="this.form.submit();"
+        >
+            <option value="">COM_CSEXTENSIONMANAGER_FILTER_STATUS_SELECT</option>
+            <option value="success">COM_CSEXTENSIONMANAGER_STATUS_SUCCESS</option>
+            <option value="warning">COM_CSEXTENSIONMANAGER_STATUS_WARNING</option>
+            <option value="error">COM_CSEXTENSIONMANAGER_STATUS_ERROR</option>
+            <option value="skip">COM_CSEXTENSIONMANAGER_STATUS_SKIP</option>
+        </field>
+
+        <field
+            name="trigger"
+            type="list"
+            label="COM_CSEXTENSIONMANAGER_FILTER_TRIGGER"
+            onchange="this.form.submit();"
+        >
+            <option value="">COM_CSEXTENSIONMANAGER_FILTER_TRIGGER_SELECT</option>
+            <option value="manual">COM_CSEXTENSIONMANAGER_TRIGGER_MANUAL</option>
+            <option value="task">COM_CSEXTENSIONMANAGER_TRIGGER_TASK</option>
+            <option value="system">COM_CSEXTENSIONMANAGER_TRIGGER_SYSTEM</option>
+        </field>
+
+        <field
+            name="element"
+            type="Logelement"
+            label="COM_CSEXTENSIONMANAGER_FILTER_ELEMENT"
+            onchange="this.form.submit();"
+        >
+            <option value="">COM_CSEXTENSIONMANAGER_FILTER_ELEMENT_SELECT</option>
+        </field>
+
+        <field
+            name="user_id"
+            type="Loguser"
+            label="COM_CSEXTENSIONMANAGER_FILTER_USER"
+            onchange="this.form.submit();"
+        >
+            <option value="">COM_CSEXTENSIONMANAGER_FILTER_USER_SELECT</option>
+        </field>
+
+        <field
+            name="since"
+            type="list"
+            label="COM_CSEXTENSIONMANAGER_FILTER_SINCE"
+            onchange="this.form.submit();"
+        >
+            <option value="">COM_CSEXTENSIONMANAGER_FILTER_SINCE_SELECT</option>
+            <option value="1h">COM_CSEXTENSIONMANAGER_FILTER_SINCE_1H</option>
+            <option value="24h">COM_CSEXTENSIONMANAGER_FILTER_SINCE_24H</option>
+            <option value="7d">COM_CSEXTENSIONMANAGER_FILTER_SINCE_7D</option>
+            <option value="30d">COM_CSEXTENSIONMANAGER_FILTER_SINCE_30D</option>
+        </field>
+    </fields>
+
+    <fields name="list">
+        <field
+            name="fullordering"
+            type="list"
+            label="JGLOBAL_SORT_BY"
+            default="a.created DESC"
+            onchange="this.form.submit();"
+            validate="options"
+        >
+            <option value="">JGLOBAL_SORT_BY</option>
+            <option value="a.created DESC">COM_CSEXTENSIONMANAGER_SORT_CREATED_DESC</option>
+            <option value="a.created ASC">COM_CSEXTENSIONMANAGER_SORT_CREATED_ASC</option>
+            <option value="a.title ASC">COM_CSEXTENSIONMANAGER_SORT_TITLE_ASC</option>
+            <option value="a.action ASC">COM_CSEXTENSIONMANAGER_SORT_ACTION_ASC</option>
+            <option value="a.status ASC">COM_CSEXTENSIONMANAGER_SORT_STATUS_ASC</option>
+            <option value="a.elapsed_ms DESC">COM_CSEXTENSIONMANAGER_SORT_ELAPSED_DESC</option>
+            <option value="a.id DESC">JGRID_HEADING_ID_DESC</option>
+            <option value="a.id ASC">JGRID_HEADING_ID_ASC</option>
+        </field>
+
+        <field
+            name="limit"
+            type="limitbox"
+            label="JGLOBAL_LIST_LIMIT"
+            default="50"
+            onchange="this.form.submit();"
+        />
+    </fields>
+</form>

@@ -1,0 +1,22 @@
+<!--
+  cs-extension-manager logo
+  Source: Tabler Icons "layout-grid" (MIT licensed) + hand-drawn download badge.
+  Cybersalt duotone: cobalt #0102E1 extension tiles, orange #FE9904 badge in the
+  top-right tile's place ("install / update from one place"). 1200x1200
+  intrinsic, Tabler paths kept in their 24-unit space via scale(50) per the
+  extension-logos convention.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="scale(50)">
+    <!-- Cobalt extension tiles -->
+    <g stroke="#0102E1">
+      <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+      <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+      <path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+    </g>
+    <!-- Orange download badge where the fourth tile would be -->
+    <circle cx="17" cy="7" r="3.6" stroke="#FE9904" stroke-width="1.6" fill="#FE9904" fill-opacity="0.18" />
+    <path d="M17 5v4" stroke="#FE9904" stroke-width="1.6" />
+    <path d="M15.4 7.6l1.6 1.6l1.6 -1.6" stroke="#FE9904" stroke-width="1.6" />
+  </g>
+</svg>

@@ -1,0 +1,196 @@
+/**
+ * @package    com_csextensionmanager
+ * @copyright  Copyright (C) 2026 Cybersalt. All rights reserved.
+ * @license    GNU General Public License version 2 or later
+ *
+ * Layout only. Colours come from Atum / Bootstrap so light and dark mode
+ * both work; the few brand colours are CSS variables with a dark override.
+ */
+
+.csem {
+    --csem-accent: #0102e1;
+    --csem-get-bg: #dc6b1a;
+    --csem-get-bg-hover: #b85614;
+    --csem-new-border: var(--bs-success, #198754);
+}
+
+html[data-bs-theme="dark"] .csem,
+html[data-color-scheme="dark"] .csem {
+    --csem-accent: #fe9904;
+}
+
+.csem .min-w-0 {
+    min-width: 0;
+}
+
+/* Stat cards */
+.csem .csem-stat-card {
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+.csem .csem-stat-card:hover,
+.csem .csem-stat-card:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.12);
+}
+
+/* Extension cards */
+.csem .csem-card {
+    border-inline-start: 4px solid var(--bs-border-color, rgba(0, 0, 0, 0.175));
+}
+
+.csem .csem-card.csem-status-update {
+    border-inline-start-color: var(--bs-success, #198754);
+}
+
+.csem .csem-card.csem-status-broken {
+    border-inline-start-color: var(--bs-danger, #dc3545);
+}
+
+.csem .csem-card.csem-status-current {
+    border-inline-start-color: var(--bs-primary, #0d6efd);
+}
+
+.csem .csem-icon {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    object-fit: contain;
+}
+
+/* White disc behind logos in dark mode (Cybersalt rule). */
+html[data-bs-theme="dark"] .csem .csem-icon,
+html[data-color-scheme="dark"] .csem .csem-icon {
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 6px;
+    box-sizing: content-box;
+    width: 40px;
+    height: 40px;
+}
+
+.csem .card-title {
+    overflow-wrap: anywhere;
+}
+
+.csem .csem-versions {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 0.75rem;
+    row-gap: 0.1rem;
+}
+
+.csem .csem-versions dt {
+    font-weight: 600;
+}
+
+.csem .csem-versions dd {
+    margin: 0;
+}
+
+.csem .csem-parts summary {
+    cursor: pointer;
+}
+
+.csem .csem-select {
+    flex: 0 0 auto;
+    width: 1.15rem;
+    height: 1.15rem;
+    accent-color: var(--link-color, #0d6efd);
+}
+
+/* "Get it" / "Renew" - Cybersalt orange, readable in both modes. */
+.csem a.csem-btn-get,
+.csem a.csem-btn-get:link,
+.csem a.csem-btn-get:visited {
+    background-color: var(--csem-get-bg);
+    border-color: var(--csem-get-bg);
+    color: #fff;
+}
+
+.csem a.csem-btn-get:hover,
+.csem a.csem-btn-get:focus {
+    background-color: var(--csem-get-bg-hover);
+    border-color: var(--csem-get-bg-hover);
+    color: #fff;
+}
+
+.csem .csem-account form {
+    max-width: 40rem;
+}
+
+/* Atum zeroes modal body padding (it's built for iframes); ours hold text. */
+.csem-modal .modal-body {
+    padding: 1rem 1.25rem;
+}
+
+.csem-modal .modal-body.py-4 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+/* Add-on advisories: collapsed to one line until opened. */
+.csem .csem-advisory summary {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.csem .csem-advisory[open] summary {
+    margin-bottom: 0.25rem;
+}
+
+/* Changelog modal */
+.csem-cl-version.csem-cl-new {
+    border-color: var(--csem-new-border) !important;
+    border-width: 2px !important;
+}
+
+.csem-cl-version ul {
+    padding-inline-start: 1.25rem;
+}
+
+/* Queue modal */
+#csemQueueModal .csem-q-icon {
+    margin-top: 0.2rem;
+    flex: 0 0 auto;
+}
+
+/* Health view */
+.csem-health .csem-issue {
+    border-inline-start: 4px solid var(--bs-border-color, rgba(0, 0, 0, 0.175));
+}
+
+.csem-health .csem-issue-danger {
+    border-inline-start-color: var(--bs-danger, #dc3545);
+}
+
+.csem-health .csem-issue-warning {
+    border-inline-start-color: var(--bs-warning, #ffc107);
+}
+
+.csem-health .csem-issue-info {
+    border-inline-start-color: var(--bs-info, #0dcaf0);
+}
+
+/* History view */
+.csem-logs pre {
+    max-height: 320px;
+    white-space: pre-wrap;
+    overflow: auto;
+}
+
+.csem-logs .csem-msg-cell {
+    max-width: 36rem;
+}
+
+/* Atum draws <details> as a padded box; inside a table row that's too tall. */
+.csem-logs .csem-msg-cell details {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+.csem-logs .csem-msg-cell summary {
+    cursor: pointer;
+}

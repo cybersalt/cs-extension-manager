@@ -1,0 +1,35 @@
+<!--
+  cs-articles-module-maxxed logo (v2 — redrawn)
+  Source: Tabler Icons "news" + "bolt" composite (MIT licensed)
+  Cybersalt duotone: cobalt #0102E1 newspaper, orange #FE9904 bolt badge ("maxxed" enhancement mark).
+  Replaced earlier "article" base — its 3 full-width text lines read too much like a hamburger menu.
+  "news" has the folded-right newspaper tab so it's unambiguous.
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="1200"
+  viewBox="0 0 1200 1200"
+  fill="none"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <g transform="scale(50)">  <!-- Newspaper body + folded right tab + 3 short article lines (cobalt) -->
+  <g stroke="#0102E1" stroke-width="2">
+    <path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" />
+    <path d="M8 8l4 0" />
+    <path d="M8 12l4 0" />
+    <path d="M8 16l4 0" />
+  </g>
+  <!-- White knockout so the bolt reads cleanly over the newspaper corner -->
+  <circle cx="18" cy="4" r="3.6" fill="#ffffff" stroke="#ffffff" stroke-width="1" />
+  <!-- "Maxxed" lightning bolt badge (orange), scaled and positioned in the top-right corner -->
+  <path
+    d="M18.3 1.3l0 2.1l1.8 0l-2.4 3.3l0 -2.1l-1.8 0l2.4 -3.3"
+    stroke="#FE9904"
+    stroke-width="1.4"
+    fill="#FE9904"
+    fill-opacity="0.18"
+  />
+</g>
+</svg>

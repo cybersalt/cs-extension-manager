@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<access component="com_csextensionmanager">
+    <section name="component">
+        <action name="core.admin"   title="JACTION_ADMIN"   description="JACTION_ADMIN_COMPONENT_DESC" />
+        <action name="core.manage"  title="JACTION_MANAGE"  description="JACTION_MANAGE_COMPONENT_DESC" />
+        <action name="core.options" title="JACTION_OPTIONS" description="JACTION_OPTIONS_COMPONENT_DESC" />
+        <action name="csextensionmanager.view"    title="COM_CSEXTENSIONMANAGER_ACL_VIEW"    description="COM_CSEXTENSIONMANAGER_ACL_VIEW_DESC" />
+        <action name="csextensionmanager.install" title="COM_CSEXTENSIONMANAGER_ACL_INSTALL" description="COM_CSEXTENSIONMANAGER_ACL_INSTALL_DESC" />
+        <action name="csextensionmanager.fix"     title="COM_CSEXTENSIONMANAGER_ACL_FIX"     description="COM_CSEXTENSIONMANAGER_ACL_FIX_DESC" />
+    </section>
+</access>

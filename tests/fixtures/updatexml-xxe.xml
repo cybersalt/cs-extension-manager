@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE updates [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>
+<updates>
+  <update>
+    <name>&xxe;</name>
+    <element>evil</element>
+    <type>plugin</type>
+    <version>1.0.0</version>
+  </update>
+</updates>

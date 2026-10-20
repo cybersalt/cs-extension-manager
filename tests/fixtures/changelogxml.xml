@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelogs>
+  <changelog>
+    <element>pkg_cspageprotector</element>
+    <type>package</type>
+    <version>0.1.0</version>
+    <change>
+      <item>First release.</item>
+    </change>
+  </changelog>
+  <changelog>
+    <element>pkg_cspageprotector</element>
+    <type>package</type>
+    <version>0.2.1</version>
+    <change>
+      <item>Maintenance release.</item>
+    </change>
+    <fix>
+      <item>The CSV download now also drops the DEL control character.</item>
+    </fix>
+  </changelog>
+  <changelog>
+    <element>pkg_cspageprotector</element>
+    <type>package</type>
+    <version>0.2.0</version>
+    <change>
+      <item>Clear warnings when no captcha can run.</item>
+      <item>"No guarantee" notice.</item>
+      <item><![CDATA[Fixed: the install screen <b>no longer</b> shows the description twice.]]></item>
+    </change>
+  </changelog>
+</changelogs>

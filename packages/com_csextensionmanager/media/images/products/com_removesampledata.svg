@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="scale(50)">  <!-- cs-remove-sample-data: Refresh circular arrows around a fresh-state sparkle -->
+  <!-- Cobalt refresh arrows (Tabler refresh) -->
+  <g stroke="#0102E1">
+    <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+    <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+  </g>
+  <!-- Orange sparkle in the center = reset to clean/fresh state -->
+  <g fill="#FE9904" stroke="none">
+    <path d="M12 8.5 L12.7 11.3 L15.5 12 L12.7 12.7 L12 15.5 L11.3 12.7 L8.5 12 L11.3 11.3 Z" />
+  </g>
+</g>
+</svg>

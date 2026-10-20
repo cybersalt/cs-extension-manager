@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="quickicon" method="upgrade">
+    <name>PLG_QUICKICON_CSEXTENSIONMANAGER</name>
+    <author>Cybersalt</author>
+    <creationDate>October 2026</creationDate>
+    <copyright>Copyright (C) 2026 Cybersalt. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <authorEmail>support@cybersalt.com</authorEmail>
+    <authorUrl>https://cybersalt.com</authorUrl>
+    <version>0.1.0</version>
+    <description>PLG_QUICKICON_CSEXTENSIONMANAGER_XML_DESCRIPTION</description>
+
+    <namespace path="src">Cybersalt\Plugin\Quickicon\Csextensionmanager</namespace>
+
+    <files>
+        <folder plugin="csextensionmanager">services</folder>
+        <folder>src</folder>
+    </files>
+
+    <languages folder="language">
+        <language tag="en-GB">en-GB/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="en-GB">en-GB/plg_quickicon_csextensionmanager.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="context"
+                    type="text"
+                    label="PLG_QUICKICON_CSEXTENSIONMANAGER_CONTEXT_LABEL"
+                    description="PLG_QUICKICON_CSEXTENSIONMANAGER_CONTEXT_DESC"
+                    default="update_quickicon"
+                    filter="cmd"
+                />
+            </fieldset>
+        </fields>
+    </config>
+</extension>
