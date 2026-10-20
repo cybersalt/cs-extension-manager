@@ -81,7 +81,7 @@ $severityLabel = [
                 <div class="card-body py-2 d-flex flex-wrap align-items-center gap-3">
                     <div class="flex-grow-1 min-w-0">
                         <div class="d-flex flex-wrap align-items-center gap-2">
-                            <span class="badge <?php echo $severityLabel[$issue['severity']][0]; ?>"><?php echo $this->escape(Text::_($severityLabel[$issue['severity']][1])); ?></span>
+                            <span class="badge <?php echo $severityLabel[$issue['severity']][0]; ?>"><?php echo $this->escape(Text::_($severityLabel[$issue['severity']][1] . '_ONE')); ?></span>
                             <strong><?php echo $this->escape($issue['title']); ?></strong>
                         </div>
                         <p class="small mb-0 mt-1 text-break"><?php echo $this->escape($issue['message']); ?></p>
