@@ -15,6 +15,8 @@ namespace Cybersalt\Component\Csextensionmanager\Administrator\View\Extensions;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\AccountHelper;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\PermissionHelper;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\SupportHelper;
+use Cybersalt\Component\Csextensionmanager\Administrator\Helper\TaskHelper;
+use Cybersalt\Component\Csextensionmanager\Administrator\Helper\UpdateRunner;
 use Cybersalt\Component\Csextensionmanager\Administrator\Model\ExtensionsModel;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
@@ -56,6 +58,12 @@ final class HtmlView extends BaseHtmlView
     /** @var array<string, mixed>|null */
     public $selfUpdate = null;
 
+    /** @var boolean The scheduled release check (and its emails) is switched on. */
+    public $emailsOn = false;
+
+    /** @var string Who gets the release emails. */
+    public $emailRecipients = '';
+
     /** @var array<string, mixed> The item the card sub-template is rendering. */
     public $currentItem = [];
 
@@ -84,6 +92,11 @@ final class HtmlView extends BaseHtmlView
         $this->account      = AccountHelper::getState();
         $this->canInstall   = PermissionHelper::canInstall();
         $this->canConfigure = PermissionHelper::canConfigure();
+        $this->emailsOn     = TaskHelper::isEnabled();
+
+        if ($this->emailsOn) {
+            $this->emailRecipients = implode(', ', UpdateRunner::recipients());
+        }
 
         foreach ($this->items as $item) {
             if (!empty($item['self']) && $item['status'] === 'update') {

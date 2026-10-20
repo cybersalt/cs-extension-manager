@@ -82,6 +82,16 @@ $cards = [
 
     <?php echo $this->loadTemplate('account'); ?>
 
+    <?php if (!$this->emailsOn && $this->canConfigure) : ?>
+        <div class="alert alert-info d-flex flex-wrap align-items-center gap-2">
+            <span class="icon-envelope" aria-hidden="true"></span>
+            <span class="flex-grow-1"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_EMAILS_OFFER')); ?></span>
+            <a class="btn btn-sm btn-primary" href="<?php echo $this->escape(Route::_('index.php?option=com_csextensionmanager&task=extensions.enableemails&' . Session::getFormToken() . '=1', false)); ?>">
+                <?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_EMAILS_BUTTON')); ?>
+            </a>
+        </div>
+    <?php endif; ?>
+
     <?php if ($this->catalog['errors'] !== []) : ?>
         <div class="alert alert-warning">
             <strong><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_CATALOG_ERRORS')); ?></strong>
@@ -178,6 +188,12 @@ $cards = [
         <?php echo $this->escape(DisplayHelper::catalogLine($this->catalog)); ?>
         &middot;
         <a href="<?php echo $this->escape($refresh); ?>" class="csem-busy-link"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_BTN_REFRESH')); ?></a>
+        <?php if ($this->emailsOn) : ?>
+            <br>
+            <span class="icon-envelope" aria-hidden="true"></span>
+            <?php echo $this->escape(Text::sprintf('COM_CSEXTENSIONMANAGER_EMAILS_ON', $this->emailRecipients !== '' ? $this->emailRecipients : '-')); ?>
+            <a href="<?php echo $this->escape(Route::_('index.php?option=com_config&view=component&component=com_csextensionmanager', false)); ?>"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_EMAILS_MANAGE')); ?></a>
+        <?php endif; ?>
     </p>
 
     <?php echo DisplayHelper::supportPanel(); ?>

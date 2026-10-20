@@ -23,6 +23,7 @@ packages/
 │   │                        syncUpdateSites() stamps the dlid on every store feed (extra_query + location).
 │   ├── InstallHelper.php    install/uninstall/setEnabled/changelog. Fresh feed → store-only URL → SHA-256 → manifest identity check.
 │   ├── HealthHelper.php     check() + fix(). Fixes are re-validated by issue id; SAFE_FIXES are the only ones Fix all applies.
+│   ├── TaskHelper.php       The scheduled task: find/create (off)/enableEmails (Tim 2026-10-20: release emails are opt-in).
 │   ├── UpdateRunner.php     Scheduled task body: refresh, optional auto-install by update size, email summary (fingerprinted).
 │   ├── LogHelper.php        #__csextensionmanager_log + User Actions Log mirror. setTrigger() for task runs.
 │   ├── ParamsHelper.php     Params straight from the DB, save() cleans _system. Every saved key has a hidden field in config.xml.
@@ -30,7 +31,7 @@ packages/
 ├── plg_installer_*          onInstallerBeforePackageDownload / BeforeUpdateSiteDownload (5.3+): add dlid when missing.
 ├── plg_quickicon_*          Quick icon with ajaxurl → extensions.quickicon (count fetched after the dashboard renders).
 ├── plg_task_*               csextensionmanager.check routine → UpdateRunner.
-└── pkg_*                    script.php: enable plugins, seed ACL (Manager/Administrator view only), create daily task, sync dlid, card.
+└── pkg_*                    script.php: enable plugins, seed ACL (Manager/Administrator view only), create the daily task SWITCHED OFF, sync dlid, card with "Email me about new releases" (extensions.enableemails → TaskHelper::enableEmails).
 ```
 
 ## Store API (cs-release-manager on www.cybersalt.com)

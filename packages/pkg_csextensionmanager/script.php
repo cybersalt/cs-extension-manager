@@ -12,6 +12,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Installer\InstallerAdapter;
 use Joomla\CMS\Installer\InstallerScriptInterface;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Session\Session;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Database\DatabaseInterface;
 use Joomla\Database\ParameterType;
@@ -21,11 +22,6 @@ return new class () implements InstallerScriptInterface {
      * Minimum PHP version (Joomla 5's floor).
      */
     private const MIN_PHP = '8.1.0';
-
-    /**
-     * Set in postflight when the default scheduled task was created.
-     */
-    private bool $taskCreated = false;
 
     public function install(InstallerAdapter $adapter): bool
     {
@@ -92,30 +88,41 @@ return new class () implements InstallerScriptInterface {
             @unlink($map);
         }
 
+        // The component's classes, before Joomla's PSR-4 map knows about them.
+        \JLoader::registerNamespace(
+            'Cybersalt\\Component\\Csextensionmanager\\Administrator',
+            JPATH_ADMINISTRATOR . '/components/com_csextensionmanager/src'
+        );
+
+        $ns = 'Cybersalt\\Component\\Csextensionmanager\\Administrator\\Helper\\';
+
         if ($type !== 'update') {
             foreach (['installer', 'quickicon', 'task'] as $folder) {
                 $this->safely(fn () => $this->enablePlugin($db, $folder, 'csextensionmanager'));
             }
 
             $this->safely(fn () => $this->seedPermissions($db));
-            $this->safely(fn () => $this->taskCreated = $this->createTask($db));
+
+            // Email updates are opt-in (Tim, 2026-10-20): the task is created
+            // switched off and the card offers to switch it on.
+            $this->safely(fn () => ($ns . 'TaskHelper')::create(false));
         }
 
         // Put whatever download ID the site already has (e.g. MCP for Joomla's)
         // onto the Cybersalt update sites, including the one just installed.
         $mcpforj = false;
-        $this->safely(function () use (&$mcpforj) {
-            \JLoader::registerNamespace(
-                'Cybersalt\\Component\\Csextensionmanager\\Administrator',
-                JPATH_ADMINISTRATOR . '/components/com_csextensionmanager/src'
-            );
-
-            $helper  = 'Cybersalt\\Component\\Csextensionmanager\\Administrator\\Helper\\AccountHelper';
+        $this->safely(function () use (&$mcpforj, $ns) {
+            $helper  = $ns . 'AccountHelper';
             $mcpforj = $helper::getSource() === $helper::SOURCE_MCPFORJ;
             $helper::syncUpdateSites();
         });
 
-        $this->renderInstallCard($type, $mcpforj);
+        $emailsOn = true;
+        $this->safely(function () use (&$emailsOn, $ns) {
+            $emailsOn = ($ns . 'TaskHelper')::isEnabled();
+        });
+
+        $this->renderInstallCard($type, $mcpforj, $emailsOn);
 
         // Joomla shows the manifest description in its own box above the card,
         // and the card already leads with it.
@@ -198,55 +205,6 @@ return new class () implements InstallerScriptInterface {
     }
 
     /**
-     * A daily "check and email when something's new" task, through the
-     * Scheduler's own table so it gets its asset like one made in the UI.
-     */
-    private function createTask(DatabaseInterface $db): bool
-    {
-        $exists = (int) $db->setQuery(
-            $db->createQuery()
-                ->select('COUNT(*)')
-                ->from($db->quoteName('#__scheduler_tasks'))
-                ->where($db->quoteName('type') . ' = ' . $db->quote('csextensionmanager.check'))
-        )->loadResult();
-
-        if ($exists > 0) {
-            return false;
-        }
-
-        $app = Factory::getApplication();
-
-        /** @var \Joomla\CMS\Table\Table $table */
-        $table = $app->bootComponent('com_scheduler')->getMVCFactory()->createTable('Task', 'Administrator');
-
-        $user = $app->getIdentity();
-        $now  = Factory::getDate();
-        $next = Factory::getDate('tomorrow 04:00');
-
-        $table->bind([
-            'title'           => Text::_('PKG_CSEXTENSIONMANAGER_TASK_TITLE'),
-            'type'            => 'csextensionmanager.check',
-            'execution_rules' => json_encode(['rule-type' => 'interval-days', 'interval-days' => '1', 'exec-day' => '01', 'exec-time' => '04:00']),
-            'cron_rules'      => json_encode(['type' => 'interval', 'exp' => 'P1D']),
-            'state'           => 1,
-            'last_exit_code'  => 0,
-            'next_execution'  => $next->toSql(),
-            'priority'        => 0,
-            'params'          => json_encode([
-                'individual_log' => false,
-                'log_file'       => '',
-                'notifications'  => ['success_mail' => '0', 'failure_mail' => '1', 'fatal_failure_mail' => '1', 'orphan_mail' => '1'],
-                'mode'           => 'notify',
-                'notify'         => 'changes',
-            ]),
-            'created'         => $now->toSql(),
-            'created_by'      => $user !== null ? (int) $user->id : 0,
-        ]);
-
-        return $table->check() && $table->store();
-    }
-
-    /**
      * Remove this package's scheduled tasks.
      */
     private function removeTasks(DatabaseInterface $db): void
@@ -294,7 +252,7 @@ return new class () implements InstallerScriptInterface {
     /**
      * Cybersalt post-install card (JOOMLA-EXTENSION-WISHLIST.md spec).
      */
-    private function renderInstallCard(string $type, bool $mcpforj): void
+    private function renderInstallCard(string $type, bool $mcpforj, bool $emailsOn): void
     {
         $e = static fn (string $key): string => htmlspecialchars(Text::_($key), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 
@@ -302,7 +260,10 @@ return new class () implements InstallerScriptInterface {
         // Description carries the vendor <strong><a> prefix, so it's not escaped (Brain spec).
         $description = Text::_('PKG_CSEXTENSIONMANAGER_XML_DESCRIPTION');
         $nextSteps   = $type === 'update' ? '' : '<p class="mb-3">' . $e('PKG_CSEXTENSIONMANAGER_CARD_NEXT_STEPS') . '</p>';
-        $taskNote    = $this->taskCreated ? '<p class="mb-3">' . Text::_('PKG_CSEXTENSIONMANAGER_CARD_TASK_CREATED') . '</p>' : '';
+        // Opt-in for release emails: a GET link with the token, because the card sits inside the installer's form.
+        $emailsUrl   = htmlspecialchars('index.php?option=com_csextensionmanager&task=extensions.enableemails&' . Session::getFormToken() . '=1', ENT_QUOTES, 'UTF-8');
+        $taskNote    = $emailsOn ? '' : '<div class="alert alert-info mb-3">' . $e('PKG_CSEXTENSIONMANAGER_CARD_EMAILS_OFFER')
+            . ' <a class="btn btn-sm btn-primary ms-1" href="' . $emailsUrl . '">' . $e('PKG_CSEXTENSIONMANAGER_CARD_EMAILS_BUTTON') . '</a></div>';
         $mcpNote     = $mcpforj && $type !== 'update' ? '<p class="mb-3">' . $e('PKG_CSEXTENSIONMANAGER_CARD_MCPFORJ') . '</p>' : '';
 
         $btnOpen    = $e('PKG_CSEXTENSIONMANAGER_CARD_OPEN');

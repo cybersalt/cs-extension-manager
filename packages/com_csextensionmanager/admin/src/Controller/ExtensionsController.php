@@ -17,6 +17,7 @@ use Cybersalt\Component\Csextensionmanager\Administrator\Helper\CatalogHelper;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\InstallHelper;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\PermissionHelper;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\StateHelper;
+use Cybersalt\Component\Csextensionmanager\Administrator\Helper\TaskHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\CMS\Router\Route;
@@ -192,6 +193,32 @@ final class ExtensionsController extends BaseController
                 : Text::_('COM_CSEXTENSIONMANAGER_QUICKICON_UPTODATE'),
             'sronly' => Text::plural('COM_CSEXTENSIONMANAGER_QUICKICON_SRONLY', $amount),
         ]);
+    }
+
+    /**
+     * "Email me about new releases": switch the scheduled check on. GET with
+     * token, because it's offered as a link on the install card, which sits
+     * inside Joomla's installer form.
+     *
+     * @return  void
+     *
+     * @since   0.1.0
+     */
+    public function enableemails(): void
+    {
+        $this->checkToken('get');
+        PermissionHelper::requireConfigure();
+
+        $user = $this->app->getIdentity();
+
+        try {
+            $who = TaskHelper::enableEmails($user !== null ? (string) $user->email : '');
+            $this->setMessage(Text::sprintf('COM_CSEXTENSIONMANAGER_EMAILS_ENABLED', $who !== '' ? $who : Text::_('COM_CSEXTENSIONMANAGER_EMAILS_NOBODY')));
+        } catch (\Throwable $e) {
+            $this->setMessage(Text::sprintf('COM_CSEXTENSIONMANAGER_EMAILS_FAILED', $e->getMessage()), 'error');
+        }
+
+        $this->setRedirect(Route::_('index.php?option=com_csextensionmanager&view=extensions', false));
     }
 
     /**

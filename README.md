@@ -20,7 +20,7 @@ The Extensions screen lists every Cybersalt extension and MCP for Joomla add-on:
 - **Health check with one-click fixes.** Finds missing, switched-off, duplicate, wrong and orphaned update sites, a missing download ID on Pro update sites, half-installed packages, package parts left without their package (they never get updates), switched-off parts, add-ons without MCP for Joomla or without the extension they're for, updates Joomla still lists after you installed them, a lapsed membership, and the store not answering. "Fix all" repairs the update-site bookkeeping in one go; installs and switching things on are left for you to choose.
 - **Pro extensions without fuss.** Activate the site with your cybersalt.com account email, paste a download ID, or let it reuse MCP for Joomla's existing Pro activation. The download ID goes onto every Cybersalt update site, so Joomla's own **System → Update → Extensions** screen can download Pro updates too, and a small installer plugin puts it back if the update sites get rebuilt.
 - **Home Dashboard count.** A quick icon next to Joomla's own update checks shows how many Cybersalt updates are waiting. It loads after the dashboard, so it never slows it down.
-- **Scheduled checks and email.** Installing the package adds a daily scheduled task that emails Super Users when something new is available. It can also install updates for you: patch releases only, patch and minor, or everything. You can exclude extensions, and the Extension Manager never updates itself from a task.
+- **Release emails, if you want them.** Click **Email me about new releases** (on the install screen or the Extensions screen) and a daily scheduled task emails you when a new release of a Cybersalt extension on the site is out. It's off until you ask for it. The same task can also install updates for you: patch releases only, patch and minor, or everything. You can exclude extensions, and the Extension Manager never updates itself from a task.
 - **History.** Every install, update, rollback, uninstall, switch on/off, health fix, update check and email, with who did it and how long it took. Filters for every column, CSV download, a plain-text dump for support tickets. Installs, updates and uninstalls also go into Joomla's User Actions Log.
 - **Permissions.** View, install/update and fix are separate permissions. Installing also needs access to Joomla's own Extensions Manager, so a site that locked that down isn't bypassed.
 
@@ -58,7 +58,7 @@ The package installs:
 | `com_csextensionmanager` | The Extensions, Health Check and History screens |
 | `plg_installer_csextensionmanager` | Adds the download ID to Cybersalt downloads and update checks when it's missing |
 | `plg_quickicon_csextensionmanager` | The Home Dashboard update count |
-| `plg_task_csextensionmanager` | The scheduled update check (a daily task is created on install) |
+| `plg_task_csextensionmanager` | The scheduled update check (created switched off; "Email me about new releases" turns it on) |
 
 ## Configuration
 
@@ -73,7 +73,7 @@ The package installs:
 | Catalog | Show MCP for Joomla add-ons: all / only for extensions on this site / none | All |
 | Catalog | Offer beta releases | No |
 | Catalog | Connection timeout | 10 s |
-| Updates | Email summaries to | Super Users with system emails |
+| Updates | Email summaries to | whoever clicked "Email me about new releases" (else Super Users with system emails) |
 | Updates | Never auto-update | none |
 | History | Keep history for (days) | 365 |
 | History | Also write to User Actions Log | Yes |
