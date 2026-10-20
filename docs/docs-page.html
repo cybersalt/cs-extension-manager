@@ -1,0 +1,77 @@
+<p>The Cybersalt Extension Manager installs, updates and looks after every Cybersalt extension on your site from one screen. It's free.</p>
+
+<h2>Installing it</h2>
+<ol>
+    <li>Download <code>pkg_csextensionmanager</code> from cybersalt.com.</li>
+    <li>In your site's administrator, go to <strong>System → Install → Extensions</strong> and upload the zip.</li>
+    <li>Click <strong>Open the Extension Manager</strong> on the card that appears, or go to <strong>Components → Cybersalt Extension Manager</strong>.</li>
+</ol>
+<p>It needs Joomla 5 or 6 and PHP 8.1 or later, and your site has to be able to reach www.cybersalt.com.</p>
+
+<h2>The Extensions screen</h2>
+<p>Every Cybersalt extension and MCP for Joomla add-on is listed, in four groups:</p>
+<ul>
+    <li><strong>Needs attention</strong>: updates you haven't installed yet, and anything that's only half installed.</li>
+    <li><strong>Installed and up to date</strong>.</li>
+    <li><strong>More Cybersalt extensions</strong>: ones not on your site yet.</li>
+    <li><strong>MCP for Joomla add-ons</strong>: the ones for extensions you already have are marked.</li>
+</ul>
+<p>The numbers at the top are filters: click <em>Updates</em> to see only the extensions with an update. You can also search, filter by status, kind (extension or add-on) and licence (free or Pro), or show only the add-ons for extensions on your site. Your filters are remembered next time.</p>
+
+<h3>Installing and updating</h3>
+<p>Click <strong>Install</strong> or <strong>Update to x.y.z</strong> on a card. To do several at once, tick them (hold Shift to tick a range) and click <strong>Install / update selected</strong>, or click <strong>Update all</strong> in the toolbar. A window shows each one as it goes; keep it open until it says it's done. If one fails, the rest still go ahead and the window says why it failed.</p>
+<p>If an MCP add-on needs MCP for Joomla and it isn't installed, MCP for Joomla is installed first, automatically.</p>
+<p>Every download comes from cybersalt.com and is checked against the checksum published with the release before anything is installed.</p>
+
+<h3>What's new, and going back to an earlier version</h3>
+<p><strong>What's new</strong> (or <strong>Changelog</strong>) shows the release notes, with every release newer than yours marked. If an update causes trouble, open <strong>More → Install another version…</strong> and pick the release to go back to.</p>
+
+<h3>Switching parts on and off, uninstalling</h3>
+<p>Packages list their parts under <em>N parts</em> on the card, each with an on/off switch. <strong>More → Uninstall</strong> removes an extension; if other installed add-ons depend on it, you're told which before anything happens.</p>
+
+<h2>Pro extensions</h2>
+<p>Free extensions install without an account. For Pro extensions, the site needs your Cybersalt download ID. There are three ways:</p>
+<ul>
+    <li><strong>Activate this site</strong> on the Extensions screen with the email address of your cybersalt.com account. cybersalt.com sends you an email to confirm.</li>
+    <li>If MCP for Joomla is already activated on the site, its activation is used automatically.</li>
+    <li>Paste a download ID under <strong>Options → Account</strong>.</li>
+</ul>
+<p>The download ID is also added to every Cybersalt update site, so Joomla's own <strong>System → Update → Extensions</strong> screen can download Pro updates too.</p>
+
+<h2>Health Check</h2>
+<p>The Health Check finds the things that quietly stop updates from arriving and fixes them with one click:</p>
+<ul>
+    <li>an extension with no update site, or one that's switched off, points somewhere else, or has duplicates;</li>
+    <li>a Pro extension whose update site doesn't carry your download ID;</li>
+    <li>a package that's only half installed, or parts of a package installed without the package;</li>
+    <li>parts that are switched off;</li>
+    <li>MCP add-ons without MCP for Joomla, or for an extension that isn't on the site;</li>
+    <li>updates Joomla still lists after you installed them;</li>
+    <li>a lapsed membership, or cybersalt.com not answering.</li>
+</ul>
+<p><strong>Fix all</strong> repairs update sites and download IDs in one go. Installing and switching things on are left for you to choose one by one.</p>
+
+<h2>Update checks and email</h2>
+<p>Installing the Extension Manager adds a scheduled task that checks for Cybersalt updates once a day and emails Super Users (who receive system emails) when something new is available. Change it under <strong>System → Scheduled Tasks → Cybersalt Extension Manager: check for updates</strong>:</p>
+<ul>
+    <li><strong>Install updates</strong>: no (just let me know), patch releases only, patch and minor releases, or all.</li>
+    <li><strong>Email a summary</strong>: when something changed, every run, or never.</li>
+</ul>
+<p>Who gets the email, and which extensions are never updated automatically, are set under <strong>Options → Updates</strong>. The Extension Manager never updates itself from the task.</p>
+<p>The Home Dashboard also shows the number of Cybersalt updates next to Joomla's own update checks.</p>
+
+<h2>History</h2>
+<p><strong>History</strong> lists every install, update, rollback, uninstall, health fix, update check and email: who did it, what changed, and how long it took. Filter by any column, download it as CSV, or click <strong>Dump</strong> for plain text to paste into a support request.</p>
+
+<h2>Options</h2>
+<table>
+    <thead><tr><th>Tab</th><th>Setting</th></tr></thead>
+    <tbody>
+        <tr><td>Account</td><td>Download ID; use MCP for Joomla's activation; keep update sites in step</td></tr>
+        <tr><td>Catalog</td><td>How often to check for updates; which MCP add-ons to show; beta releases; connection timeout</td></tr>
+        <tr><td>Updates</td><td>Who gets the summary email; extensions never updated automatically</td></tr>
+        <tr><td>History</td><td>How long history is kept; also write to Joomla's User Actions Log</td></tr>
+        <tr><td>Support</td><td>Who people are pointed at for help</td></tr>
+        <tr><td>Permissions</td><td>Who may view, install and update, and apply fixes</td></tr>
+    </tbody>
+</table>

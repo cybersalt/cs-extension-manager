@@ -255,8 +255,15 @@ final class StoreClient
             $handles[$key] = $ch;
         }
 
+        // Per-handle transfer results: curl_error() is empty for multi handles.
+        $curlCodes = [];
+
         do {
             $status = curl_multi_exec($multi, $running);
+
+            while (($info = curl_multi_info_read($multi)) !== false) {
+                $curlCodes[spl_object_id($info['handle'])] = (int) $info['result'];
+            }
 
             if ($running) {
                 curl_multi_select($multi, 1.0);
@@ -264,9 +271,10 @@ final class StoreClient
         } while ($running && $status === CURLM_OK);
 
         foreach ($handles as $key => $ch) {
-            $code  = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
-            $body  = (string) curl_multi_getcontent($ch);
-            $error = curl_error($ch);
+            $code     = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+            $body     = (string) curl_multi_getcontent($ch);
+            $curlCode = $curlCodes[spl_object_id($ch)] ?? 0;
+            $error    = $curlCode !== 0 ? (string) curl_strerror($curlCode) : curl_error($ch);
 
             $results[$key] = [
                 'code'  => $code,
