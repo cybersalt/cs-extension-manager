@@ -39,7 +39,7 @@ packages/
 - `api.updatexml&element=X[&dlid=]`: one `<update>` (version, downloadurl, sha256, targetplatform, php_minimum, tags). Denied dlid → description "UPDATE NOT AVAILABLE TO THIS SITE: reason" + infourl. Cloudflare caches it 5 min.
 - `api.changelogxml&element=X`: every version's notes.
 - `api.catalog&catalog=cs-mcp-for-j` (json): the MCP add-ons, with target_extension, tier, advisory, superseded_by.
-- `api.packages` (json): **doesn't exist yet on the live store**. Spec in `docs/SERVER-API.md`; the manager uses it as soon as it answers.
+- `api.packages` (json): added in cs-release-manager **1.12.9** (on the store 2026-10-20), but it only answers once cybersalt.com itself is upgraded from 1.12.7; until then it 404s and the manager falls back to seed.json + updatexml. Spec in `docs/SERVER-API.md`. Add-ons (catalog_slug `cs-mcp-for-j`) are skipped here and come from `api.catalog`.
 - `api.register` / `api.linkemail` / `api.verifyaccess`: activation. Anchor package `csmcpforjpro`.
 - Free downloads: `api.userdownload`. Paid: `api.download&dlid=`.
 

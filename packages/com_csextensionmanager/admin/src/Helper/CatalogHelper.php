@@ -255,7 +255,7 @@ final class CatalogHelper
     }
 
     /**
-     * The whole store in one request (cs-release-manager 1.13+).
+     * The whole store in one request (cs-release-manager 1.12.9+).
      *
      * @param   array<string, array<string, mixed>>  $seed    Seed items by element.
      * @param   string[]                             $errors  Collected errors.
