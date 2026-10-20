@@ -19,9 +19,11 @@ $src = __DIR__ . '/../packages/com_csextensionmanager/admin/src/Helper/';
 
 require $src . 'FeedParser.php';
 require $src . 'StateHelper.php';
+require $src . 'StoreClient.php';
 
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\FeedParser;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\StateHelper;
+use Cybersalt\Component\Csextensionmanager\Administrator\Helper\StoreClient;
 
 $failures = 0;
 $count    = 0;
@@ -88,6 +90,29 @@ $check('minor', StateHelper::updateType('1.2.3', '1.3.0') === 'minor');
 $check('major', StateHelper::updateType('1.9.9', '2.0.0') === 'major');
 $check('short versions', StateHelper::updateType('1.2', '1.2.1') === 'patch');
 $check('suffixes ignored', StateHelper::updateType('1.2.3-beta', '1.2.4') === 'patch');
+
+// --- isTrustedHost / isStoreUrl ------------------------------------------------
+$dl = 'https://www.cybersalt.com/index.php?option=com_csreleasemanager&task=api.userdownload&format=raw&element=x';
+$check('store download trusted', StoreClient::isStoreUrl($dl, ['api.userdownload']));
+$check('bare domain trusted', StoreClient::isTrustedHost('https://cybersalt.com/index.php'));
+$check('explicit 443 trusted', StoreClient::isTrustedHost('https://www.cybersalt.com:443/x'));
+$check('wrong task refused', !StoreClient::isStoreUrl($dl, ['api.download']));
+$check('http refused', !StoreClient::isTrustedHost('http://www.cybersalt.com/index.php'));
+$check('other port refused', !StoreClient::isTrustedHost('https://www.cybersalt.com:8443/index.php'));
+$check('userinfo refused', !StoreClient::isTrustedHost('https://www.cybersalt.com@evil.example/index.php'));
+$check('userinfo on store refused', !StoreClient::isTrustedHost('https://user:pass@www.cybersalt.com/index.php'));
+$check('lookalike suffix refused', !StoreClient::isTrustedHost('https://www.cybersalt.com.evil.example/index.php'));
+$check('subdomain refused', !StoreClient::isTrustedHost('https://evil.cybersalt.com/index.php'));
+$check('entity-encoded refused', !StoreClient::isTrustedHost('https://www.cybersalt.com/index.php?option=com_csreleasemanager&amp;task=api.download'));
+$check('backslash refused', !StoreClient::isTrustedHost('https://evil.example\\@www.cybersalt.com/'));
+$check('whitespace refused', !StoreClient::isTrustedHost("https://www.cybersalt.com /x"));
+$check('other option refused', !StoreClient::isStoreUrl('https://www.cybersalt.com/index.php?option=com_content&task=api.download'));
+
+// --- withQueryParam -------------------------------------------------------------
+$check('adds param', StoreClient::withQueryParam('https://a.test/i.php?x=1', 'dlid', 'abc') === 'https://a.test/i.php?x=1&dlid=abc');
+$check('replaces param', StoreClient::withQueryParam('https://a.test/i.php?dlid=old&x=1', 'dlid', 'new') === 'https://a.test/i.php?x=1&dlid=new');
+$check('removes param', StoreClient::withQueryParam('https://a.test/i.php?x=1&dlid=old', 'dlid', '') === 'https://a.test/i.php?x=1');
+$check('encodes value', StoreClient::withQueryParam('https://a.test/i.php', 'v', 'a&b') === 'https://a.test/i.php?v=a%26b');
 
 echo "\n{$count} checks, {$failures} failed\n";
 

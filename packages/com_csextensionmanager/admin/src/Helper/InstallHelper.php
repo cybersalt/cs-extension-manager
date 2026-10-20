@@ -19,7 +19,6 @@ use Joomla\CMS\Installer\InstallerHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\Database\DatabaseInterface;
 use Joomla\Database\ParameterType;
-use Joomla\Registry\Registry;
 
 /**
  * Install, update, reinstall, downgrade, uninstall, enable and disable.
@@ -83,11 +82,17 @@ final class InstallHelper
         $dlid = AccountHelper::getDlid();
         $feed = self::freshFeed((string) $item['element'], $dlid);
 
-        if ($feed !== null && !empty($feed['available'])) {
+        // No install on cached details alone: the checksum and the download
+        // address come from this fresh answer.
+        if ($feed === null) {
+            return $fail(Text::sprintf('COM_CSEXTENSIONMANAGER_INSTALL_FEED_UNREACHABLE', $title));
+        }
+
+        if (!empty($feed['available'])) {
             $item = CatalogHelper::applyFeed($item, $feed);
         }
 
-        if ($feed !== null && empty($feed['available']) && $version === '') {
+        if (empty($feed['available']) && $version === '') {
             return $fail(Text::sprintf('COM_CSEXTENSIONMANAGER_INSTALL_NOT_PUBLISHED', $title));
         }
 
@@ -126,8 +131,12 @@ final class InstallHelper
             $url = StoreClient::withQueryParam($url, 'dlid', $dlid);
         }
 
-        // 1. Download.
-        $download = self::download($url, (string) $item['element']);
+        // The published checksum, when the store has one for this version.
+        $expected = $target === $latest ? strtolower((string) ($item['sha256'] ?? '')) : '';
+        $expected = preg_match('/^[a-f0-9]{64}$/', $expected) ? $expected : '';
+
+        // 1. Download. Without a checksum, only cybersalt.com may serve the bytes.
+        $download = self::download($url, (string) $item['element'], $expected !== '');
 
         if ($download['error'] !== null) {
             return $fail(Text::sprintf('COM_CSEXTENSIONMANAGER_INSTALL_DOWNLOAD_FAILED', $title, $download['error']));
@@ -136,8 +145,6 @@ final class InstallHelper
         $file = $download['file'];
 
         // 2. Same bytes the store published?
-        $expected = $target === $latest ? strtolower((string) ($item['sha256'] ?? '')) : '';
-
         if ($expected !== '' && !hash_equals($expected, (string) hash_file('sha256', $file))) {
             @unlink($file);
 
@@ -403,18 +410,24 @@ final class InstallHelper
 
     /**
      * Download a package into Joomla's tmp folder, following up to three
-     * https redirects, and keep the store's error text when it says no.
+     * redirects by hand, and keep the store's error text when it says no.
      *
-     * @param   string  $url      Store download URL.
-     * @param   string  $element  Element (for the file name).
+     * Every hop must be https. Hops off cybersalt.com (e.g. a release asset
+     * on another host) are only followed when a checksum will verify the
+     * bytes afterwards.
+     *
+     * @param   string   $url        Store download URL.
+     * @param   string   $element    Element (for the file name).
+     * @param   boolean  $hashKnown  A SHA-256 will be checked after download.
      *
      * @return  array{file: string, error: string|null}
      *
      * @since   0.1.0
      */
-    private static function download(string $url, string $element): array
+    private static function download(string $url, string $element, bool $hashKnown): array
     {
-        $http = HttpFactory::getHttp(new Registry(['userAgent' => StoreClient::userAgent()]));
+        $options = StoreClient::httpOptions();
+        $http    = HttpFactory::getHttp($options);
 
         for ($hop = 0; $hop < 4; $hop++) {
             try {
@@ -427,10 +440,15 @@ final class InstallHelper
             $headers = array_change_key_case($response->getHeaders(), CASE_LOWER);
 
             if (\in_array($code, [301, 302, 303, 307, 308], true) && !empty($headers['location'])) {
-                $next = \is_array($headers['location']) ? (string) reset($headers['location']) : (string) $headers['location'];
+                $location = \is_array($headers['location']) ? (string) reset($headers['location']) : (string) $headers['location'];
+                $next     = self::resolveRedirect($url, trim($location));
 
-                if (strtolower((string) parse_url($next, PHP_URL_SCHEME)) !== 'https') {
+                if ($next === '' || strtolower((string) parse_url($next, PHP_URL_SCHEME)) !== 'https') {
                     return ['file' => '', 'error' => Text::_('COM_CSEXTENSIONMANAGER_INSTALL_INSECURE_REDIRECT')];
+                }
+
+                if (!$hashKnown && !StoreClient::isTrustedHost($next)) {
+                    return ['file' => '', 'error' => Text::_('COM_CSEXTENSIONMANAGER_INSTALL_UNCHECKED_REDIRECT')];
                 }
 
                 $url = $next;
@@ -461,6 +479,43 @@ final class InstallHelper
         }
 
         return ['file' => '', 'error' => Text::_('COM_CSEXTENSIONMANAGER_INSTALL_TOO_MANY_REDIRECTS')];
+    }
+
+    /**
+     * Absolute URL for a redirect's Location (absolute or root-relative only).
+     *
+     * @param   string  $from      URL that answered with the redirect.
+     * @param   string  $location  Location header.
+     *
+     * @return  string  '' when it can't be resolved safely.
+     *
+     * @since   0.1.0
+     */
+    private static function resolveRedirect(string $from, string $location): string
+    {
+        if ($location === '' || preg_match('/[\s\\\\]/', $location)) {
+            return '';
+        }
+
+        if (preg_match('#^https?://#i', $location)) {
+            return $location;
+        }
+
+        if (str_starts_with($location, '//')) {
+            return 'https:' . $location;
+        }
+
+        if (str_starts_with($location, '/')) {
+            $parts = parse_url($from);
+
+            if (!\is_array($parts) || empty($parts['host'])) {
+                return '';
+            }
+
+            return 'https://' . $parts['host'] . (!empty($parts['port']) ? ':' . (int) $parts['port'] : '') . $location;
+        }
+
+        return '';
     }
 
     /**
@@ -533,8 +588,11 @@ final class InstallHelper
             return false;
         }
 
-        // Element unknown from the manifest (old-style component name): type match is enough.
-        return $identity['element'] === '' || $identity['element'] === strtolower((string) $item['element']);
+        if ($identity['element'] === '') {
+            return false;
+        }
+
+        return $identity['element'] === strtolower((string) $item['element']);
     }
 
     /**
@@ -625,8 +683,10 @@ final class InstallHelper
      */
     private static function plain(string $html): string
     {
+        // Decode first, then strip, so encoded markup can't come back out live.
+        $html = html_entity_decode($html, ENT_QUOTES | ENT_HTML5, 'UTF-8');
         $html = (string) preg_replace('#<(script|style)\b[^>]*>.*?</\1>#is', ' ', $html);
 
-        return trim((string) preg_replace('/\s+/', ' ', html_entity_decode(strip_tags($html), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
+        return trim((string) preg_replace('/\s+/', ' ', strip_tags($html)));
     }
 }

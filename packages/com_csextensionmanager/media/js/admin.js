@@ -48,10 +48,10 @@
       json.status = res.status;
       return json;
     } catch (e) {
-      // A PHP error page instead of JSON: show the first readable line.
-      const div = document.createElement('div');
-      div.innerHTML = text;
-      const plain = (div.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 300);
+      // A PHP error page instead of JSON: show its text. DOMParser builds an
+      // inert document, so nothing in the page runs.
+      const doc = new DOMParser().parseFromString(text, 'text/html');
+      const plain = (doc.body ? doc.body.textContent || '' : '').replace(/\s+/g, ' ').trim().slice(0, 300);
       return { success: false, message: plain || ('HTTP ' + res.status), data: {}, status: res.status };
     }
   }
@@ -246,7 +246,7 @@
     e.preventDefault();
     const keys = Object.keys(items).filter((k) => items[k].status === 'update' && items[k].entitled && items[k].compatible);
     if (!keys.length) {
-      Joomla.renderMessages({ info: [t('COM_CSEXTENSIONMANAGER_JS_NOTHING_TO_UPDATE')] });
+      Joomla.renderMessages({ info: [esc(t('COM_CSEXTENSIONMANAGER_JS_NOTHING_TO_UPDATE'))] });
       return;
     }
     // The manager first, so the rest runs on the new code.
@@ -409,7 +409,7 @@
     }
 
     unbusy();
-    Joomla.renderMessages(res.success ? { message: [res.message] } : { error: [res.message] });
+    Joomla.renderMessages(res.success ? { message: [esc(res.message)] } : { error: [esc(res.message)] });
     if (res.success) { window.setTimeout(() => window.location.reload(), 800); }
   });
 
@@ -430,7 +430,7 @@
 
     if (!res.success) {
       if (isSwitch) { el.checked = !enabled; }
-      Joomla.renderMessages({ error: [res.message || t('COM_CSEXTENSIONMANAGER_JS_TOGGLE_FAILED')] });
+      Joomla.renderMessages({ error: [esc(res.message || t('COM_CSEXTENSIONMANAGER_JS_TOGGLE_FAILED'))] });
       return;
     }
 
@@ -439,7 +439,7 @@
       el.textContent = t(enabled ? 'COM_CSEXTENSIONMANAGER_BTN_DISABLE' : 'COM_CSEXTENSIONMANAGER_BTN_ENABLE');
     }
 
-    Joomla.renderMessages({ message: [res.message] });
+    Joomla.renderMessages({ message: [esc(res.message)] });
   });
 
   // ---------------------------------------------------------------- changelog / version picker

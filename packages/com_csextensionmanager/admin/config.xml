@@ -106,16 +106,6 @@
             filter="integer"
         />
 
-        <field
-            name="store_url"
-            type="url"
-            label="COM_CSEXTENSIONMANAGER_FIELD_STORE_URL_LABEL"
-            description="COM_CSEXTENSIONMANAGER_FIELD_STORE_URL_DESC"
-            default="https://www.cybersalt.com"
-            filter="url"
-            validate="url"
-            scheme="https"
-        />
     </fieldset>
 
     <fieldset name="updates" label="COM_CSEXTENSIONMANAGER_FIELDSET_UPDATES" description="COM_CSEXTENSIONMANAGER_FIELDSET_UPDATES_DESC">

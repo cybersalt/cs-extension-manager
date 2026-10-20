@@ -73,7 +73,6 @@ The package installs:
 | Catalog | Show MCP for Joomla add-ons: all / only for extensions on this site / none | All |
 | Catalog | Offer beta releases | No |
 | Catalog | Connection timeout | 10 s |
-| Catalog | Store address (testing only) | https://www.cybersalt.com |
 | Updates | Email summaries to | Super Users with system emails |
 | Updates | Never auto-update | none |
 | History | Keep history for (days) | 365 |

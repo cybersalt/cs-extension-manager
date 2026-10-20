@@ -18,4 +18,9 @@ All notable changes to Cybersalt Extension Manager are documented here. Only rel
 - **Scheduled update checks** (Joomla Scheduler task, created on install): check daily and email a summary when something new is available, or install updates automatically, limited to patch releases, patch and minor releases, or all. Extensions can be excluded from automatic updates; the Extension Manager never updates itself from a task.
 - **History**: every install, update, rollback, uninstall, enable/disable, health fix, update check and email, with the standard Cybersalt log viewer (filters for every column, CSV download, text dump for support, delete and clear all). Installs, updates and uninstalls also go to Joomla's User Actions Log.
 - Enable or disable each part of an installed package from its card.
-- Options: download ID, MCP for Joomla activation reuse, how often to check, which MCP add-ons to show, beta releases, timeout, store address, email recipients, auto-update exclusions, history retention, support contact details and permissions (view / install / fix).
+- Options: download ID, MCP for Joomla activation reuse, how often to check, which MCP add-ons to show, beta releases, timeout, email recipients, auto-update exclusions, history retention, support contact details and permissions (view / install / fix).
+
+### 🔍 Security
+- Packages are only installed from cybersalt.com, over https. Redirects are followed one hop at a time: never to plain http, and away from cybersalt.com only when a published checksum will verify the bytes. Nothing is installed when the latest release can't be checked with the store first.
+- The store address can't be changed from Options (only in code, for development), so permission to change Options never becomes permission to choose what gets installed.
+- Every action checks the form token and a permission (view / install / fix); installing also needs access to Joomla's own Extensions Manager. A request can only name an extension from the catalog, never a download address, file or arbitrary extension id.

@@ -42,6 +42,14 @@ packages/
 - `api.register` / `api.linkemail` / `api.verifyaccess`: activation. Anchor package `csmcpforjpro`.
 - Free downloads: `api.userdownload`. Paid: `api.download&dlid=`.
 
+## Security model (reviewed 2026-10-20: no HIGH; both MEDIUMs fixed)
+
+- **Installs only from cybersalt.com.** `StoreClient::isTrustedHost()` = https, cybersalt.com / www.cybersalt.com, port 443, no userinfo, no entities/whitespace/backslashes. A dev store is only possible via `define('CSEXTENSIONMANAGER_STORE_URL', …)` in code: **never add it back as an Option** (Options can be granted without installer rights, and whoever sets the store decides what's installed).
+- **No automatic redirects.** `StoreClient::httpOptions()` sets `follow_location=false` and curl HTTPS-only protocols (Joomla's curl transport follows redirects to anywhere by default). `InstallHelper::download()` follows hops by hand: https only, and off cybersalt.com only when a SHA-256 will be checked.
+- **Fail closed:** no fresh `updatexml` answer, no install. Older versions (rollback) have no published hash, so they can only come from cybersalt.com hosts.
+- Requests name a catalog **key** only (`type:folder:element`, regex-checked, must exist in the catalog). Toggle ids must be the item's own or its package children. Health fixes are re-derived from a fresh `check()` by issue id.
+- JS: remote text goes through `esc()` / `textContent`; error pages are parsed with `DOMParser` (inert), never `innerHTML`.
+
 ## Gotchas found while building
 
 - **`enrich()` on a single item must still resolve dependencies.** The JSON install task enriches just the requested item, so a required parent isn't in the set; StateHelper looks it up directly. (Without that, an add-on was refused right after its parent installed in the same queue.)

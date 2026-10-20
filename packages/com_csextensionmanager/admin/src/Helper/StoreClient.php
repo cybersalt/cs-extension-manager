@@ -31,7 +31,7 @@ final class StoreClient
     public const DEFAULT_STORE = 'https://www.cybersalt.com';
 
     /**
-     * Hosts that always count as the Cybersalt store, whatever store_url says.
+     * The only hosts packages are installed from.
      *
      * @var    string[]
      * @since  0.1.0
@@ -39,7 +39,12 @@ final class StoreClient
     private const CYBERSALT_HOSTS = ['cybersalt.com', 'www.cybersalt.com'];
 
     /**
-     * Store root (scheme + host, no trailing slash). https only.
+     * Store root (scheme + host, no trailing slash).
+     *
+     * Always cybersalt.com. A development store can be set with
+     * `define('CSEXTENSIONMANAGER_STORE_URL', 'https://staging.example')` in
+     * code; deliberately not an Option, because whoever sets it decides what
+     * gets installed (and Options can be granted without installer rights).
      *
      * @return  string
      *
@@ -47,20 +52,67 @@ final class StoreClient
      */
     public static function storeRoot(): string
     {
-        $url   = trim((string) ParamsHelper::get()->get('store_url', self::DEFAULT_STORE));
+        $override = self::overrideParts();
+
+        return $override !== null ? 'https://' . $override['host'] . ($override['port'] ? ':' . $override['port'] : '') : self::DEFAULT_STORE;
+    }
+
+    /**
+     * Host and port of the development override, if one is defined and https.
+     *
+     * @return  array{host: string, port: int}|null
+     *
+     * @since   0.1.0
+     */
+    private static function overrideParts(): ?array
+    {
+        if (!\defined('CSEXTENSIONMANAGER_STORE_URL')) {
+            return null;
+        }
+
+        $parts = parse_url((string) \constant('CSEXTENSIONMANAGER_STORE_URL'));
+
+        if (!\is_array($parts) || strtolower((string) ($parts['scheme'] ?? '')) !== 'https' || empty($parts['host']) || isset($parts['user']) || isset($parts['pass'])) {
+            return null;
+        }
+
+        return ['host' => strtolower((string) $parts['host']), 'port' => (int) ($parts['port'] ?? 0)];
+    }
+
+    /**
+     * Is this an https URL on a Cybersalt store host, with no user info and
+     * no unusual port?
+     *
+     * @param   string  $url  URL.
+     *
+     * @return  boolean
+     *
+     * @since   0.1.0
+     */
+    public static function isTrustedHost(string $url): bool
+    {
+        $url = trim($url);
+
+        // The string checked must be the string fetched.
+        if ($url === '' || $url !== html_entity_decode($url, ENT_QUOTES | ENT_HTML5) || preg_match('/[\s\\\\]/', $url)) {
+            return false;
+        }
+
         $parts = parse_url($url);
 
-        if (!\is_array($parts) || strtolower((string) ($parts['scheme'] ?? '')) !== 'https' || empty($parts['host'])) {
-            return self::DEFAULT_STORE;
+        if (!\is_array($parts) || strtolower((string) ($parts['scheme'] ?? '')) !== 'https' || isset($parts['user']) || isset($parts['pass'])) {
+            return false;
         }
 
-        $root = 'https://' . strtolower((string) $parts['host']);
+        $host     = strtolower((string) ($parts['host'] ?? ''));
+        $port     = (int) ($parts['port'] ?? 0);
+        $override = self::overrideParts();
 
-        if (!empty($parts['port'])) {
-            $root .= ':' . (int) $parts['port'];
+        if (\in_array($host, self::CYBERSALT_HOSTS, true)) {
+            return $port === 0 || $port === 443;
         }
 
-        return $root;
+        return $override !== null && $host === $override['host'] && $port === $override['port'];
     }
 
     /**
@@ -115,7 +167,7 @@ final class StoreClient
      * Is this an https URL on the Cybersalt store, for a Release Manager API
      * task in $tasks (any task when null)?
      *
-     * @param   string         $url    URL to check (HTML entities are decoded first).
+     * @param   string         $url    URL to check.
      * @param   string[]|null  $tasks  Allowed `task` values, e.g. ['api.download'].
      *
      * @return  boolean
@@ -124,21 +176,11 @@ final class StoreClient
      */
     public static function isStoreUrl(string $url, ?array $tasks = null): bool
     {
-        $parts = parse_url(html_entity_decode(trim($url), ENT_QUOTES | ENT_HTML5));
-
-        if (!\is_array($parts) || strtolower((string) ($parts['scheme'] ?? '')) !== 'https') {
+        if (!self::isTrustedHost($url)) {
             return false;
         }
 
-        $host    = strtolower((string) ($parts['host'] ?? ''));
-        $store   = strtolower((string) parse_url(self::storeRoot(), PHP_URL_HOST));
-        $allowed = array_unique(array_merge(self::CYBERSALT_HOSTS, [$store]));
-
-        if (!\in_array($host, $allowed, true)) {
-            return false;
-        }
-
-        parse_str((string) ($parts['query'] ?? ''), $query);
+        parse_str((string) parse_url(trim($url), PHP_URL_QUERY), $query);
 
         if (($query['option'] ?? '') !== 'com_csreleasemanager') {
             return false;
@@ -181,8 +223,8 @@ final class StoreClient
      */
     public static function get(string $url): array
     {
-        if (strtolower((string) parse_url($url, PHP_URL_SCHEME)) !== 'https') {
-            return ['code' => 0, 'body' => '', 'error' => 'Only https URLs are fetched.'];
+        if (!self::isTrustedHost($url)) {
+            return ['code' => 0, 'body' => '', 'error' => 'Only the Cybersalt store is contacted.'];
         }
 
         try {
@@ -225,16 +267,15 @@ final class StoreClient
         $results = [];
 
         foreach ($urls as $key => $url) {
-            if (strtolower((string) parse_url($url, PHP_URL_SCHEME)) !== 'https') {
-                $results[$key] = ['code' => 0, 'body' => '', 'error' => 'Only https URLs are fetched.'];
+            if (!self::isTrustedHost($url)) {
+                $results[$key] = ['code' => 0, 'body' => '', 'error' => 'Only the Cybersalt store is contacted.'];
                 continue;
             }
 
             $ch = curl_init($url);
             curl_setopt_array($ch, [
                 CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_MAXREDIRS      => 3,
+                CURLOPT_FOLLOWLOCATION => false,
                 CURLOPT_PROTOCOLS      => CURLPROTO_HTTPS,
                 CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS,
                 CURLOPT_CONNECTTIMEOUT => min(10, self::timeout()),
@@ -401,9 +442,23 @@ final class StoreClient
      *
      * @since   0.1.0
      */
-    private static function httpOptions(): Registry
+    public static function httpOptions(): Registry
     {
-        return new Registry(['userAgent' => self::userAgent()]);
+        // Joomla's curl transport follows redirects on its own by default,
+        // to any host and scheme. Callers that expect redirects follow them
+        // by hand, checking each hop.
+        $curl = [];
+
+        if (\defined('CURLOPT_PROTOCOLS') && \defined('CURLPROTO_HTTPS')) {
+            $curl[CURLOPT_PROTOCOLS]       = CURLPROTO_HTTPS;
+            $curl[CURLOPT_REDIR_PROTOCOLS] = CURLPROTO_HTTPS;
+        }
+
+        return new Registry([
+            'userAgent'       => self::userAgent(),
+            'follow_location' => false,
+            'transport.curl'  => $curl,
+        ]);
     }
 
     /**
