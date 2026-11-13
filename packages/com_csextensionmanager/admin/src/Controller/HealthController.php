@@ -89,7 +89,8 @@ final class HealthController extends BaseController
         for ($round = 0; $round < 5; $round++) {
             $items  = StateHelper::enrich(CatalogHelper::get()['items']);
             $issues = array_values(array_filter(
-                HealthHelper::check($items),
+                // Notes the admin hid are left alone.
+                HealthHelper::partition(HealthHelper::check($items))['visible'],
                 static fn (array $i): bool => \in_array($i['fix'], HealthHelper::SAFE_FIXES, true)
             ));
 
@@ -113,6 +114,54 @@ final class HealthController extends BaseController
         }
 
         $this->setMessage(Text::sprintf('COM_CSEXTENSIONMANAGER_HEALTH_FIXALL_DONE', $fixed, $failed), $failed > 0 ? 'warning' : 'message');
+        $this->back();
+    }
+
+    /**
+     * Hide one "good to know" note. POST: issue (id from the health view).
+     * The id must match a note in a fresh check, so only real notes are stored.
+     *
+     * @return  void
+     *
+     * @since   0.1.0
+     */
+    public function dismiss(): void
+    {
+        $this->checkToken();
+        PermissionHelper::requireFix();
+
+        $id = $this->input->post->getString('issue', '');
+
+        foreach (HealthHelper::check() as $issue) {
+            if (hash_equals((string) $issue['id'], $id) && HealthHelper::canDismiss($issue)) {
+                HealthHelper::saveDismissed([...HealthHelper::dismissedIds(), $issue['id']]);
+                $this->setMessage(Text::_('COM_CSEXTENSIONMANAGER_HEALTH_HIDDEN_DONE'));
+                break;
+            }
+        }
+
+        $this->back();
+    }
+
+    /**
+     * Show hidden notes again. POST: issue (one id), or all=1.
+     *
+     * @return  void
+     *
+     * @since   0.1.0
+     */
+    public function undismiss(): void
+    {
+        $this->checkToken();
+        PermissionHelper::requireFix();
+
+        if ($this->input->post->getInt('all', 0) === 1) {
+            HealthHelper::saveDismissed([]);
+        } else {
+            $id = $this->input->post->getString('issue', '');
+            HealthHelper::saveDismissed(array_filter(HealthHelper::dismissedIds(), static fn (string $d): bool => $d !== $id));
+        }
+
         $this->back();
     }
 

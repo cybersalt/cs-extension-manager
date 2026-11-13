@@ -60,8 +60,10 @@ $tiles = [
         'title' => Text::_('COM_CSEXTENSIONMANAGER_SUBMENU_HEALTH'),
         'value' => $this->issueCount,
         'unit'  => Text::_('COM_CSEXTENSIONMANAGER_DASH_ISSUES'),
-        'line'  => $this->issueCount > 0 ? Text::_('COM_CSEXTENSIONMANAGER_DASH_ISSUES_FIX') : Text::_('COM_CSEXTENSIONMANAGER_DASH_HEALTHY'),
-        'tone'  => $this->issueCount > 0 ? 'danger' : 'success',
+        'line'  => Text::_($this->issueCount === 0
+            ? 'COM_CSEXTENSIONMANAGER_DASH_HEALTHY'
+            : ($this->issueNotesOnly ? 'COM_CSEXTENSIONMANAGER_DASH_ISSUES_NOTES' : 'COM_CSEXTENSIONMANAGER_DASH_ISSUES_FIX')),
+        'tone'  => $this->issueTone,
     ],
     [
         'href'  => $url('view=logs'),
@@ -78,7 +80,7 @@ $tiles = [
 ?>
 <div class="csem csem-dashboard" id="csem">
 
-    <?php echo DisplayHelper::navBar('dashboard', ['extensions' => $updates, 'health' => $this->issueCount]); ?>
+    <?php echo DisplayHelper::navBar('dashboard', ['extensions' => $updates, 'health' => $this->issueCount], ['health' => DisplayHelper::healthBadgeClass($this->issueTone)]); ?>
 
     <div class="row g-3 mb-4">
         <?php foreach ($tiles as $tile) : ?>

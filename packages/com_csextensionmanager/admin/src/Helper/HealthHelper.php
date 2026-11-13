@@ -51,6 +51,15 @@ final class HealthHelper
     ];
 
     /**
+     * Component param holding the ids of "good to know" notes the admin hid
+     * (JSON list). Has a hidden field in config.xml so an Options save keeps it.
+     *
+     * @var    string
+     * @since  0.1.0
+     */
+    public const DISMISSED_PARAM = 'health_dismissed';
+
+    /**
      * Run every check.
      *
      * @param   array<string, array<string, mixed>>|null  $items  Enriched catalog items (built when null).
@@ -256,6 +265,72 @@ final class HealthHelper
         usort($issues, static fn (array $a, array $b): int => [$rank[$a['severity']], $a['title']] <=> [$rank[$b['severity']], $b['title']]);
 
         return $issues;
+    }
+
+    /**
+     * Only "good to know" notes can be hidden; warnings and problems always show.
+     *
+     * @param   array<string, mixed>  $issue  An issue from check().
+     *
+     * @return  boolean
+     *
+     * @since   0.1.0
+     */
+    public static function canDismiss(array $issue): bool
+    {
+        return $issue['severity'] === self::SEVERITY_INFO;
+    }
+
+    /**
+     * Ids of the notes the admin hid.
+     *
+     * @return  string[]
+     *
+     * @since   0.1.0
+     */
+    public static function dismissedIds(): array
+    {
+        $ids = json_decode((string) ParamsHelper::get()->get(self::DISMISSED_PARAM, ''), true);
+
+        return \is_array($ids) ? array_values(array_filter($ids, 'is_string')) : [];
+    }
+
+    /**
+     * Save the hidden notes (an empty list removes the param).
+     *
+     * @param   string[]  $ids  Issue ids.
+     *
+     * @return  void
+     *
+     * @since   0.1.0
+     */
+    public static function saveDismissed(array $ids): void
+    {
+        $ids = array_values(array_unique(array_filter($ids, static fn ($id): bool => \is_string($id) && $id !== '')));
+        sort($ids);
+
+        ParamsHelper::save([self::DISMISSED_PARAM => $ids === [] ? null : json_encode($ids)]);
+    }
+
+    /**
+     * Split issues into the ones to show and the notes the admin hid.
+     *
+     * @param   array<int, array<string, mixed>>  $issues  From check().
+     *
+     * @return  array{visible: array<int, array<string, mixed>>, hidden: array<int, array<string, mixed>>}
+     *
+     * @since   0.1.0
+     */
+    public static function partition(array $issues): array
+    {
+        $dismissed = array_flip(self::dismissedIds());
+        $result    = ['visible' => [], 'hidden' => []];
+
+        foreach ($issues as $issue) {
+            $result[self::canDismiss($issue) && isset($dismissed[$issue['id']]) ? 'hidden' : 'visible'][] = $issue;
+        }
+
+        return $result;
     }
 
     /**

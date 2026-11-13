@@ -45,7 +45,7 @@ $columns = [
 ?>
 <div class="csem" id="csem">
 
-    <?php echo DisplayHelper::navBar('extensions', ['extensions' => (int) $this->counts['update'], 'health' => $this->issueCount]); ?>
+    <?php echo DisplayHelper::navBar('extensions', ['extensions' => (int) $this->counts['update'], 'health' => $this->issueCount], ['health' => DisplayHelper::healthBadgeClass($this->issueTone)]); ?>
 
     <?php if ($this->selfUpdate !== null && $this->canInstall) : ?>
         <div class="alert alert-warning d-flex flex-wrap align-items-center gap-3" role="alert">
@@ -74,7 +74,7 @@ $columns = [
         <div class="col-6 col-lg">
             <a href="<?php echo $this->escape($healthUrl); ?>" class="card text-decoration-none h-100 csem-stat-card">
                 <div class="card-body text-center py-2">
-                    <div class="h3 mb-0 <?php echo $this->issueCount > 0 ? 'text-danger' : 'text-success'; ?>"><?php echo (int) $this->issueCount; ?></div>
+                    <div class="h3 mb-0 csem-text-<?php echo $this->escape($this->issueTone); ?>"><?php echo (int) $this->issueCount; ?></div>
                     <div class="small text-body-secondary"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_STAT_ISSUES')); ?></div>
                 </div>
             </a>

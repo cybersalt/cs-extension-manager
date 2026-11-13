@@ -33,6 +33,9 @@ final class HtmlView extends BaseHtmlView
     /** @var array<int, array<string, mixed>> */
     public $issues = [];
 
+    /** @var array<int, array<string, mixed>> "Good to know" notes the admin hid. */
+    public $hidden = [];
+
     /** @var array<string, int> */
     public $severityCounts = [];
 
@@ -68,7 +71,9 @@ final class HtmlView extends BaseHtmlView
         $this->catalog = CatalogHelper::get();
         $items         = StateHelper::enrich($this->catalog['items']);
         $this->items   = $items;
-        $this->issues  = HealthHelper::check($items);
+        $split         = HealthHelper::partition(HealthHelper::check($items));
+        $this->issues  = $split['visible'];
+        $this->hidden  = $split['hidden'];
         $this->canFix  = PermissionHelper::canFix();
         $this->canInstall = PermissionHelper::canInstall();
 

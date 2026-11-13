@@ -53,6 +53,8 @@
         <field name="account_signup_url" type="hidden" filter="string" />
         <field name="account_verified_at" type="hidden" filter="string" />
         <field name="account_verified_for" type="hidden" filter="string" />
+        <!-- "Good to know" notes hidden on the Health Check page (JSON list of issue ids). -->
+        <field name="health_dismissed" type="hidden" filter="raw" />
     </fieldset>
 
     <fieldset name="catalog" label="COM_CSEXTENSIONMANAGER_FIELDSET_CATALOG" description="COM_CSEXTENSIONMANAGER_FIELDSET_CATALOG_DESC">

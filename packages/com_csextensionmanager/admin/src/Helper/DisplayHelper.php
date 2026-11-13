@@ -323,17 +323,32 @@ final class DisplayHelper
     }
 
     /**
-     * The section bar at the top of every view: Dashboard, Extensions,
-     * Templates, Health Check, History.
+     * Badge colour for the health count in the section bar.
      *
-     * @param   string              $active  View name.
-     * @param   array<string, int>  $badges  View name => count to show (0 hides it).
+     * @param   string  $tone  ExtensionsModel::getIssueSummary() tone.
      *
      * @return  string
      *
      * @since   0.1.0
      */
-    public static function navBar(string $active, array $badges = []): string
+    public static function healthBadgeClass(string $tone): string
+    {
+        return $tone === 'danger' ? 'bg-danger' : 'bg-warning text-dark';
+    }
+
+    /**
+     * The section bar at the top of every view: Dashboard, Extensions,
+     * Templates, Health Check, History.
+     *
+     * @param   string                 $active        View name.
+     * @param   array<string, int>     $badges        View name => count to show (0 hides it).
+     * @param   array<string, string>  $badgeClasses  View name => badge colour class, replacing the default.
+     *
+     * @return  string
+     *
+     * @since   0.1.0
+     */
+    public static function navBar(string $active, array $badges = [], array $badgeClasses = []): string
     {
         $links = [
             'dashboard'  => ['icon-home', 'COM_CSEXTENSIONMANAGER_SUBMENU_DASHBOARD', 'bg-secondary'],
@@ -348,6 +363,7 @@ final class DisplayHelper
         foreach ($links as $view => [$icon, $label, $badgeClass]) {
             $isActive = $view === $active;
             $count    = (int) ($badges[$view] ?? 0);
+            $badgeClass = $badgeClasses[$view] ?? $badgeClass;
 
             $html .= '<li class="nav-item"><a class="nav-link' . ($isActive ? ' active' : '') . '"'
                 . ($isActive ? ' aria-current="page"' : '')

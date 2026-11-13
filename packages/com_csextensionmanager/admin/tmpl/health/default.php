@@ -27,6 +27,8 @@ DisplayHelper::scriptOptions($this->getDocument(), $this->items, $this->canInsta
 
 $fixUrl    = Route::_('index.php?option=com_csextensionmanager&task=health.fix', false);
 $fixAllUrl = Route::_('index.php?option=com_csextensionmanager&task=health.fixall', false);
+$hideUrl   = Route::_('index.php?option=com_csextensionmanager&task=health.dismiss', false);
+$unhideUrl = Route::_('index.php?option=com_csextensionmanager&task=health.undismiss', false);
 $needsInstall = ['reinstall', 'install_parent', 'enable_extension'];
 
 $severityLabel = [
@@ -89,6 +91,7 @@ $severityLabel = [
                         </div>
                         <p class="small mb-0 mt-1 text-break"><?php echo $this->escape($issue['message']); ?></p>
                     </div>
+                    <div class="d-flex flex-wrap align-items-center gap-2">
                     <?php if ($issue['fix'] !== '' && $this->canFix && (!in_array($issue['fix'], $needsInstall, true) || $this->canInstall)) : ?>
                         <form method="post" action="<?php echo $this->escape($fixUrl); ?>" class="csem-busy-form">
                             <input type="hidden" name="issue" value="<?php echo $this->escape($issue['id']); ?>">
@@ -106,9 +109,64 @@ $severityLabel = [
                             <?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_HEALTH_OPEN')); ?>
                         </a>
                     <?php endif; ?>
+                    <?php if ($this->canFix && HealthHelper::canDismiss($issue)) : ?>
+                        <form method="post" action="<?php echo $this->escape($hideUrl); ?>">
+                            <input type="hidden" name="issue" value="<?php echo $this->escape($issue['id']); ?>">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary" title="<?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_HEALTH_HIDE_TIP')); ?>">
+                                <span class="icon-eye-slash" aria-hidden="true"></span>
+                                <?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_HEALTH_HIDE')); ?>
+                            </button>
+                            <?php echo HTMLHelper::_('form.token'); ?>
+                        </form>
+                    <?php endif; ?>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
+    <?php endif; ?>
+
+    <?php if ($this->hidden !== []) : ?>
+        <details class="card mt-3 csem-hidden-notes" id="csem-hidden">
+            <summary class="card-header">
+                <span class="icon-eye-slash" aria-hidden="true"></span>
+                <?php echo $this->escape(Text::plural('COM_CSEXTENSIONMANAGER_HEALTH_HIDDEN_N', \count($this->hidden))); ?>
+            </summary>
+            <div class="card-body pb-0">
+                <p class="small text-body-secondary mb-2"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_HEALTH_HIDDEN_DESC')); ?></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <?php foreach ($this->hidden as $issue) : ?>
+                    <li class="list-group-item d-flex flex-wrap align-items-center gap-3">
+                        <div class="flex-grow-1 min-w-0">
+                            <strong><?php echo $this->escape($issue['title']); ?></strong>
+                            <p class="small mb-0 text-break"><?php echo $this->escape($issue['message']); ?></p>
+                        </div>
+                        <?php if ($this->canFix) : ?>
+                            <form method="post" action="<?php echo $this->escape($unhideUrl); ?>">
+                                <input type="hidden" name="issue" value="<?php echo $this->escape($issue['id']); ?>">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                                    <span class="icon-eye" aria-hidden="true"></span>
+                                    <?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_HEALTH_UNHIDE')); ?>
+                                </button>
+                                <?php echo HTMLHelper::_('form.token'); ?>
+                            </form>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <?php if ($this->canFix && \count($this->hidden) > 1) : ?>
+                <div class="card-footer">
+                    <form method="post" action="<?php echo $this->escape($unhideUrl); ?>">
+                        <input type="hidden" name="all" value="1">
+                        <button type="submit" class="btn btn-sm btn-secondary">
+                            <span class="icon-eye" aria-hidden="true"></span>
+                            <?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_HEALTH_UNHIDE_ALL')); ?>
+                        </button>
+                        <?php echo HTMLHelper::_('form.token'); ?>
+                    </form>
+                </div>
+            <?php endif; ?>
+        </details>
     <?php endif; ?>
 
     <p class="small text-body-secondary mt-3"><?php echo $this->escape(DisplayHelper::catalogLine($this->catalog)); ?></p>

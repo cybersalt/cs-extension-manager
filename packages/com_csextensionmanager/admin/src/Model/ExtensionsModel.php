@@ -93,20 +93,28 @@ final class ExtensionsModel extends BaseModel
     }
 
     /**
-     * Number of health issues worse than "info".
+     * The health issues the Health Check page shows (hidden notes left out)
+     * and the colour that goes with them: success with none, danger when
+     * something is a problem, warning otherwise.
      *
-     * @return  integer
+     * @return  array{count: int, tone: string, notes_only: bool}
      *
      * @since   0.1.0
      */
-    public function getIssueCount(): int
+    public function getIssueSummary(): array
     {
         try {
-            $issues = HealthHelper::check($this->getItems());
+            $issues = HealthHelper::partition(HealthHelper::check($this->getItems()))['visible'];
         } catch (\Throwable $e) {
-            return 0;
+            return ['count' => 0, 'tone' => 'success', 'notes_only' => false];
         }
 
-        return \count(array_filter($issues, static fn (array $i): bool => $i['severity'] !== HealthHelper::SEVERITY_INFO));
+        $severities = array_values(array_unique(array_column($issues, 'severity')));
+
+        return [
+            'count'      => \count($issues),
+            'tone'       => $issues === [] ? 'success' : (\in_array(HealthHelper::SEVERITY_DANGER, $severities, true) ? 'danger' : 'warning'),
+            'notes_only' => $issues !== [] && $severities === [HealthHelper::SEVERITY_INFO],
+        ];
     }
 }

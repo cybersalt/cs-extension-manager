@@ -42,6 +42,9 @@ final class HtmlView extends BaseHtmlView
     /** @var integer */
     public $issueCount = 0;
 
+    /** @var string success (none), warning or danger (a problem). */
+    public $issueTone = 'success';
+
     /** @var boolean */
     public $canInstall = false;
 
@@ -77,7 +80,9 @@ final class HtmlView extends BaseHtmlView
         $this->catalog      = $model->getCatalog();
         $this->items        = $model->getItems();
         $this->counts       = $model->getCounts();
-        $this->issueCount   = $model->getIssueCount();
+        $issues             = $model->getIssueSummary();
+        $this->issueCount   = $issues['count'];
+        $this->issueTone    = $issues['tone'];
         $this->canInstall   = PermissionHelper::canInstall();
         $this->canConfigure = PermissionHelper::canConfigure();
         $this->emailsOn     = TaskHelper::isEnabled();

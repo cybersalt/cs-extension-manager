@@ -50,6 +50,12 @@ final class HtmlView extends BaseHtmlView
     /** @var integer */
     public $issueCount = 0;
 
+    /** @var string success (none), warning or danger (a problem). */
+    public $issueTone = 'success';
+
+    /** @var boolean Every issue shown is a "good to know" note. */
+    public $issueNotesOnly = false;
+
     /** @var array<string, mixed> */
     public $account = [];
 
@@ -88,7 +94,10 @@ final class HtmlView extends BaseHtmlView
         $this->catalog      = $model->getCatalog();
         $this->items        = $model->getItems();
         $this->counts       = $model->getCounts();
-        $this->issueCount   = $model->getIssueCount();
+        $issues             = $model->getIssueSummary();
+        $this->issueCount   = $issues['count'];
+        $this->issueTone      = $issues['tone'];
+        $this->issueNotesOnly = $issues['notes_only'];
         $this->account      = AccountHelper::getState();
         $this->canInstall   = PermissionHelper::canInstall();
         $this->canConfigure = PermissionHelper::canConfigure();
