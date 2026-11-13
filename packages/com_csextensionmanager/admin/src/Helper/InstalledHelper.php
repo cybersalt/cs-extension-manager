@@ -221,7 +221,12 @@ final class InstalledHelper
         };
 
         if ($source !== '') {
-            $base = (string) $row->type === 'plugin' ? JPATH_PLUGINS . '/' . $row->folder . '/' . $row->element : JPATH_ADMINISTRATOR;
+            // Components ship their language folder inside the component.
+            $base = match ((string) $row->type) {
+                'plugin'    => JPATH_PLUGINS . '/' . $row->folder . '/' . $row->element,
+                'component' => JPATH_ADMINISTRATOR . '/components/' . $row->element,
+                default     => JPATH_ADMINISTRATOR,
+            };
             $lang->load($source . '.sys', JPATH_ADMINISTRATOR, null, false, true)
                 || $lang->load($source . '.sys', $base, null, false, true);
 

@@ -114,6 +114,6 @@ final class AccountController extends BaseController
      */
     private function back(): void
     {
-        $this->setRedirect(Route::_('index.php?option=com_csextensionmanager&view=extensions', false) . '#cs-account');
+        $this->setRedirect(Route::_('index.php?option=com_csextensionmanager&view=dashboard', false) . '#cs-account');
     }
 }

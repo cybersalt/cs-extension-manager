@@ -272,7 +272,7 @@ return new class () implements InstallerScriptInterface {
         $support    = $e('PKG_CSEXTENSIONMANAGER_CARD_SUPPORT');
         $reportBug  = $e('PKG_CSEXTENSIONMANAGER_CARD_REPORT_BUG');
 
-        $openUrl    = 'index.php?option=com_csextensionmanager&amp;view=extensions';
+        $openUrl    = 'index.php?option=com_csextensionmanager&amp;view=dashboard';
         $healthUrl  = 'index.php?option=com_csextensionmanager&amp;view=health';
         $optionsUrl = 'index.php?option=com_config&amp;view=component&amp;component=com_csextensionmanager';
         $issuesUrl  = 'https://github.com/cybersalt/cs-extension-manager/issues';

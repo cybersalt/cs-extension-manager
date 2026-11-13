@@ -14,7 +14,6 @@ use Cybersalt\Component\Csextensionmanager\Administrator\Helper\DisplayHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
-use Joomla\CMS\Session\Session;
 
 $wa = $this->getDocument()->getWebAssetManager();
 $wa->getRegistry()->addExtensionRegistryFile('com_csextensionmanager');
@@ -22,19 +21,11 @@ $wa->useStyle('com_csextensionmanager.admin')->useScript('com_csextensionmanager
 
 HTMLHelper::_('bootstrap.modal');
 HTMLHelper::_('bootstrap.dropdown');
-HTMLHelper::_('bootstrap.collapse');
 
 DisplayHelper::scriptOptions($this->getDocument(), $this->items, $this->canInstall);
-
-$sections = [
-    'attention' => ['COM_CSEXTENSIONMANAGER_SECTION_ATTENTION', 'COM_CSEXTENSIONMANAGER_SECTION_ATTENTION_DESC'],
-    'installed' => ['COM_CSEXTENSIONMANAGER_SECTION_INSTALLED', 'COM_CSEXTENSIONMANAGER_SECTION_INSTALLED_DESC'],
-    'products'  => ['COM_CSEXTENSIONMANAGER_SECTION_PRODUCTS', 'COM_CSEXTENSIONMANAGER_SECTION_PRODUCTS_DESC'],
-    'addons'    => ['COM_CSEXTENSIONMANAGER_SECTION_ADDONS', 'COM_CSEXTENSIONMANAGER_SECTION_ADDONS_DESC'],
-];
+Text::script('COM_CSEXTENSIONMANAGER_SHOWING_N');
 
 $healthUrl = Route::_('index.php?option=com_csextensionmanager&view=health', false);
-$refresh   = Route::_('index.php?option=com_csextensionmanager&task=extensions.refresh&' . Session::getFormToken() . '=1', false);
 
 // Stat cards: every card filters the list (Cybersalt "hotlinked stats" rule).
 $cards = [
@@ -43,8 +34,18 @@ $cards = [
     ['filter' => 'available', 'count' => $this->counts['available'], 'label' => 'COM_CSEXTENSIONMANAGER_STAT_AVAILABLE', 'tone' => ''],
     ['filter' => 'addon',     'count' => $this->counts['addons'],    'label' => 'COM_CSEXTENSIONMANAGER_STAT_ADDONS',    'tone' => ''],
 ];
+
+// Sortable columns: [sort key, label, extra th classes].
+$columns = [
+    ['name',     'COM_CSEXTENSIONMANAGER_COL_EXTENSION', ''],
+    ['status',   'COM_CSEXTENSIONMANAGER_COL_STATUS', ''],
+    ['version',  'COM_CSEXTENSIONMANAGER_COL_INSTALLED', 'd-none d-md-table-cell'],
+    ['released', 'COM_CSEXTENSIONMANAGER_COL_LATEST', 'd-none d-md-table-cell'],
+];
 ?>
 <div class="csem" id="csem">
+
+    <?php echo DisplayHelper::navBar('extensions', ['extensions' => (int) $this->counts['update'], 'health' => $this->issueCount]); ?>
 
     <?php if ($this->selfUpdate !== null && $this->canInstall) : ?>
         <div class="alert alert-warning d-flex flex-wrap align-items-center gap-3" role="alert">
@@ -79,18 +80,6 @@ $cards = [
             </a>
         </div>
     </div>
-
-    <?php echo $this->loadTemplate('account'); ?>
-
-    <?php if (!$this->emailsOn && $this->canConfigure) : ?>
-        <div class="alert alert-info d-flex flex-wrap align-items-center gap-2">
-            <span class="icon-envelope" aria-hidden="true"></span>
-            <span class="flex-grow-1"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_EMAILS_OFFER')); ?></span>
-            <a class="btn btn-sm btn-primary" href="<?php echo $this->escape(Route::_('index.php?option=com_csextensionmanager&task=extensions.enableemails&' . Session::getFormToken() . '=1', false)); ?>">
-                <?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_EMAILS_BUTTON')); ?>
-            </a>
-        </div>
-    <?php endif; ?>
 
     <?php if ($this->catalog['errors'] !== []) : ?>
         <div class="alert alert-warning">
@@ -152,32 +141,57 @@ $cards = [
                 <button type="button" class="btn btn-sm btn-secondary" data-csem-select="visible"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_SELECT_VISIBLE')); ?></button>
                 <button type="button" class="btn btn-sm btn-secondary" data-csem-select="none"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_SELECT_NONE')); ?></button>
                 <span class="small text-body-secondary ms-1"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_SELECT_SHIFT_HINT')); ?></span>
-                <button type="button" class="btn btn-sm btn-success ms-auto" data-csem-run-selected disabled>
-                    <span class="icon-download" aria-hidden="true"></span>
-                    <span data-csem-selected-label><?php echo $this->escape(Text::sprintf('COM_CSEXTENSIONMANAGER_RUN_SELECTED', 0)); ?></span>
-                </button>
+                <div class="d-flex flex-wrap gap-2 ms-auto">
+                    <button type="button" class="btn btn-sm btn-success" data-csem-run-selected disabled>
+                        <span class="icon-download" aria-hidden="true"></span>
+                        <span data-csem-selected-label><?php echo $this->escape(Text::sprintf('COM_CSEXTENSIONMANAGER_RUN_SELECTED', 0)); ?></span>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-csem-reinstall-selected disabled>
+                        <span class="icon-loop" aria-hidden="true"></span>
+                        <span data-csem-reinstall-label><?php echo $this->escape(Text::sprintf('COM_CSEXTENSIONMANAGER_REINSTALL_SELECTED', 0)); ?></span>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-csem-uninstall-selected disabled>
+                        <span class="icon-trash" aria-hidden="true"></span>
+                        <span data-csem-uninstall-label><?php echo $this->escape(Text::sprintf('COM_CSEXTENSIONMANAGER_UNINSTALL_SELECTED', 0)); ?></span>
+                    </button>
+                </div>
             </div>
         <?php endif; ?>
     </div>
 
-    <?php foreach ($sections as $section => [$titleKey, $descKey]) : ?>
-        <?php if ($this->sections[$section] === []) {
-            continue;
-        } ?>
-        <section class="csem-section mb-4" data-csem-section="<?php echo $this->escape($section); ?>">
-            <h2 class="h4 mb-1"><?php echo $this->escape(Text::_($titleKey)); ?>
-                <span class="badge bg-secondary align-middle" data-csem-section-count><?php echo count($this->sections[$section]); ?></span>
-            </h2>
-            <p class="small text-body-secondary mb-2"><?php echo $this->escape(Text::_($descKey)); ?></p>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3">
-                <?php foreach ($this->sections[$section] as $item) : ?>
+    <p class="small text-body-secondary mb-2" data-csem-showing aria-live="polite"></p>
+
+    <div class="card mb-3">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 csem-table">
+                <caption class="visually-hidden"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_TABLE_CAPTION')); ?></caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="csem-col-select">
+                            <?php if ($this->canInstall) : ?>
+                                <input type="checkbox" class="form-check-input csem-select-all" data-csem-select-all aria-label="<?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_SELECT_ALL_SHOWN')); ?>" title="<?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_SELECT_ALL_SHOWN')); ?>">
+                            <?php else : ?>
+                                <span class="visually-hidden"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_COL_SELECT')); ?></span>
+                            <?php endif; ?>
+                        </th>
+                        <?php foreach ($columns as [$sort, $label, $class]) : ?>
+                            <th scope="col" class="<?php echo $class; ?>" aria-sort="none">
+                                <button type="button" class="csem-sort" data-csem-sort="<?php echo $sort; ?>">
+                                    <?php echo $this->escape(Text::_($label)); ?>
+                                    <span class="csem-sort-icon" aria-hidden="true"></span>
+                                </button>
+                            </th>
+                        <?php endforeach; ?>
+                        <th scope="col" class="text-end"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_COL_ACTIONS')); ?></th>
+                    </tr>
+                </thead>
+                <?php foreach ($this->items as $item) : ?>
                     <?php $this->currentItem = $item; ?>
-                    <?php $this->currentSection = $section; ?>
-                    <?php echo $this->loadTemplate('card'); ?>
+                    <?php echo $this->loadTemplate('row'); ?>
                 <?php endforeach; ?>
-            </div>
-        </section>
-    <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
 
     <div class="alert alert-info d-none" data-csem-empty>
         <span class="icon-info-circle" aria-hidden="true"></span>
@@ -186,8 +200,6 @@ $cards = [
 
     <p class="small text-body-secondary mt-3">
         <?php echo $this->escape(DisplayHelper::catalogLine($this->catalog)); ?>
-        &middot;
-        <a href="<?php echo $this->escape($refresh); ?>" class="csem-busy-link"><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_BTN_REFRESH')); ?></a>
         <?php if ($this->emailsOn) : ?>
             <br>
             <span class="icon-envelope" aria-hidden="true"></span>

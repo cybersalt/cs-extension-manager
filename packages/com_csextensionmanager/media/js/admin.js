@@ -21,6 +21,15 @@
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[c]));
+  const versionCompare = (a, b) => {
+    const pa = String(a).split(/[.+-]/).map((x) => parseInt(x, 10) || 0);
+    const pb = String(b).split(/[.+-]/).map((x) => parseInt(x, 10) || 0);
+    for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+      const d = (pa[i] || 0) - (pb[i] || 0);
+      if (d) { return d; }
+    }
+    return 0;
+  };
   const modal = (el) => (el && window.bootstrap ? bootstrap.Modal.getOrCreateInstance(el) : null);
 
   // ---------------------------------------------------------------- storage
@@ -118,7 +127,8 @@
   });
 
   // ---------------------------------------------------------------- filters
-  const root = $('#csem');
+  // Only the Extensions view has the list; other views share this script.
+  const root = $('.csem-table');
   const cards = $$('[data-csem-card]');
   const fSearch = $('#csem-search');
   const fStatus = $('#csem-filter-status');
@@ -149,14 +159,11 @@
       if (ok) { shown++; }
     });
 
-    $$('[data-csem-section]').forEach((section) => {
-      const visible = $$('[data-csem-card]:not(.d-none)', section).length;
-      section.classList.toggle('d-none', visible === 0);
-      const badge = $('[data-csem-section-count]', section);
-      if (badge) { badge.textContent = String(visible); }
-    });
+    const showing = $('[data-csem-showing]');
+    if (showing) { showing.textContent = t('COM_CSEXTENSIONMANAGER_SHOWING_N', shown, cards.length); }
 
     $('[data-csem-empty]')?.classList.toggle('d-none', shown > 0);
+    document.dispatchEvent(new CustomEvent('csem:filtered'));
 
     if (save) {
       store.set('filters', { q: fSearch?.value || '', status, group, tier, relevant });
@@ -195,20 +202,177 @@
     if (!filterFromHash()) { setFilters(store.get('filters', {})); }
   }
 
+  // ---------------------------------------------------------------- sorting (Extensions table)
+  // Each extension is a <tbody>, so its details row moves with it.
+  const sorters = {
+    name: (a, b) => a.dataset.sortName.localeCompare(b.dataset.sortName),
+    status: (a, b) => (a.dataset.sortStatus - b.dataset.sortStatus) || sorters.name(a, b),
+    version: (a, b) => versionCompare(a.dataset.sortVersion, b.dataset.sortVersion) || sorters.name(a, b),
+    released: (a, b) => a.dataset.sortReleased.localeCompare(b.dataset.sortReleased) || sorters.name(a, b),
+  };
+
+  function applySort(sort, save = true) {
+    if (!root || !sorters[sort.key]) { return; }
+    const dir = sort.dir === 'desc' ? -1 : 1;
+    cards.slice().sort((a, b) => dir * sorters[sort.key](a, b)).forEach((tb) => root.appendChild(tb));
+    $$('[data-csem-sort]').forEach((btn) => {
+      const on = btn.dataset.csemSort === sort.key;
+      btn.closest('th').setAttribute('aria-sort', on ? (dir === 1 ? 'ascending' : 'descending') : 'none');
+    });
+    if (save) { store.set('sort', sort); }
+  }
+
+  if (root) {
+    let sort = store.get('sort', { key: 'status', dir: 'asc' });
+    $$('[data-csem-sort]').forEach((btn) => btn.addEventListener('click', () => {
+      const key = btn.dataset.csemSort;
+      sort = { key, dir: sort.key === key && sort.dir === 'asc' ? 'desc' : 'asc' };
+      applySort(sort);
+    }));
+    applySort(sort, false);
+  }
+
+  // Details row under an extension. A click anywhere on the row opens it,
+  // except on the row's own controls (checkbox, buttons, links, menu).
+  document.addEventListener('click', (e) => {
+    let btn = e.target.closest('[data-csem-expand]');
+    if (!btn) {
+      const tr = e.target.closest('.csem-row');
+      if (!tr || e.target.closest('a, button, input, label, select, .dropdown, .dropdown-menu')) { return; }
+      if (window.getSelection()?.toString()) { return; }
+      btn = $('[data-csem-expand]', tr);
+      if (!btn) { return; }
+    }
+    const row = document.getElementById(btn.getAttribute('aria-controls'));
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.closest('.csem-row')?.classList.toggle('csem-row-open', open);
+    row?.classList.toggle('d-none', !open);
+  });
+
+  // ---------------------------------------------------------------- Templates view
+  const tplGrid = $('[data-csem-tpl-grid]');
+
+  if (tplGrid) {
+    const tpls = $$('[data-csem-tpl]', tplGrid);
+    const tplSearch = $('#csem-tpl-search');
+    const tplSort = $('#csem-tpl-sort');
+    const selects = $$('[data-csem-tpl-filter]');
+    const topics = $$('[data-csem-topic]');
+    let topic = '';
+
+    const tplSorters = {
+      name: (a, b) => a.dataset.name.localeCompare(b.dataset.name),
+      '-name': (a, b) => b.dataset.name.localeCompare(a.dataset.name),
+      brand: (a, b) => a.dataset.brand.localeCompare(b.dataset.brand) || a.dataset.name.localeCompare(b.dataset.name),
+      joomla: (a, b) => (Math.max(0, ...b.dataset.joomla.split(' ').map(Number)) - Math.max(0, ...a.dataset.joomla.split(' ').map(Number))) || a.dataset.name.localeCompare(b.dataset.name),
+    };
+
+    const applyTpl = (save = true) => {
+      const q = (tplSearch?.value || '').trim().toLowerCase();
+      const f = Object.fromEntries(selects.map((s) => [s.dataset.csemTplFilter, s.value]));
+      let shown = 0;
+      // Per topic: how many match everything else, so the chips say what's left.
+      const perTopic = {};
+
+      tpls.forEach((el) => {
+        const d = el.dataset;
+        const tags = d.tags.split(' ');
+        const rest = (!q || d.search.includes(q))
+          && (!f.brand || d.brand === f.brand)
+          && (!f.joomla || d.joomla.split(' ').includes(f.joomla))
+          && (!f.shop || d.shop.split(' ').includes(f.shop));
+        const ok = rest && (!topic || tags.includes(topic));
+        if (rest) { tags.forEach((tag) => { perTopic[tag] = (perTopic[tag] || 0) + 1; }); }
+        el.classList.toggle('d-none', !ok);
+        if (ok) { shown++; }
+      });
+
+      tpls.slice().sort(tplSorters[tplSort?.value] || tplSorters.name).forEach((el) => tplGrid.appendChild(el));
+
+      topics.forEach((b) => {
+        const on = b.dataset.csemTopic === topic;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        const count = $('.csem-topic-count', b);
+        if (count) {
+          const n = perTopic[b.dataset.csemTopic] || 0;
+          count.textContent = String(n);
+          b.classList.toggle('csem-topic-empty', n === 0 && !on);
+        }
+      });
+
+      const showing = $('[data-csem-tpl-showing]');
+      if (showing) { showing.textContent = t('COM_CSEXTENSIONMANAGER_TEMPLATES_SHOWING', shown, tpls.length); }
+      $('[data-csem-tpl-empty]')?.classList.toggle('d-none', shown > 0);
+
+      if (save) { store.set('tplFilters', { q: tplSearch?.value || '', topic, sort: tplSort?.value || 'name', ...f }); }
+    };
+
+    const setTpl = (s) => {
+      if (tplSearch) { tplSearch.value = s.q || ''; }
+      if (tplSort) { tplSort.value = s.sort || 'name'; }
+      selects.forEach((sel) => {
+        const v = s[sel.dataset.csemTplFilter] || '';
+        sel.value = $$('option', sel).some((o) => o.value === v) ? v : '';
+      });
+      topic = topics.some((b) => b.dataset.csemTopic === s.topic) ? s.topic : '';
+      applyTpl();
+    };
+
+    tplSearch?.addEventListener('input', () => applyTpl());
+    tplSort?.addEventListener('change', () => applyTpl());
+    selects.forEach((s) => s.addEventListener('change', () => applyTpl()));
+    topics.forEach((b) => b.addEventListener('click', () => {
+      topic = b.dataset.csemTopic === topic ? '' : b.dataset.csemTopic;
+      applyTpl();
+    }));
+    $('[data-csem-tpl-clear]')?.addEventListener('click', () => setTpl({}));
+
+    setTpl(store.get('tplFilters', {}));
+  }
+
   // ---------------------------------------------------------------- selection (shift-click ranges)
   const lastClickedByGroup = {};
   const runBtn = $('[data-csem-run-selected]');
-  const selectedLabel = $('[data-csem-selected-label]');
+  const reinstallBtn = $('[data-csem-reinstall-selected]');
+  const uninstallBtn = $('[data-csem-uninstall-selected]');
 
-  function selectedKeys() {
-    return $$('.csem-select:checked').map((cb) => cb.value);
+  // Ticked rows that can take part in an action (data-can-run / -reinstall / -uninstall).
+  function selectedKeys(can = 'canRun') {
+    return $$('.csem-select:checked').filter((cb) => cb.dataset[can] === '1').map((cb) => cb.value);
   }
+
+  const selectAll = $('[data-csem-select-all]');
+  const shownBoxes = () => $$('.csem-select').filter((cb) => !cb.closest('[data-csem-card]')?.classList.contains('d-none'));
 
   function updateSelection() {
-    const n = selectedKeys().length;
-    if (runBtn) { runBtn.disabled = n === 0; }
-    if (selectedLabel) { selectedLabel.textContent = t('COM_CSEXTENSIONMANAGER_JS_SELECTED', n); }
+    [
+      [runBtn, 'canRun', '[data-csem-selected-label]', 'COM_CSEXTENSIONMANAGER_JS_SELECTED'],
+      [reinstallBtn, 'canReinstall', '[data-csem-reinstall-label]', 'COM_CSEXTENSIONMANAGER_REINSTALL_SELECTED'],
+      [uninstallBtn, 'canUninstall', '[data-csem-uninstall-label]', 'COM_CSEXTENSIONMANAGER_UNINSTALL_SELECTED'],
+    ].forEach(([btn, can, label, key]) => {
+      if (!btn) { return; }
+      const n = selectedKeys(can).length;
+      btn.disabled = n === 0;
+      $(label, btn).textContent = t(key, n);
+    });
+    if (selectAll) {
+      const shown = shownBoxes();
+      const on = shown.filter((cb) => cb.checked).length;
+      selectAll.disabled = shown.length === 0;
+      selectAll.checked = shown.length > 0 && on === shown.length;
+      selectAll.indeterminate = on > 0 && on < shown.length;
+    }
   }
+
+  // Header checkbox: every row the filters show (e.g. filter on "Update
+  // available", tick it, then "Install / update selected").
+  selectAll?.addEventListener('change', () => {
+    shownBoxes().forEach((cb) => { cb.checked = selectAll.checked; });
+    updateSelection();
+  });
+  document.addEventListener('csem:filtered', () => updateSelection());
 
   document.addEventListener('click', (e) => {
     const cb = e.target.closest('.csem-select');
@@ -237,7 +401,25 @@
   }));
 
   runBtn?.addEventListener('click', () => {
-    runQueue(selectedKeys().map((key) => ({ key, op: 'install' })));
+    runQueue(selectedKeys('canRun').map((key) => ({ key, op: 'install' })));
+  });
+
+  const titlesOf = (keys) => keys.map((k) => items[k]?.title || k).join(', ');
+
+  // Reinstall = the latest release over itself, as the More menu does it.
+  reinstallBtn?.addEventListener('click', async () => {
+    const keys = selectedKeys('canReinstall');
+    if (!keys.length || !(await confirmBox(t('COM_CSEXTENSIONMANAGER_JS_CONFIRM_REINSTALL_MANY', keys.length, titlesOf(keys))))) { return; }
+    runQueue(keys.map((key) => ({ key, op: 'install', version: items[key]?.latest || undefined })));
+  });
+
+  // Add-ons go before what they depend on (MCP for Joomla last), so the
+  // parent's "add-ons still need me" check passes when both are ticked.
+  uninstallBtn?.addEventListener('click', async () => {
+    const keys = selectedKeys('canUninstall');
+    if (!keys.length || !(await confirmBox(t('COM_CSEXTENSIONMANAGER_JS_CONFIRM_UNINSTALL_MANY', keys.length, titlesOf(keys))))) { return; }
+    keys.sort((a, b) => (items[a]?.group === 'addon' ? 0 : 1) - (items[b]?.group === 'addon' ? 0 : 1));
+    runQueue(keys.map((key) => ({ key, op: 'uninstall' })));
   });
 
   document.addEventListener('click', (e) => {
@@ -414,6 +596,23 @@
   });
 
   // ---------------------------------------------------------------- enable / disable
+  // The result shows right where you clicked, not in Joomla's message area
+  // at the top of the page (which made the page jump when scrolled down).
+  function flash(anchor, text, ok) {
+    if (!anchor) {
+      Joomla.renderMessages(ok ? { message: [esc(text)] } : { error: [esc(text)] });
+      return;
+    }
+    anchor.parentElement.querySelectorAll(':scope > .csem-flash').forEach((old) => old.remove());
+    const note = document.createElement('span');
+    note.className = 'csem-flash ' + (ok ? 'csem-flash-ok' : 'csem-flash-error');
+    note.setAttribute('role', 'status');
+    note.textContent = (ok ? '✓ ' : '✗ ') + text;
+    anchor.insertAdjacentElement('afterend', note);
+    window.setTimeout(() => note.classList.add('csem-flash-out'), ok ? 2500 : 6000);
+    window.setTimeout(() => note.remove(), ok ? 3000 : 6500);
+  }
+
   document.addEventListener('click', async (e) => {
     const el = e.target.closest('[data-csem-toggle]');
     if (!el) { return; }
@@ -422,6 +621,9 @@
     if (!isSwitch) { e.preventDefault(); }
 
     const enabled = isSwitch ? el.checked : el.dataset.enabled !== '1';
+    const card = el.closest('[data-csem-card]');
+    // From the More menu the note goes next to the version, where "Disabled" shows.
+    const anchor = isSwitch ? el.closest('.csem-switch') : $('[data-csem-disabled-badge]', card);
     el.disabled = true;
 
     const res = await post(opts.urls.toggle, { key: el.dataset.key, id: el.dataset.csemToggle, enabled: enabled ? '1' : '0' });
@@ -430,16 +632,20 @@
 
     if (!res.success) {
       if (isSwitch) { el.checked = !enabled; }
-      Joomla.renderMessages({ error: [esc(res.message || t('COM_CSEXTENSIONMANAGER_JS_TOGGLE_FAILED'))] });
+      const why = res.message || t('COM_CSEXTENSIONMANAGER_JS_TOGGLE_FAILED');
+      if (anchor) { flash(anchor, why, false); } else { Joomla.renderMessages({ error: [esc(why)] }); }
       return;
     }
 
-    if (!isSwitch) {
+    if (isSwitch) {
+      el.closest('.csem-switch')?.setAttribute('data-csem-tip', t(enabled ? 'COM_CSEXTENSIONMANAGER_TIP_DISABLE' : 'COM_CSEXTENSIONMANAGER_TIP_ENABLE'));
+    } else {
       el.dataset.enabled = enabled ? '1' : '0';
       el.textContent = t(enabled ? 'COM_CSEXTENSIONMANAGER_BTN_DISABLE' : 'COM_CSEXTENSIONMANAGER_BTN_ENABLE');
+      $('[data-csem-disabled-badge]', card)?.classList.toggle('d-none', enabled);
     }
 
-    Joomla.renderMessages({ message: [esc(res.message)] });
+    flash(anchor, t(enabled ? 'COM_CSEXTENSIONMANAGER_JS_NOW_ENABLED' : 'COM_CSEXTENSIONMANAGER_JS_NOW_DISABLED'), true);
   });
 
   // ---------------------------------------------------------------- changelog / version picker
@@ -451,16 +657,6 @@
     remove: 'bg-dark',
     language: 'bg-info text-dark',
     note: 'bg-secondary',
-  };
-
-  const versionCompare = (a, b) => {
-    const pa = String(a).split(/[.+-]/).map((x) => parseInt(x, 10) || 0);
-    const pb = String(b).split(/[.+-]/).map((x) => parseInt(x, 10) || 0);
-    for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
-      const d = (pa[i] || 0) - (pb[i] || 0);
-      if (d) { return d; }
-    }
-    return 0;
   };
 
   document.addEventListener('click', async (e) => {

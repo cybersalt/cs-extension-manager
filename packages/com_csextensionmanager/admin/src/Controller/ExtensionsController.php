@@ -18,6 +18,7 @@ use Cybersalt\Component\Csextensionmanager\Administrator\Helper\InstallHelper;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\PermissionHelper;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\StateHelper;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\TaskHelper;
+use Cybersalt\Component\Csextensionmanager\Administrator\Helper\TemplatesHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\CMS\Router\Route;
@@ -218,7 +219,22 @@ final class ExtensionsController extends BaseController
             $this->setMessage(Text::sprintf('COM_CSEXTENSIONMANAGER_EMAILS_FAILED', $e->getMessage()), 'error');
         }
 
-        $this->setRedirect(Route::_('index.php?option=com_csextensionmanager&view=extensions', false));
+        $this->setRedirect(Route::_('index.php?option=com_csextensionmanager&view=' . $this->returnView(), false));
+    }
+
+    /**
+     * The view to go back to: `return` from the request when it's one of
+     * the manager's list views, else the dashboard.
+     *
+     * @return  string
+     *
+     * @since   0.1.0
+     */
+    private function returnView(): string
+    {
+        $view = $this->input->getCmd('return', '');
+
+        return \in_array($view, ['extensions', 'templates'], true) ? $view : 'dashboard';
     }
 
     /**
@@ -234,6 +250,7 @@ final class ExtensionsController extends BaseController
         PermissionHelper::requireView();
 
         $catalog = CatalogHelper::get(true);
+        TemplatesHelper::get(true);
 
         if (AccountHelper::getDlid() !== '') {
             AccountHelper::verify(true);
@@ -245,6 +262,6 @@ final class ExtensionsController extends BaseController
             $this->setMessage(Text::plural('COM_CSEXTENSIONMANAGER_REFRESH_OK', \count($catalog['items'])));
         }
 
-        $this->setRedirect(Route::_('index.php?option=com_csextensionmanager&view=extensions', false));
+        $this->setRedirect(Route::_('index.php?option=com_csextensionmanager&view=' . $this->returnView(), false));
     }
 }

@@ -12,7 +12,6 @@ namespace Cybersalt\Component\Csextensionmanager\Administrator\View\Extensions;
 
 \defined('_JEXEC') or die;
 
-use Cybersalt\Component\Csextensionmanager\Administrator\Helper\AccountHelper;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\PermissionHelper;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\SupportHelper;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\TaskHelper;
@@ -37,17 +36,11 @@ final class HtmlView extends BaseHtmlView
     /** @var array<string, array<string, mixed>> */
     public $items = [];
 
-    /** @var array<string, array<string, array<string, mixed>>> */
-    public $sections = [];
-
     /** @var array<string, int> */
     public $counts = [];
 
     /** @var integer */
     public $issueCount = 0;
-
-    /** @var array<string, mixed> */
-    public $account = [];
 
     /** @var boolean */
     public $canInstall = false;
@@ -64,11 +57,8 @@ final class HtmlView extends BaseHtmlView
     /** @var string Who gets the release emails. */
     public $emailRecipients = '';
 
-    /** @var array<string, mixed> The item the card sub-template is rendering. */
+    /** @var array<string, mixed> The item the row sub-template is rendering. */
     public $currentItem = [];
-
-    /** @var string The section the card sub-template is rendering in. */
-    public $currentSection = '';
 
     /**
      * @param   string|null  $tpl  Template.
@@ -86,10 +76,8 @@ final class HtmlView extends BaseHtmlView
 
         $this->catalog      = $model->getCatalog();
         $this->items        = $model->getItems();
-        $this->sections     = $model->getSections();
         $this->counts       = $model->getCounts();
         $this->issueCount   = $model->getIssueCount();
-        $this->account      = AccountHelper::getState();
         $this->canInstall   = PermissionHelper::canInstall();
         $this->canConfigure = PermissionHelper::canConfigure();
         $this->emailsOn     = TaskHelper::isEnabled();
@@ -122,7 +110,7 @@ final class HtmlView extends BaseHtmlView
         ToolbarHelper::title(Text::_('COM_CSEXTENSIONMANAGER_TITLE_EXTENSIONS'), 'puzzle-piece');
 
         $toolbar->linkButton('csem-refresh', 'COM_CSEXTENSIONMANAGER_BTN_REFRESH')
-            ->url(Route::_('index.php?option=com_csextensionmanager&task=extensions.refresh&' . Session::getFormToken() . '=1', false))
+            ->url(Route::_('index.php?option=com_csextensionmanager&task=extensions.refresh&return=extensions&' . Session::getFormToken() . '=1', false))
             ->icon('icon-loop')
             ->buttonClass('btn btn-secondary csem-busy-link');
 
@@ -135,16 +123,6 @@ final class HtmlView extends BaseHtmlView
                     . '</button>'
                 );
         }
-
-        $toolbar->linkButton('csem-health', 'COM_CSEXTENSIONMANAGER_SUBMENU_HEALTH')
-            ->url(Route::_('index.php?option=com_csextensionmanager&view=health', false))
-            ->icon('icon-heart')
-            ->buttonClass('btn btn-secondary');
-
-        $toolbar->linkButton('csem-logs', 'COM_CSEXTENSIONMANAGER_SUBMENU_LOGS')
-            ->url(Route::_('index.php?option=com_csextensionmanager&view=logs', false))
-            ->icon('icon-list')
-            ->buttonClass('btn btn-secondary');
 
         if ($this->canConfigure) {
             $toolbar->preferences('com_csextensionmanager');

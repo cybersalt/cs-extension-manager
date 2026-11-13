@@ -210,6 +210,37 @@ final class LogHelper
     }
 
     /**
+     * The newest history rows, for the dashboard. Routine store checks are
+     * left out so installs and fixes don't scroll away.
+     *
+     * @param   int  $limit  How many.
+     *
+     * @return  array<int, object>  created, action, status, title, to_version
+     *
+     * @since   0.1.0
+     */
+    public static function recent(int $limit = 5): array
+    {
+        try {
+            $db     = Factory::getContainer()->get(DatabaseInterface::class);
+            $action = self::ACTION_REFRESH;
+
+            return $db->setQuery(
+                $db->createQuery()
+                    ->select($db->quoteName(['created', 'action', 'status', 'title', 'to_version']))
+                    ->from($db->quoteName('#__csextensionmanager_log'))
+                    ->where($db->quoteName('action') . ' != :refresh')
+                    ->bind(':refresh', $action)
+                    ->order($db->quoteName('id') . ' DESC'),
+                0,
+                max(1, $limit)
+            )->loadObjectList() ?: [];
+        } catch (\Throwable $e) {
+            return [];
+        }
+    }
+
+    /**
      * Mirror into Joomla's User Actions Log (com_actionlogs), so the site's
      * audit trail shows who installed what through the manager.
      *

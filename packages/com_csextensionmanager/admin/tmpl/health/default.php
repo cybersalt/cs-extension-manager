@@ -21,7 +21,9 @@ $wa->getRegistry()->addExtensionRegistryFile('com_csextensionmanager');
 $wa->useStyle('com_csextensionmanager.admin')->useScript('com_csextensionmanager.admin');
 
 HTMLHelper::_('bootstrap.modal');
-Text::script('COM_CSEXTENSIONMANAGER_JS_WORKING');
+
+// The Uninstall buttons use the same script and modals as the Extensions screen.
+DisplayHelper::scriptOptions($this->getDocument(), $this->items, $this->canInstall);
 
 $fixUrl    = Route::_('index.php?option=com_csextensionmanager&task=health.fix', false);
 $fixAllUrl = Route::_('index.php?option=com_csextensionmanager&task=health.fixall', false);
@@ -34,6 +36,7 @@ $severityLabel = [
 ];
 ?>
 <div class="csem csem-health" id="csem">
+    <?php echo DisplayHelper::navBar('health'); ?>
 
     <div class="row g-2 mb-3">
         <div class="col-6 col-lg">
@@ -94,6 +97,10 @@ $severityLabel = [
                             </button>
                             <?php echo HTMLHelper::_('form.token'); ?>
                         </form>
+                    <?php elseif ($issue['check'] === 'addon_target_missing' && $this->canInstall) : ?>
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-csem-uninstall="<?php echo $this->escape($issue['item_key']); ?>">
+                            <?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_HEALTH_UNINSTALL')); ?>
+                        </button>
                     <?php elseif ($issue['link'] !== '') : ?>
                         <a class="btn btn-sm btn-secondary" href="<?php echo $this->escape($issue['link']); ?>"<?php echo str_starts_with($issue['link'], 'http') ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>>
                             <?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_HEALTH_OPEN')); ?>
@@ -109,13 +116,4 @@ $severityLabel = [
     <?php echo DisplayHelper::supportPanel(); ?>
 </div>
 
-<div class="modal fade csem-modal" id="csemBusyModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content">
-            <div class="modal-body text-center py-4">
-                <div class="spinner-border mb-3" role="status" aria-hidden="true"></div>
-                <p class="mb-0" data-csem-busy-text><?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_JS_WORKING')); ?></p>
-            </div>
-        </div>
-    </div>
-</div>
+<?php include __DIR__ . '/../extensions/default_modals.php'; ?>

@@ -83,32 +83,6 @@ final class ExtensionsModel extends BaseModel
     }
 
     /**
-     * Items split into the view's sections.
-     *
-     * @return  array<string, array<string, array<string, mixed>>>  attention / installed / products / addons
-     *
-     * @since   0.1.0
-     */
-    public function getSections(): array
-    {
-        $sections = ['attention' => [], 'installed' => [], 'products' => [], 'addons' => []];
-
-        foreach ($this->getItems() as $key => $item) {
-            if (\in_array($item['status'], [StateHelper::STATUS_UPDATE, StateHelper::STATUS_BROKEN], true)) {
-                $sections['attention'][$key] = $item;
-            } elseif ($item['installed']) {
-                $sections['installed'][$key] = $item;
-            } elseif ($item['group'] === CatalogHelper::GROUP_ADDON) {
-                $sections['addons'][$key] = $item;
-            } else {
-                $sections['products'][$key] = $item;
-            }
-        }
-
-        return $sections;
-    }
-
-    /**
      * @return  array<string, int>
      *
      * @since   0.1.0

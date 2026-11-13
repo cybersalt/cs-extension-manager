@@ -50,6 +50,8 @@ $cards = [
 ];
 ?>
 <div class="csem csem-logs">
+    <?php echo DisplayHelper::navBar('logs'); ?>
+
     <div class="row g-2 mb-3">
         <?php foreach ($cards as $card) : ?>
             <div class="col-6 col-md-3 col-xl">

@@ -34,21 +34,244 @@ html[data-color-scheme="dark"] .csem {
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.12);
 }
 
-/* Extension cards */
-.csem .csem-card {
-    border-inline-start: 4px solid var(--bs-border-color, rgba(0, 0, 0, 0.175));
+/* Section bar: Dashboard / Extensions / Templates / Health Check / History */
+.csem .csem-nav .nav-pills {
+    gap: 0.25rem;
+    padding: 0.35rem;
+    background-color: var(--bs-body-bg, #fff);
+    border: 1px solid var(--bs-border-color, rgba(0, 0, 0, 0.175));
+    border-radius: 0.5rem;
 }
 
-.csem .csem-card.csem-status-update {
-    border-inline-start-color: var(--bs-success, #198754);
+.csem .csem-nav .nav-link {
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
 }
 
-.csem .csem-card.csem-status-broken {
-    border-inline-start-color: var(--bs-danger, #dc3545);
+.csem .csem-nav .nav-link:not(.active):hover,
+.csem .csem-nav .nav-link:not(.active):focus {
+    background-color: rgba(127, 127, 127, 0.12);
 }
 
-.csem .csem-card.csem-status-current {
-    border-inline-start-color: var(--bs-primary, #0d6efd);
+/* Dashboard tiles */
+.csem .csem-tile {
+    border-top: 4px solid var(--csem-tile-tone, var(--bs-primary, #0d6efd));
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+.csem .csem-tile:hover,
+.csem .csem-tile:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.14);
+}
+
+.csem .csem-tone-success { --csem-tile-tone: var(--bs-success, #198754); }
+.csem .csem-tone-danger { --csem-tile-tone: var(--bs-danger, #dc3545); }
+.csem .csem-tone-secondary { --csem-tile-tone: var(--bs-secondary, #6c757d); }
+.csem .csem-tone-brand { --csem-tile-tone: var(--csem-get-bg); }
+
+.csem .csem-tile-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 3rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    font-size: 1.35rem;
+    color: #fff;
+    background-color: var(--csem-tile-tone, var(--bs-primary, #0d6efd));
+}
+
+.csem .csem-tile-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* Extensions table. overflow-x: auto makes the y axis scroll too, and a
+   1px rounding overflow then draws a second scrollbar inside the card. */
+.csem .table-responsive {
+    overflow-y: hidden;
+}
+
+.csem .csem-table th {
+    white-space: nowrap;
+}
+
+.csem .csem-col-select {
+    width: 2.25rem;
+}
+
+.csem .csem-sort {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-weight: 600;
+    color: inherit;
+}
+
+.csem .csem-sort-icon::after {
+    content: "\2195";
+    opacity: 0.35;
+    margin-inline-start: 0.2rem;
+}
+
+.csem th[aria-sort="ascending"] .csem-sort-icon::after {
+    content: "\25B2";
+    opacity: 1;
+    font-size: 0.7em;
+}
+
+.csem th[aria-sort="descending"] .csem-sort-icon::after {
+    content: "\25BC";
+    opacity: 1;
+    font-size: 0.7em;
+}
+
+.csem .csem-row.csem-status-update > td:first-child {
+    box-shadow: inset 4px 0 0 var(--bs-success, #198754);
+}
+
+.csem .csem-row.csem-status-broken > td:first-child {
+    box-shadow: inset 4px 0 0 var(--bs-danger, #dc3545);
+}
+
+.csem .csem-desc {
+    max-width: 48rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.csem .csem-expand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    text-align: start;
+}
+
+/* The whole row opens the details, so it should look clickable. */
+.csem .csem-row {
+    cursor: pointer;
+}
+
+/* A round button with a chevron, big enough to read as "there's more here". */
+.csem .csem-expand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 1.6rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 1px solid var(--bs-border-color, rgba(0, 0, 0, 0.175));
+    border-radius: 50%;
+    color: var(--csem-accent);
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.csem .csem-expand-icon::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateX(-0.08rem) rotate(-45deg);
+    transition: transform 0.15s ease-in-out;
+}
+
+.csem .csem-expand[aria-expanded="true"] .csem-expand-icon::before {
+    transform: translateY(-0.12rem) rotate(45deg);
+}
+
+.csem .csem-row:hover .csem-expand-icon,
+.csem .csem-expand:focus-visible .csem-expand-icon,
+.csem .csem-row-open .csem-expand-icon {
+    border-color: var(--csem-accent);
+    background-color: rgba(127, 127, 127, 0.12);
+}
+
+/* On/off switches for package parts: say what a click will do. */
+.csem .csem-switch {
+    position: relative;
+}
+
+.csem .csem-switch::after {
+    content: attr(data-csem-tip);
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 0.35rem);
+    z-index: 5;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    color: #fff;
+    background-color: #212529;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.1s ease-in-out;
+}
+
+.csem .csem-switch:hover::after,
+.csem .csem-switch:focus-within::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* "✓ Disabled" next to what was just switched; fades by itself. */
+.csem .csem-flash {
+    display: inline-block;
+    padding: 0.05rem 0.45rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* Darker than Bootstrap's success/danger so the small white text passes AAA. */
+.csem .csem-flash-ok {
+    color: #fff;
+    background-color: #0f5132;
+}
+
+.csem .csem-flash-error {
+    color: #fff;
+    background-color: #842029;
+    white-space: normal;
+}
+
+.csem .csem-flash-out {
+    opacity: 0;
+}
+
+/* A tint, not a colour: Atum doesn't set Bootstrap's tertiary background in
+   dark mode, so a variable fell back to white under light text. */
+.csem .csem-details > td {
+    background-color: rgba(127, 127, 127, 0.08);
+    border-top: 0;
+}
+
+/* A grid, not CSS columns: in columns, the hover hint above the first part
+   of column two was drawn at the foot of column one. */
+.csem .csem-parts-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1rem;
+}
+
+@media (max-width: 767.98px) {
+    .csem .csem-parts-list {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
 
 .csem .csem-icon {
@@ -56,6 +279,12 @@ html[data-color-scheme="dark"] .csem {
     height: 48px;
     flex: 0 0 48px;
     object-fit: contain;
+}
+
+.csem .csem-icon.csem-icon-sm {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
 }
 
 /* White disc behind logos in dark mode (Cybersalt rule). */
@@ -67,6 +296,13 @@ html[data-color-scheme="dark"] .csem .csem-icon {
     box-sizing: content-box;
     width: 40px;
     height: 40px;
+}
+
+html[data-bs-theme="dark"] .csem .csem-icon.csem-icon-sm,
+html[data-color-scheme="dark"] .csem .csem-icon.csem-icon-sm {
+    padding: 4px;
+    width: 24px;
+    height: 24px;
 }
 
 .csem .card-title {
@@ -92,7 +328,9 @@ html[data-color-scheme="dark"] .csem .csem-icon {
     cursor: pointer;
 }
 
-.csem .csem-select {
+.csem .csem-select,
+.csem .csem-select-all,
+.csem .csem-select-none {
     flex: 0 0 auto;
     width: 1.15rem;
     height: 1.15rem;
@@ -119,12 +357,102 @@ html[data-color-scheme="dark"] .csem .csem-icon {
     max-width: 40rem;
 }
 
-/* Atum zeroes modal body padding (it's built for iframes); ours hold text. */
-.csem-modal .modal-body {
+/* Atum colours and underlines every link in an alert, buttons included,
+   which left "Email me about new releases" dark blue on blue. */
+.csem .alert a.btn {
+    text-decoration: none;
+}
+
+.csem .alert a.btn-primary,
+.csem .alert a.btn-primary:hover,
+.csem .alert a.btn-primary:focus {
+    color: #fff;
+}
+
+/* Templates */
+.csem .csem-topic {
+    border: 1px solid var(--bs-border-color, rgba(0, 0, 0, 0.175));
+    border-radius: 2rem;
+    background-color: var(--bs-body-bg, #fff);
+    color: var(--bs-body-color, #212529);
+}
+
+.csem .csem-topic:hover,
+.csem .csem-topic:focus {
+    border-color: var(--bs-primary, #0d6efd);
+}
+
+.csem .csem-topic.active {
+    background-color: var(--bs-primary, #0d6efd);
+    border-color: var(--bs-primary, #0d6efd);
+    color: #fff;
+}
+
+.csem .csem-topic.csem-topic-empty {
+    opacity: 0.55;
+}
+
+.csem .csem-topic-count {
+    opacity: 0.7;
+    font-size: 0.85em;
+}
+
+.csem .csem-tpl-shot {
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: rgba(127, 127, 127, 0.08);
+    border-bottom: 1px solid var(--bs-border-color, rgba(0, 0, 0, 0.175));
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+/* Atum puts a new-tab icon before every target="_blank" link; not on a picture. */
+.csem .csem-tpl-shot::before {
+    display: none;
+}
+
+.csem .csem-tpl-shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.csem .csem-tpl-card:hover .csem-tpl-shot img {
+    transform: scale(1.03);
+}
+
+.csem .csem-tpl-noshot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 1rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--bs-secondary-color, #6c757d);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .csem .csem-tpl-shot img {
+        transition: none;
+    }
+
+    .csem .csem-tpl-card:hover .csem-tpl-shot img {
+        transform: none;
+    }
+}
+
+/* Atum zeroes modal body padding (it's built for iframes); ours hold text.
+   Atum's `.modal-dialog .modal-body` loads after this file with the same
+   weight, so these need the extra class to win. */
+.modal.csem-modal .modal-body {
     padding: 1rem 1.25rem;
 }
 
-.csem-modal .modal-body.py-4 {
+.modal.csem-modal .modal-body.py-4 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
 }

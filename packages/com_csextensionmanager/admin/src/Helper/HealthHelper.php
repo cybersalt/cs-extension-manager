@@ -125,7 +125,7 @@ final class HealthHelper
                 }
 
                 if ($item['tier'] === 'pro' && $account['dlid'] === '') {
-                    $issues[] = self::issue('no_dlid', self::SEVERITY_DANGER, $item, Text::sprintf('COM_CSEXTENSIONMANAGER_HEALTH_NO_DLID', $title), '', 0, 'index.php?option=com_csextensionmanager&view=extensions#cs-account');
+                    $issues[] = self::issue('no_dlid', self::SEVERITY_DANGER, $item, Text::sprintf('COM_CSEXTENSIONMANAGER_HEALTH_NO_DLID', $title), '', 0, 'index.php?option=com_csextensionmanager&view=dashboard#cs-account');
                 }
             }
 
@@ -159,7 +159,11 @@ final class HealthHelper
                 }
 
                 if ($item['target_installed'] === false && \is_array($item['target'])) {
-                    $issues[] = self::issue('addon_target_missing', self::SEVERITY_INFO, $item, Text::sprintf('COM_CSEXTENSIONMANAGER_HEALTH_ADDON_TARGET_MISSING', $title, (string) $item['target']['display_name']), '', 0);
+                    // The VMT + ET family reads better spelled out than as its catalog name.
+                    $message = $item['target']['element'] === 'vmt-et'
+                        ? Text::sprintf('COM_CSEXTENSIONMANAGER_HEALTH_ADDON_TARGET_MISSING_VMTET', $title)
+                        : Text::sprintf('COM_CSEXTENSIONMANAGER_HEALTH_ADDON_TARGET_MISSING', $title, (string) $item['target']['display_name']);
+                    $issues[] = self::issue('addon_target_missing', self::SEVERITY_INFO, $item, $message, '', 0);
                 }
 
                 if ($item['superseded_name'] !== '') {

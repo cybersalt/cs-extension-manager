@@ -16,7 +16,7 @@ use Cybersalt\Component\Csextensionmanager\Administrator\Helper\PermissionHelper
 use Joomla\CMS\MVC\Controller\BaseController;
 
 /**
- * Default admin controller: extensions, health and history views.
+ * Default admin controller: dashboard, extensions, templates, health and history views.
  *
  * @since  0.1.0
  */
@@ -26,7 +26,7 @@ final class DisplayController extends BaseController
      * @var    string
      * @since  0.1.0
      */
-    protected $default_view = 'extensions';
+    protected $default_view = 'dashboard';
 
     /**
      * @param   boolean  $cachable   Unused.
@@ -42,8 +42,15 @@ final class DisplayController extends BaseController
 
         $view = $this->input->getCmd('view', $this->default_view);
 
-        if (!\in_array($view, ['extensions', 'health', 'logs'], true)) {
-            $this->input->set('view', $this->default_view);
+        if (!\in_array($view, ['dashboard', 'extensions', 'templates', 'health', 'logs'], true)) {
+            $view = $this->default_view;
+            $this->input->set('view', $view);
+        }
+
+        // The dashboard has no model of its own; it summarises the catalog.
+        if ($view === 'dashboard') {
+            $this->getView($view, 'html', '', ['base_path' => $this->basePath, 'layout' => 'default'])
+                ->setModel($this->getModel('Extensions'), true);
         }
 
         return parent::display(false, $urlparams);

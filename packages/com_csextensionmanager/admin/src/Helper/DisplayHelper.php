@@ -253,6 +253,7 @@ final class DisplayHelper
         foreach ($items as $key => $item) {
             $slim[$key] = [
                 'title'     => (string) $item['title'],
+                'group'     => (string) $item['group'],
                 'status'    => (string) $item['status'],
                 'installed' => (bool) $item['installed'],
                 'installedVersion' => (string) $item['installed_version'],
@@ -303,6 +304,14 @@ final class DisplayHelper
             'COM_CSEXTENSIONMANAGER_JS_SELECTED',
             'COM_CSEXTENSIONMANAGER_JS_NOTHING_TO_UPDATE',
             'COM_CSEXTENSIONMANAGER_JS_TOGGLE_FAILED',
+            'COM_CSEXTENSIONMANAGER_REINSTALL_SELECTED',
+            'COM_CSEXTENSIONMANAGER_UNINSTALL_SELECTED',
+            'COM_CSEXTENSIONMANAGER_JS_CONFIRM_REINSTALL_MANY',
+            'COM_CSEXTENSIONMANAGER_JS_CONFIRM_UNINSTALL_MANY',
+            'COM_CSEXTENSIONMANAGER_JS_NOW_ENABLED',
+            'COM_CSEXTENSIONMANAGER_JS_NOW_DISABLED',
+            'COM_CSEXTENSIONMANAGER_TIP_ENABLE',
+            'COM_CSEXTENSIONMANAGER_TIP_DISABLE',
             'COM_CSEXTENSIONMANAGER_BTN_ENABLE',
             'COM_CSEXTENSIONMANAGER_BTN_DISABLE',
             'JCLOSE',
@@ -311,6 +320,44 @@ final class DisplayHelper
         ) {
             Text::script($string);
         }
+    }
+
+    /**
+     * The section bar at the top of every view: Dashboard, Extensions,
+     * Templates, Health Check, History.
+     *
+     * @param   string              $active  View name.
+     * @param   array<string, int>  $badges  View name => count to show (0 hides it).
+     *
+     * @return  string
+     *
+     * @since   0.1.0
+     */
+    public static function navBar(string $active, array $badges = []): string
+    {
+        $links = [
+            'dashboard'  => ['icon-home', 'COM_CSEXTENSIONMANAGER_SUBMENU_DASHBOARD', 'bg-secondary'],
+            'extensions' => ['icon-puzzle-piece', 'COM_CSEXTENSIONMANAGER_SUBMENU_EXTENSIONS', 'bg-success'],
+            'templates'  => ['icon-paint-brush', 'COM_CSEXTENSIONMANAGER_SUBMENU_TEMPLATES', 'bg-secondary'],
+            'health'     => ['icon-heart', 'COM_CSEXTENSIONMANAGER_SUBMENU_HEALTH', 'bg-danger'],
+            'logs'       => ['icon-list', 'COM_CSEXTENSIONMANAGER_SUBMENU_LOGS', 'bg-secondary'],
+        ];
+
+        $html = '<nav class="csem-nav mb-3" aria-label="' . self::e(Text::_('COM_CSEXTENSIONMANAGER_NAV_LABEL')) . '"><ul class="nav nav-pills">';
+
+        foreach ($links as $view => [$icon, $label, $badgeClass]) {
+            $isActive = $view === $active;
+            $count    = (int) ($badges[$view] ?? 0);
+
+            $html .= '<li class="nav-item"><a class="nav-link' . ($isActive ? ' active' : '') . '"'
+                . ($isActive ? ' aria-current="page"' : '')
+                . ' href="' . self::e(Route::_('index.php?option=com_csextensionmanager&view=' . $view, false)) . '">'
+                . '<span class="' . $icon . '" aria-hidden="true"></span> ' . self::e(Text::_($label))
+                . ($count > 0 ? ' <span class="badge rounded-pill ' . $badgeClass . '">' . $count . '</span>' : '')
+                . '</a></li>';
+        }
+
+        return $html . '</ul></nav>';
     }
 
     /**

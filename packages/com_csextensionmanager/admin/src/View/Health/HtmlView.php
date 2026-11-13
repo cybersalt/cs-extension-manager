@@ -51,6 +51,9 @@ final class HtmlView extends BaseHtmlView
     /** @var array<string, mixed> */
     public $catalog = [];
 
+    /** @var array<string, array<string, mixed>> */
+    public $items = [];
+
     /**
      * @param   string|null  $tpl  Template.
      *
@@ -64,6 +67,7 @@ final class HtmlView extends BaseHtmlView
 
         $this->catalog = CatalogHelper::get();
         $items         = StateHelper::enrich($this->catalog['items']);
+        $this->items   = $items;
         $this->issues  = HealthHelper::check($items);
         $this->canFix  = PermissionHelper::canFix();
         $this->canInstall = PermissionHelper::canInstall();
@@ -95,11 +99,6 @@ final class HtmlView extends BaseHtmlView
         $toolbar = $this->getDocument()->getToolbar();
 
         ToolbarHelper::title(Text::_('COM_CSEXTENSIONMANAGER_TITLE_HEALTH'), 'heart');
-
-        $toolbar->linkButton('csem-back', 'COM_CSEXTENSIONMANAGER_SUBMENU_EXTENSIONS')
-            ->url(Route::_('index.php?option=com_csextensionmanager&view=extensions', false))
-            ->icon('icon-puzzle-piece')
-            ->buttonClass('btn btn-secondary');
 
         $toolbar->linkButton('csem-recheck', 'COM_CSEXTENSIONMANAGER_BTN_RECHECK')
             ->url(Route::_('index.php?option=com_csextensionmanager&task=health.recheck&' . Session::getFormToken() . '=1', false))

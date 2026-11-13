@@ -123,11 +123,6 @@ final class HtmlView extends BaseHtmlView
                 );
         }
 
-        $toolbar->linkButton('csem-back', 'COM_CSEXTENSIONMANAGER_SUBMENU_EXTENSIONS')
-            ->url(Route::_('index.php?option=com_csextensionmanager&view=extensions', false))
-            ->icon('icon-puzzle-piece')
-            ->buttonClass('btn btn-secondary');
-
         if (PermissionHelper::canConfigure()) {
             $toolbar->preferences('com_csextensionmanager');
         }

@@ -1,0 +1,2113 @@
+{
+    "updated": "2026-11-13",
+    "source": "green:~greensudo/csem-templates/build.php",
+    "topics": {
+        "business": "Business",
+        "creative-entertainment": "Creative and entertainment",
+        "technology": "Technology",
+        "architecture-property": "Architecture and property",
+        "finance-legal": "Finance and legal",
+        "electronics": "Electronics shops",
+        "multipurpose": "Multipurpose shops",
+        "fashion-beauty": "Fashion and beauty shops",
+        "furniture-home": "Furniture and home shops",
+        "speciality": "Speciality shops"
+    },
+    "brands": [
+        {
+            "key": "et",
+            "name": "Energize Themes",
+            "url": "https://www.energizethemes.com/",
+            "plans_url": "https://www.energizethemes.com/pricing",
+            "description": "Responsive Joomla templates for Joomla 6 and Joomla 5, including VirtueMart and HikaShop shop templates.",
+            "types": [
+                {
+                    "key": "business",
+                    "title": "Business",
+                    "url": "https://www.energizethemes.com/joomla-business-templates"
+                },
+                {
+                    "key": "creative-entertainment",
+                    "title": "Creative and entertainment",
+                    "url": "https://www.energizethemes.com/joomla-creative-templates"
+                },
+                {
+                    "key": "technology",
+                    "title": "Technology",
+                    "url": "https://www.energizethemes.com/joomla-technology-templates"
+                },
+                {
+                    "key": "architecture-property",
+                    "title": "Architecture and property",
+                    "url": "https://www.energizethemes.com/joomla-real-estate-templates"
+                },
+                {
+                    "key": "finance-legal",
+                    "title": "Finance and legal",
+                    "url": "https://www.energizethemes.com/joomla-finance-and-law-templates"
+                },
+                {
+                    "key": "electronics",
+                    "title": "Electronics shops",
+                    "url": "https://www.energizethemes.com/joomla-electronics-shop-templates"
+                },
+                {
+                    "key": "multipurpose",
+                    "title": "Multipurpose shops",
+                    "url": "https://www.energizethemes.com/joomla-multipurpose-shop-templates"
+                },
+                {
+                    "key": "fashion-beauty",
+                    "title": "Fashion and beauty shops",
+                    "url": "https://www.energizethemes.com/joomla-fashion-shop-templates"
+                },
+                {
+                    "key": "furniture-home",
+                    "title": "Furniture and home shops",
+                    "url": "https://www.energizethemes.com/joomla-furniture-shop-templates"
+                },
+                {
+                    "key": "speciality",
+                    "title": "Speciality shops",
+                    "url": "https://www.energizethemes.com/joomla-speciality-shop-templates"
+                }
+            ],
+            "templates": [
+                {
+                    "name": "Concern",
+                    "url": "https://www.energizethemes.com/concern-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/concern/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/concern-joomla-template.webp",
+                    "tagline": "Software, accounting and consulting firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "technology"
+                    ]
+                },
+                {
+                    "name": "Simplex",
+                    "url": "https://www.energizethemes.com/simplex-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/simplex/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/simplex-joomla-template.webp",
+                    "tagline": "Law firms, accountants, professional practices",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "finance-legal"
+                    ]
+                },
+                {
+                    "name": "Squado",
+                    "url": "https://www.energizethemes.com/squado-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/squado/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/squado-joomla-template.webp",
+                    "tagline": "Financial advisers and corporate firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "finance-legal"
+                    ]
+                },
+                {
+                    "name": "Xeno",
+                    "url": "https://www.energizethemes.com/xeno-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/xeno/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/xeno-joomla-template.webp",
+                    "tagline": "Design and marketing agencies",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "creative-entertainment"
+                    ]
+                },
+                {
+                    "name": "Trento",
+                    "url": "https://www.energizethemes.com/trento-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/trento/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/trento-joomla-template.webp",
+                    "tagline": "App and web application firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "technology"
+                    ]
+                },
+                {
+                    "name": "Essential",
+                    "url": "https://www.energizethemes.com/essential-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/essential/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/essential-joomla-template.webp",
+                    "tagline": "Consultancies and engineering firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Elegant",
+                    "url": "https://www.energizethemes.com/elegant-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/elegant/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/elegant-joomla-template.webp",
+                    "tagline": "Professional practices, non-profits, plain information sites",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Lucid",
+                    "url": "https://www.energizethemes.com/lucid-joomla-template-now-available",
+                    "demo_url": "https://demo.energizethemes.com/lucid/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/lucid-joomla-template-now-available.webp",
+                    "tagline": "Consultants, agencies and small firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Synchronize",
+                    "url": "https://www.energizethemes.com/synchronize-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/synchronize/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/synchronize-joomla-template.webp",
+                    "tagline": "Local service businesses that sell by phone",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Expression",
+                    "url": "https://www.energizethemes.com/expression-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/expression/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/expression-joomla-template.webp",
+                    "tagline": "Freelance designers and marketing consultants",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "creative-entertainment"
+                    ]
+                },
+                {
+                    "name": "Ignite",
+                    "url": "https://www.energizethemes.com/ignite-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/ignite/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/ignite-joomla-template.webp",
+                    "tagline": "Corporate, property and technology firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Motion",
+                    "url": "https://www.energizethemes.com/motion-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/motion/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/motion-joomla-template.webp",
+                    "tagline": "Ad agencies and creative studios",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "creative-entertainment"
+                    ]
+                },
+                {
+                    "name": "Clarity",
+                    "url": "https://www.energizethemes.com/clarity-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/clarity/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/clarity-joomla-template.webp",
+                    "tagline": "Nature and eco brands, photo-led small businesses",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Equinox",
+                    "url": "https://www.energizethemes.com/equinox-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/equinox/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/equinox-joomla-template.webp",
+                    "tagline": "First-time site owners, small local firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Fusion",
+                    "url": "https://www.energizethemes.com/fusion-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/fusion/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/fusion-joomla-template.webp",
+                    "tagline": "Organisations and firms that publish regular news",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Progressive",
+                    "url": "https://www.energizethemes.com/progressive-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/progressive/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/progressive-joomla-template.webp",
+                    "tagline": "Startups and small businesses that want it simple",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Pulsar",
+                    "url": "https://www.energizethemes.com/pulsar-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/pulsar/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/pulsar-joomla-template.webp",
+                    "tagline": "Business and personal sites that need room for lots of modules",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Evolution",
+                    "url": "https://www.energizethemes.com/evolution-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/evolution/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/evolution-joomla-template.webp",
+                    "tagline": "Nightlife, events, creative studios",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "creative-entertainment"
+                    ]
+                },
+                {
+                    "name": "Energize",
+                    "url": "https://www.energizethemes.com/energize-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/energize/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/energize-joomla-template.webp",
+                    "tagline": "Energy, environmental and service firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Fluency",
+                    "url": "https://www.energizethemes.com/fluency-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/fluency/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/fluency-joomla-template.webp",
+                    "tagline": "Building, engineering and trade companies",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Sensory",
+                    "url": "https://www.energizethemes.com/sensory-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/sensory/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/sensory-joomla-template.webp",
+                    "tagline": "Small design studios and magazine-style sites",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "creative-entertainment"
+                    ]
+                },
+                {
+                    "name": "Crystal",
+                    "url": "https://www.energizethemes.com/crystal-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/crystal/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/crystal-joomla-template.webp",
+                    "tagline": "Tourism, outdoor and local service firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Nexxy",
+                    "url": "https://www.energizethemes.com/nexxy-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/nexxy/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/nexxy-joomla-template.webp",
+                    "tagline": "Film, gaming and fan sites",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "creative-entertainment"
+                    ]
+                },
+                {
+                    "name": "Engage",
+                    "url": "https://www.energizethemes.com/engage-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/engage/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/engage-joomla-template.webp",
+                    "tagline": "Small corporate sites",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Ngine",
+                    "url": "https://www.energizethemes.com/ngine-joomla-template-download-it-today",
+                    "demo_url": "https://demo.energizethemes.com/ngine/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/ngine-joomla-template-download-it-today.webp",
+                    "tagline": "Game clans, fan sites, film and entertainment sites",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "creative-entertainment"
+                    ]
+                },
+                {
+                    "name": "Gravity",
+                    "url": "https://www.energizethemes.com/gravity-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/gravity/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/gravity-joomla-template.webp",
+                    "tagline": "Coaches, lifestyle bloggers, wellness practices",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "creative-entertainment"
+                    ]
+                },
+                {
+                    "name": "Energy",
+                    "url": "https://www.energizethemes.com/energy-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/energy/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/energy-joomla-template.webp",
+                    "tagline": "Architects, engineers, construction firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "architecture-property"
+                    ]
+                },
+                {
+                    "name": "Vision",
+                    "url": "https://www.energizethemes.com/vision-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/vision/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/vision-joomla-template.webp",
+                    "tagline": "Architects, consultants, design-minded firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "architecture-property"
+                    ]
+                },
+                {
+                    "name": "Extend",
+                    "url": "https://www.energizethemes.com/extend-joomla-template-now-available-for-download",
+                    "demo_url": "https://demo.energizethemes.com/extend/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/extend-joomla-template-now-available-for-download.webp",
+                    "tagline": "Small businesses and personal sites with plenty of sections",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Oxygen",
+                    "url": "https://www.energizethemes.com/oxygen-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/oxygen/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/oxygen-joomla-template.webp",
+                    "tagline": "Tech, transport and night-time businesses",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "technology"
+                    ]
+                },
+                {
+                    "name": "Encore",
+                    "url": "https://www.energizethemes.com/encore-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/encore/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/encore-joomla-template.webp",
+                    "tagline": "App makers and small tech firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "technology"
+                    ]
+                },
+                {
+                    "name": "Alphard Premium",
+                    "url": "https://www.energizethemes.com/alphard-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/alphardpremium/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/alphard-joomla-template.webp",
+                    "tagline": "Small companies that want a neat, conventional site",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Logic",
+                    "url": "https://www.energizethemes.com/logic-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/logic/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/logic-joomla-template.webp",
+                    "tagline": "App makers, gadget and software firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "technology"
+                    ]
+                },
+                {
+                    "name": "Creativa",
+                    "url": "https://www.energizethemes.com/creativa-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/creativa/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/creativa-joomla-template.webp",
+                    "tagline": "Web designers, IT firms, freelancers",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "technology"
+                    ]
+                },
+                {
+                    "name": "News Cast",
+                    "url": "https://www.energizethemes.com/news-cast-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/newscast/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/news-cast-joomla-template.webp",
+                    "tagline": "News, magazine and blog sites that carry advertising",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "creative-entertainment"
+                    ]
+                },
+                {
+                    "name": "Venda",
+                    "url": "https://www.energizethemes.com/venda-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/venda/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/venda-joomla-template.webp",
+                    "tagline": "Web, IT and digital service firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "technology"
+                    ]
+                },
+                {
+                    "name": "Presence",
+                    "url": "https://www.energizethemes.com/presence-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/presence/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/presence-joomla-template.webp",
+                    "tagline": "Interior designers, home services, property firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "architecture-property"
+                    ]
+                },
+                {
+                    "name": "Omega",
+                    "url": "https://www.energizethemes.com/omega-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/omega/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/omega-joomla-template.webp",
+                    "tagline": "Musicians, audio studios, event firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "creative-entertainment"
+                    ]
+                },
+                {
+                    "name": "Brilliance",
+                    "url": "https://www.energizethemes.com/brilliance-professional-easy-to-use-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/brilliance/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/brilliance-professional-easy-to-use-joomla-template.webp",
+                    "tagline": "Consultants and small service businesses",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Flat Gear",
+                    "url": "https://www.energizethemes.com/flat-gear-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/flatgear/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/flat-gear-joomla-template.webp",
+                    "tagline": "Startups and firms with testimonials to show",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Corporate Impact",
+                    "url": "https://www.energizethemes.com/corporate-impact-template",
+                    "demo_url": "https://demo.energizethemes.com/corporateimpact/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/corporate-impact-template.webp",
+                    "tagline": "Established small firms, trades and service companies",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "JD Variety",
+                    "url": "https://www.energizethemes.com/jd-variety-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/jdvariety/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/jd-variety-joomla-template.webp",
+                    "tagline": "Business and personal sites",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Diversity",
+                    "url": "https://www.energizethemes.com/diversity-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/diversity/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/diversity-joomla-template.webp",
+                    "tagline": "Clubs, groups and small sites where colour matters most",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Eclipse",
+                    "url": "https://www.energizethemes.com/eclipse-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/eclipse/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/eclipse-joomla-template.webp",
+                    "tagline": "Agencies and consultancies",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Novel",
+                    "url": "https://www.energizethemes.com/novel-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/novel/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/novel-joomla-template.webp",
+                    "tagline": "IT firms and local service companies",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "technology"
+                    ]
+                },
+                {
+                    "name": "Acceler8",
+                    "url": "https://www.energizethemes.com/acceler8-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/acceler8/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/acceler8-joomla-template.webp",
+                    "tagline": "Software and services that explain a simple process",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "technology"
+                    ]
+                },
+                {
+                    "name": "High Pulse",
+                    "url": "https://www.energizethemes.com/high-pulse-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/highpulse/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/high-pulse-joomla-template.webp",
+                    "tagline": "Companies that want a modern, uncluttered site",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Magnetic",
+                    "url": "https://www.energizethemes.com/magnetic-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/magnetic/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/magnetic-joomla-template.webp",
+                    "tagline": "Photographers and visual artists",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "creative-entertainment"
+                    ]
+                },
+                {
+                    "name": "All Business",
+                    "url": "https://www.energizethemes.com/all-business-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/allbusiness/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/all-business-joomla-template.webp",
+                    "tagline": "Travel agents, accountants, any small firm",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Delta",
+                    "url": "https://www.energizethemes.com/delta-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/delta/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/delta-joomla-template.webp",
+                    "tagline": "Architects, developers, consultants",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "architecture-property"
+                    ]
+                },
+                {
+                    "name": "Brisk",
+                    "url": "https://www.energizethemes.com/brisk-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/brisk/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/brisk-joomla-template.webp",
+                    "tagline": "Finance, analytics and consulting firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "finance-legal"
+                    ]
+                },
+                {
+                    "name": "Various",
+                    "url": "https://www.energizethemes.com/various-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/various/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/various-joomla-template.webp",
+                    "tagline": "Real estate agents and property firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "architecture-property"
+                    ]
+                },
+                {
+                    "name": "Empresa",
+                    "url": "https://www.energizethemes.com/empresa-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/empressa/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/empresa-joomla-template.webp",
+                    "tagline": "Coaches, consultants and startups",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Projecta",
+                    "url": "https://www.energizethemes.com/projecta-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/projecta/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/projecta-joomla-template.webp",
+                    "tagline": "Startups, teams and coworking spaces",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Render",
+                    "url": "https://www.energizethemes.com/render-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/render/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/render-joomla-template.webp",
+                    "tagline": "Tech and digital firms",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "technology"
+                    ]
+                },
+                {
+                    "name": "High Level",
+                    "url": "https://www.energizethemes.com/high-level-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/highlevel/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/high-level-joomla-template.webp",
+                    "tagline": "Sales-led small businesses",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "business"
+                    ]
+                },
+                {
+                    "name": "Furniture Store",
+                    "url": "https://www.energizethemes.com/furniture-store-hikashop-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/hika-furniture/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/furniture-store-hikashop-joomla-template.webp",
+                    "tagline": "Furniture, home decor and interior shops",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "HikaShop",
+                    "tags": [
+                        "furniture-home"
+                    ]
+                },
+                {
+                    "name": "Avant",
+                    "url": "https://www.energizethemes.com/avant-hikashop-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/hika-avant/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/avant-hikashop-joomla-template.webp",
+                    "tagline": "General stores, fashion, shoes and electronics shops",
+                    "joomla": [
+                        "6"
+                    ],
+                    "shop": "HikaShop",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Quadra",
+                    "url": "https://www.energizethemes.com/quadra-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/quadra/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/quadra-joomla-template.webp",
+                    "tagline": "Financial services and business consultants",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "",
+                    "tags": [
+                        "finance-legal"
+                    ]
+                },
+                {
+                    "name": "Hyperon Shop",
+                    "url": "https://www.energizethemes.com/hyperon-shop-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/hyperonshop/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/hyperon-shop-joomla-template.webp",
+                    "tagline": "Phone, watch and gadget shops",
+                    "joomla": [
+                        "6",
+                        "5"
+                    ],
+                    "shop": "VirtueMart + HikaShop",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Xeon Shop",
+                    "url": "https://www.energizethemes.com/xeon-shop-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/xeonshop/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/xeon-shop-joomla-template.webp",
+                    "tagline": "Electronics discount shops",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Muble Store",
+                    "url": "https://www.energizethemes.com/muble-store-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/mublestore/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/muble-store-joomla-template.webp",
+                    "tagline": "Furniture and interior shops",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "furniture-home"
+                    ]
+                },
+                {
+                    "name": "Ultimate Shop",
+                    "url": "https://www.energizethemes.com/ultimate-store-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/ultimateshop/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/ultimate-store-joomla-template.webp",
+                    "tagline": "Computer and phone shops",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Evo Store",
+                    "url": "https://www.energizethemes.com/evo-store-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/evostore/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/evo-store-joomla-template.webp",
+                    "tagline": "Phone and electronics shops, general retailers",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Captiva",
+                    "url": "https://www.energizethemes.com/captiva-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/captiva/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/captiva-joomla-template.webp",
+                    "tagline": "General stores with mixed products",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Envisage",
+                    "url": "https://www.energizethemes.com/envisage-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/envisage/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/envisage-joomla-template.webp",
+                    "tagline": "Service companies with a small shop",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Zeus Shop",
+                    "url": "https://www.energizethemes.com/zeus-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/zeusshop/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/zeus-joomla-template.webp",
+                    "tagline": "Homeware, gift and seasonal shops",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "furniture-home"
+                    ]
+                },
+                {
+                    "name": "Universal Shop",
+                    "url": "https://www.energizethemes.com/universal-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/universalshop/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/universal-joomla-template.webp",
+                    "tagline": "Electronics and mixed retailers",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Veva Shop",
+                    "url": "https://www.energizethemes.com/veva-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/vevashop/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/veva-joomla-template.webp",
+                    "tagline": "Phone, gadget and accessory shops",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Electra Shop",
+                    "url": "https://www.energizethemes.com/electra-shop-energize-theme-template",
+                    "demo_url": "https://demo.energizethemes.com/electrashop/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/electra-shop-energize-theme-template.webp",
+                    "tagline": "Clothing, shoes and accessories",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "fashion-beauty"
+                    ]
+                },
+                {
+                    "name": "Enfuse",
+                    "url": "https://www.energizethemes.com/enfuse-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/enfuse/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/enfuse-joomla-template.webp",
+                    "tagline": "General online retailers",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Light Shop",
+                    "url": "https://www.energizethemes.com/light-shop-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/lightshop/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/light-shop-joomla-template.webp",
+                    "tagline": "Electronics and accessory shops",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Bike Store",
+                    "url": "https://www.energizethemes.com/bike-store-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/bikestore/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/bike-store-joomla-template.webp",
+                    "tagline": "Bicycle shops and cycling accessory sellers",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "speciality"
+                    ]
+                },
+                {
+                    "name": "Magneta Shop",
+                    "url": "https://www.energizethemes.com/magneta-shop-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/magnetashop/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/magneta-shop-joomla-template.webp",
+                    "tagline": "Gadget, bag and accessory shops",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Restaurant Store",
+                    "url": "https://www.energizethemes.com/restaurant-store-joomla-template",
+                    "demo_url": "https://demo.energizethemes.com/restaurant/",
+                    "image": "https://www.energizethemes.com/images/et2026/catalog/restaurant-store-joomla-template.webp",
+                    "tagline": "Restaurants, bistros and bars that sell online",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "speciality"
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "vmt",
+            "name": "VirtueMart Templates",
+            "url": "https://www.virtuemarttemplates.net/",
+            "plans_url": "https://www.virtuemarttemplates.net/all-subscriptions.html",
+            "description": "Responsive VirtueMart shop templates for Joomla 5, each with a live demo and a Quickstart install package.",
+            "types": [
+                {
+                    "key": "electronics",
+                    "title": "Electronics shops",
+                    "url": "https://www.virtuemarttemplates.net/electronics-virtuemart-templates.html"
+                },
+                {
+                    "key": "multipurpose",
+                    "title": "Multipurpose shops",
+                    "url": "https://www.virtuemarttemplates.net/multipurpose-virtuemart-templates.html"
+                },
+                {
+                    "key": "fashion-beauty",
+                    "title": "Fashion and beauty shops",
+                    "url": "https://www.virtuemarttemplates.net/fashion-virtuemart-templates.html"
+                },
+                {
+                    "key": "furniture-home",
+                    "title": "Furniture and home shops",
+                    "url": "https://www.virtuemarttemplates.net/furniture-home-virtuemart-templates.html"
+                }
+            ],
+            "templates": [
+                {
+                    "name": "Theon Shop",
+                    "url": "https://www.virtuemarttemplates.net/theon-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/theon/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/theon-shop-virtuemart-template-600.webp",
+                    "tagline": "A homeware and decor store with six colour styles and over 60 module positions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "furniture-home"
+                    ]
+                },
+                {
+                    "name": "Impulsa",
+                    "url": "https://www.virtuemarttemplates.net/impulsa-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/impulsa/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/impulsa-virtuemart-template-600.webp",
+                    "tagline": "A clean, minimal shop for TVs and cameras, with six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Intense Shop",
+                    "url": "https://www.virtuemarttemplates.net/intense-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/intense/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/intense-shop-virtuemart-template-600.webp",
+                    "tagline": "A white-space store with a full-page home slider and three colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "X Store",
+                    "url": "https://www.virtuemarttemplates.net/x-store-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/xstore/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/x-store-virtuemart-template-600.webp",
+                    "tagline": "A stylish fashion store with a big slideshow, a mega menu and six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "fashion-beauty"
+                    ]
+                },
+                {
+                    "name": "Infinity",
+                    "url": "https://www.virtuemarttemplates.net/infinity-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/infinity/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/infinity-virtuemart-template-600.webp",
+                    "tagline": "A minimalist tech store with a mega menu, product zoom and six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Studio Shop",
+                    "url": "https://www.virtuemarttemplates.net/studio-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/studio/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/studio-shop-virtuemart-template-600.webp",
+                    "tagline": "A clean fashion shop with three colour styles and over 60 module positions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "fashion-beauty"
+                    ]
+                },
+                {
+                    "name": "VM Blend",
+                    "url": "https://www.virtuemarttemplates.net/vm-blend-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/vmblend/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/vm-blend-virtuemart-template-600.webp",
+                    "tagline": "A classic shop with four styles, fixed or fluid width and product tabs.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "VM Bright",
+                    "url": "https://www.virtuemarttemplates.net/vm-bright-virtuemart-template-for-joomla.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/vmbright/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/vm-bright-virtuemart-template-for-joomla-600.webp",
+                    "tagline": "A classic shop with eight styles and a left/right column switch.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Excite",
+                    "url": "https://www.virtuemarttemplates.net/excite-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/excite/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/excite-virtuemart-template-600.webp",
+                    "tagline": "A sleek, simple shop with a slideshow and over 40 module positions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Spark Store",
+                    "url": "https://www.virtuemarttemplates.net/spark-store-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/sparkstore/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/spark-store-virtuemart-template-600.webp",
+                    "tagline": "A light store for software, computers and games, with six built-in styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Nextor",
+                    "url": "https://www.virtuemarttemplates.net/nextor-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/nextor/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/nextor-virtuemart-template-600.webp",
+                    "tagline": "A tech store with promo banners, a product slider and six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "VM Shop Blue",
+                    "url": "https://www.virtuemarttemplates.net/virtuemart-template-vm-shop-blue.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/vmshopblue/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/virtuemart-template-vm-shop-blue-600.webp",
+                    "tagline": "A simple blue shop layout with a slideshow and font resize tools.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "VM Shop Green",
+                    "url": "https://www.virtuemarttemplates.net/vm-shop-green-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/vmshopgreen/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/vm-shop-green-virtuemart-template-600.webp",
+                    "tagline": "A simple green shop layout with a slideshow and font resize tools.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Flexi",
+                    "url": "https://www.virtuemarttemplates.net/flexi-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/flexi/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/flexi-virtuemart-template-600.webp",
+                    "tagline": "A versatile, lightweight shop with six styles and slideshow captions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Ease Blend",
+                    "url": "https://www.virtuemarttemplates.net/ease-blend-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/easeblend/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/ease-blend-virtuemart-template-600.webp",
+                    "tagline": "A simple shop with six design styles, a slideshow and product tabs.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Metro",
+                    "url": "https://www.virtuemarttemplates.net/metro-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/metro/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/metro-virtuemart-template-600.webp",
+                    "tagline": "A clean, light store with twelve colour styles and 45 module positions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "VM Business",
+                    "url": "https://www.virtuemarttemplates.net/vm-business-design-for-virtuemart.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/vmbusiness/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/vm-business-design-for-virtuemart-600.webp",
+                    "tagline": "A lightweight, fast-loading shop with a simple, business-like layout.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Swift",
+                    "url": "https://www.virtuemarttemplates.net/swift-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/swift/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/swift-virtuemart-template-600.webp",
+                    "tagline": "A clean shop with six ready-made styles and HTML5 effects.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Nano",
+                    "url": "https://www.virtuemarttemplates.net/nano-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/nano/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/nano-virtuemart-template-600.webp",
+                    "tagline": "A sleek shop with six styles, a featured product slider and a colour chooser.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Explore",
+                    "url": "https://www.virtuemarttemplates.net/explore-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/explore/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/explore-virtuemart-template-600.webp",
+                    "tagline": "A simple shop with a slideshow, a drop-down menu and social icons.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Light Cart",
+                    "url": "https://www.virtuemarttemplates.net/light-cart-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/lightcart/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/light-cart-virtuemart-template-600.webp",
+                    "tagline": "A bright, light shop with CSS3 effects and a featured products slider.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Echo",
+                    "url": "https://www.virtuemarttemplates.net/echo-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/echo/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/echo-virtuemart-template-600.webp",
+                    "tagline": "A lightweight, clean shop with CSS3 effects and a products slider.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "eShop",
+                    "url": "https://www.virtuemarttemplates.net/eshop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/eshop/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/eshop-virtuemart-template-600.webp",
+                    "tagline": "A modern shop with six colour styles and a featured and hot products slider.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Transform",
+                    "url": "https://www.virtuemarttemplates.net/transform-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/transform/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/transform-virtuemart-template-600.webp",
+                    "tagline": "A bright, lightweight shop with five colour styles and a hot products slider.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Inspire",
+                    "url": "https://www.virtuemarttemplates.net/inspire-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/inspire/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/inspire-virtuemart-template-600.webp",
+                    "tagline": "A multi-purpose classic shop with six colour themes and a hot products slider.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Flexo",
+                    "url": "https://www.virtuemarttemplates.net/flexo-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/flexo/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/flexo-virtuemart-template-600.webp",
+                    "tagline": "A classic shop with a featured products slider and a blog article slider.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Avant",
+                    "url": "https://www.virtuemarttemplates.net/avant-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/avant/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/avant-virtuemart-template-600.webp",
+                    "tagline": "A classic shop layout with product tabs, product zoom and 45+ module positions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Flat Store",
+                    "url": "https://www.virtuemarttemplates.net/flat-store-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/flatstore/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/flat-store-virtuemart-template-600.webp",
+                    "tagline": "A flat-design shop with six built-in themes and a featured products slider.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Prime",
+                    "url": "https://www.virtuemarttemplates.net/prime-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/prime/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/prime-virtuemart-template-600.webp",
+                    "tagline": "A shop with CSS3 effects, a hot and featured products slider and a colour tool.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Rapid",
+                    "url": "https://www.virtuemarttemplates.net/rapid-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/rapid/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/rapid-virtuemart-template-600.webp",
+                    "tagline": "Six colour themes and a products slider.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Quasar",
+                    "url": "https://www.virtuemarttemplates.net/quasar-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/quassar/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/quasar-virtuemart-template-600.webp",
+                    "tagline": "A multipurpose store with Font Awesome icons, HTML5 effects and six colour themes.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Axxen",
+                    "url": "https://www.virtuemarttemplates.net/axxen-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/axxen/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/axxen-virtuemart-template-600.webp",
+                    "tagline": "A store with a full-screen intro image, product tabs and HTML5 effects.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Vio",
+                    "url": "https://www.virtuemarttemplates.net/vio-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/vio/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/vio-virtuemart-template-600.webp",
+                    "tagline": "A modern, elegant shop with five colour themes and product image sliders.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Aeon",
+                    "url": "https://www.virtuemarttemplates.net/aeon-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/aeon/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/aeon-virtuemart-template-600.webp",
+                    "tagline": "A shop with six colour themes and a sliding featured and hot products module.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Mega Web Shop",
+                    "url": "https://www.virtuemarttemplates.net/mega-web-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/megawebshop/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/mega-web-shop-virtuemart-template-600.webp",
+                    "tagline": "A multipurpose store with a mega menu, product tabs and six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Liquid",
+                    "url": "https://www.virtuemarttemplates.net/liquid-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/liquid/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/liquid-virtuemart-template-600.webp",
+                    "tagline": "A fully responsive shop with six colour themes and a featured products slider.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Illusion",
+                    "url": "https://www.virtuemarttemplates.net/illusion-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/illusion/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/illusion-virtuemart-template-600.webp",
+                    "tagline": "A fast-loading shop with product tabs, HTML5 effects and 45+ module positions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Vivid",
+                    "url": "https://www.virtuemarttemplates.net/vivid-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/vivid/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/vivid-virtuemart-template-600.webp",
+                    "tagline": "A bright shop with six colourful styles and a hot and featured products slider.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Sensitive",
+                    "url": "https://www.virtuemarttemplates.net/sensitive-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/sensitive/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/sensitive-virtuemart-template-600.webp",
+                    "tagline": "A clean multipurpose store with help and discover tabs and six colour themes.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Impress",
+                    "url": "https://www.virtuemarttemplates.net/impress-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/impress/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/impress-virtuemart-template-600.webp",
+                    "tagline": "A multi-coloured store with a fixed-position cart and sliding help tabs.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Q Store",
+                    "url": "https://www.virtuemarttemplates.net/q-store-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/qstore/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/q-store-virtuemart-template-600.webp",
+                    "tagline": "A clean store for TVs, cameras and laptops, with six colour styles and a mega menu.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Xenon",
+                    "url": "https://www.virtuemarttemplates.net/xenon-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/xenon/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/xenon-virtuemart-template-600.webp",
+                    "tagline": "A multipurpose store with a mega menu, testimonials and six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Invent",
+                    "url": "https://www.virtuemarttemplates.net/invent-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/invent/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/invent-virtuemart-template-600.webp",
+                    "tagline": "A multipurpose store with product tabs, HTML5 effects and 40+ module positions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Veno Shop",
+                    "url": "https://www.virtuemarttemplates.net/veno-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/venoshop/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/veno-shop-virtuemart-template-600.webp",
+                    "tagline": "A modern electronics store with deal banners, a mega menu and six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Square Shop",
+                    "url": "https://www.virtuemarttemplates.net/square-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/squareshop/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/square-shop-virtuemart-template-600.webp",
+                    "tagline": "A handcrafted multipurpose store with six colour themes and 50+ module positions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Moderna Store",
+                    "url": "https://www.virtuemarttemplates.net/moderna-store-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/modernastore/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/moderna-store-virtuemart-template-600.webp",
+                    "tagline": "A clean, simple multipurpose store with six colour styles and a mega menu.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Elegant Store",
+                    "url": "https://www.virtuemarttemplates.net/elegant-store-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/elegant/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/elegant-store-virtuemart-template-600.webp",
+                    "tagline": "A multipurpose store with help and discover tab panels and six colour themes.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Hyper Shop",
+                    "url": "https://www.virtuemarttemplates.net/hyper-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/hypershop/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/hyper-shop-virtuemart-template-600.webp",
+                    "tagline": "A modern multipurpose store with a mega menu, CSS effects and six colour themes.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Boax Store",
+                    "url": "https://www.virtuemarttemplates.net/boax-store-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/boaxstore/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/boax-store-virtuemart-template-600.webp",
+                    "tagline": "A responsive electronics store with a mega menu and over 60 module positions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Diverse Shop",
+                    "url": "https://www.virtuemarttemplates.net/diverse-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/diverseshop/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/diverse-shop-virtuemart-template-600.webp",
+                    "tagline": "A store for phones and fashion, with six colour themes and 50+ module positions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Elyse Shop",
+                    "url": "https://www.virtuemarttemplates.net/elyse-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/elyseshop/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/elyse-shop-virtuemart-template-600.webp",
+                    "tagline": "A fashion shop for men's and women's ranges, with six colour styles and a mega menu.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "fashion-beauty"
+                    ]
+                },
+                {
+                    "name": "Uniqua Shop",
+                    "url": "https://www.virtuemarttemplates.net/uniqua-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/uniqua/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/uniqua-shop-virtuemart-template-600.webp",
+                    "tagline": "A multipurpose store you can adapt to almost any range, with six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Fashion Shop",
+                    "url": "https://www.virtuemarttemplates.net/fashion-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/fashionshop/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/fashion-shop-virtuemart-template-600.webp",
+                    "tagline": "A fashion store with a mega menu, product zoom and six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "fashion-beauty"
+                    ]
+                },
+                {
+                    "name": "Serenity",
+                    "url": "https://www.virtuemarttemplates.net/serenity-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/serenity/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/serenity-virtuemart-template-600.webp",
+                    "tagline": "A calm, clean clothing store with six colour styles and right-to-left language support.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "fashion-beauty"
+                    ]
+                },
+                {
+                    "name": "Quantum Shop",
+                    "url": "https://www.virtuemarttemplates.net/quantum-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/quantum/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/quantum-shop-virtuemart-template-600.webp",
+                    "tagline": "A multipurpose store with a mega menu, grid/list switch and six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Active Shopping",
+                    "url": "https://www.virtuemarttemplates.net/active-shopping-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/active/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/active-shopping-virtuemart-template-600.webp",
+                    "tagline": "A clean store for phones, cameras and laptops, with six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Furniture Store",
+                    "url": "https://www.virtuemarttemplates.net/furniture-store-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/furniture/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/furniture-store-virtuemart-template-600.webp",
+                    "tagline": "A furniture and interiors store with a mega menu and 50 module positions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "furniture-home"
+                    ]
+                },
+                {
+                    "name": "Cosmo",
+                    "url": "https://www.virtuemarttemplates.net/cosmo-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/cosmo/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/cosmo-virtuemart-template-600.webp",
+                    "tagline": "A beauty and cosmetics store with six colour styles and a mega menu.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "fashion-beauty"
+                    ]
+                },
+                {
+                    "name": "Nevo",
+                    "url": "https://www.virtuemarttemplates.net/nevo-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/nevo/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/nevo-virtuemart-template-600.webp",
+                    "tagline": "A multipurpose store with a mega menu, product zoom and six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Stilo Shop",
+                    "url": "https://www.virtuemarttemplates.net/stilo-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/stilioshop/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/stilo-shop-virtuemart-template-600.webp",
+                    "tagline": "A simple multipurpose store with six colour styles, a mega menu and testimonials.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Multim Shop",
+                    "url": "https://www.virtuemarttemplates.net/multim-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/multimshop/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/multim-shop-virtuemart-template-600.webp",
+                    "tagline": "A lightweight multipurpose store with six colour styles and a grid/list switch.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Armada",
+                    "url": "https://www.virtuemarttemplates.net/armada-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/armada/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/armada-virtuemart-template-600.webp",
+                    "tagline": "A furniture store with modern, classic and office ranges and six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "furniture-home"
+                    ]
+                },
+                {
+                    "name": "Dynamic",
+                    "url": "https://www.virtuemarttemplates.net/dynamic-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/dynamic/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/dynamic-virtuemart-template-600.webp",
+                    "tagline": "A multipurpose store that comes with four different designs to choose from.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Coga",
+                    "url": "https://www.virtuemarttemplates.net/coga-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/coga/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/coga-virtuemart-template-600.webp",
+                    "tagline": "A multipurpose shop set up as a TV store, with six colour styles and a mega menu.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "electronics"
+                    ]
+                },
+                {
+                    "name": "Glise Store",
+                    "url": "https://www.virtuemarttemplates.net/glise-store-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/glisestore/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/glise-store-virtuemart-template-600.webp",
+                    "tagline": "A clean, minimal store for clothes, gadgets or homeware, with six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Mexo",
+                    "url": "https://www.virtuemarttemplates.net/mexo-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/mexo/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/mexo-virtuemart-template-600.webp",
+                    "tagline": "A multipurpose store with a mega menu, Google Fonts and six colour styles.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                },
+                {
+                    "name": "Ultimo Shop",
+                    "url": "https://www.virtuemarttemplates.net/ultimo-shop-virtuemart-template.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/ultimoshop/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/ultimo-shop-virtuemart-template-600.webp",
+                    "tagline": "A fashion store with six colour themes.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "fashion-beauty"
+                    ]
+                },
+                {
+                    "name": "Viena Shop",
+                    "url": "https://www.virtuemarttemplates.net/viena-shop-virtuemart.html",
+                    "demo_url": "https://demo.virtuemarttemplates.net/vienashop/",
+                    "image": "https://www.virtuemarttemplates.net/images/vmt2026/catalog/viena-shop-virtuemart-600.webp",
+                    "tagline": "A minimalist multipurpose store with six colour styles and 50+ module positions.",
+                    "joomla": [
+                        "5"
+                    ],
+                    "shop": "VirtueMart",
+                    "tags": [
+                        "multipurpose"
+                    ]
+                }
+            ]
+        }
+    ]
+}

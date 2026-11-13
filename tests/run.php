@@ -20,10 +20,12 @@ $src = __DIR__ . '/../packages/com_csextensionmanager/admin/src/Helper/';
 require $src . 'FeedParser.php';
 require $src . 'StateHelper.php';
 require $src . 'StoreClient.php';
+require $src . 'TemplatesHelper.php';
 
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\FeedParser;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\StateHelper;
 use Cybersalt\Component\Csextensionmanager\Administrator\Helper\StoreClient;
+use Cybersalt\Component\Csextensionmanager\Administrator\Helper\TemplatesHelper;
 
 $failures = 0;
 $count    = 0;
@@ -113,6 +115,61 @@ $check('adds param', StoreClient::withQueryParam('https://a.test/i.php?x=1', 'dl
 $check('replaces param', StoreClient::withQueryParam('https://a.test/i.php?dlid=old&x=1', 'dlid', 'new') === 'https://a.test/i.php?x=1&dlid=new');
 $check('removes param', StoreClient::withQueryParam('https://a.test/i.php?x=1&dlid=old', 'dlid', '') === 'https://a.test/i.php?x=1');
 $check('encodes value', StoreClient::withQueryParam('https://a.test/i.php', 'v', 'a&b') === 'https://a.test/i.php?v=a%26b');
+
+// --- TemplatesHelper ------------------------------------------------------------
+$check('template link: brand site', TemplatesHelper::link('https://www.energizethemes.com/templates/x') !== '');
+$check('template link: demo subdomain', TemplatesHelper::link('https://demo.virtuemarttemplates.net/x/') !== '');
+$check('template link: http refused', TemplatesHelper::link('http://www.energizethemes.com/') === '');
+$check('template link: other host refused', TemplatesHelper::link('https://evil.example/energizethemes.com') === '');
+$check('template link: lookalike refused', TemplatesHelper::link('https://energizethemes.com.evil.example/') === '');
+$check('template link: suffix-only refused', TemplatesHelper::link('https://notenergizethemes.com/') === '');
+$check('template link: userinfo refused', TemplatesHelper::link('https://www.energizethemes.com@evil.example/') === '');
+$check('template link: javascript refused', TemplatesHelper::link('javascript:alert(1)//energizethemes.com') === '');
+$check('template link: quote refused', TemplatesHelper::link('https://www.energizethemes.com/"onerror=x') === '');
+$check('template link: port refused', TemplatesHelper::link('https://www.energizethemes.com:8443/') === '');
+
+$brands = TemplatesHelper::sanitise(['brands' => [
+    [
+        'key' => 'e t!', 'name' => '<b>Energize</b> Themes', 'url' => 'https://www.energizethemes.com', 'plans_url' => 'https://evil.example/',
+        'templates' => [
+            ['name' => 'Good', 'url' => 'https://www.energizethemes.com/a', 'demo_url' => 'https://demo.energizethemes.com/a', 'image' => 'https://evil.example/a.png', 'joomla' => ['5', 6, '10', 'x']],
+            ['name' => 'No link', 'url' => 'https://evil.example/b'],
+            'not an array',
+        ],
+    ],
+    ['key' => 'empty', 'name' => 'No templates', 'url' => 'https://www.virtuemarttemplates.net', 'templates' => []],
+    ['key' => 'bad', 'name' => 'Off-site brand', 'url' => 'https://evil.example', 'templates' => [['name' => 'X', 'url' => 'https://www.energizethemes.com/x']]],
+]]);
+$check('templates: only the good brand kept', \count($brands) === 1 && $brands[0]['key'] === 'et');
+$check('templates: tags stripped from names', ($brands[0]['name'] ?? '') === 'Energize Themes');
+$check('templates: off-site plans link dropped', ($brands[0]['plans_url'] ?? 'x') === '');
+$check('templates: off-site template dropped', \count($brands[0]['templates'] ?? []) === 1);
+$check('templates: off-site image dropped', ($brands[0]['templates'][0]['image'] ?? 'x') === '');
+$check('templates: demo kept', ($brands[0]['templates'][0]['demo_url'] ?? '') === 'https://demo.energizethemes.com/a');
+$check('templates: Joomla versions cleaned', ($brands[0]['templates'][0]['joomla'] ?? []) === ['5', '6']);
+$check('templates: garbage feed = nothing', TemplatesHelper::sanitise(['brands' => 'x']) === [] && TemplatesHelper::sanitise([]) === []);
+$check('templates: count', TemplatesHelper::count($brands) === 1);
+
+$parsed = TemplatesHelper::parse([
+    'topics' => ['shop' => 'Online shops', 'Bad Slug!' => 'x', 'unused' => 'Nobody has this', 'nolabel' => ''],
+    'brands' => [[
+        'key' => 'vmt', 'name' => 'VMT', 'url' => 'https://www.virtuemarttemplates.net/',
+        'templates' => [
+            ['name' => 'Zed', 'url' => 'https://www.virtuemarttemplates.net/z', 'tags' => ['shop', 'nolabel', 'Bad Slug!', 'shop']],
+            ['name' => 'alpha', 'url' => 'https://www.virtuemarttemplates.net/a', 'tags' => 'shop'],
+        ],
+    ]],
+]);
+$check('topics: only used, labelled, valid slugs', $parsed['topics'] === ['shop' => 'Online shops']);
+$check('topics: unlabelled tags dropped from templates', $parsed['brands'][0]['templates'][0]['tags'] === ['shop']);
+$check('topics: a string is not a tag list', $parsed['brands'][0]['templates'][1]['tags'] === ['shop'] || $parsed['brands'][0]['templates'][1]['tags'] === []);
+$flat = TemplatesHelper::flatten($parsed['brands']);
+$check('flatten: sorted by name, brand attached', $flat[0]['name'] === 'alpha' && $flat[1]['brand'] === 'vmt' && $flat[1]['brand_name'] === 'VMT');
+
+$bundled = TemplatesHelper::parse(json_decode((string) file_get_contents(__DIR__ . '/../packages/com_csextensionmanager/admin/catalog/templates.json'), true));
+$check('bundled list: 2 brands, 140+ templates, every one tagged', \count($bundled['brands']) === 2
+    && TemplatesHelper::count($bundled['brands']) >= 140
+    && array_filter(TemplatesHelper::flatten($bundled['brands']), static fn (array $t): bool => $t['tags'] === []) === []);
 
 echo "\n{$count} checks, {$failures} failed\n";
 

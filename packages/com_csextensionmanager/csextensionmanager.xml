@@ -37,9 +37,11 @@
     </media>
 
     <administration>
-        <menu img="class:puzzle-piece" link="option=com_csextensionmanager&amp;view=extensions">COM_CSEXTENSIONMANAGER_MENU</menu>
+        <menu img="class:puzzle-piece" link="option=com_csextensionmanager&amp;view=dashboard">COM_CSEXTENSIONMANAGER_MENU</menu>
         <submenu>
+            <menu link="option=com_csextensionmanager&amp;view=dashboard">COM_CSEXTENSIONMANAGER_SUBMENU_DASHBOARD</menu>
             <menu link="option=com_csextensionmanager&amp;view=extensions">COM_CSEXTENSIONMANAGER_SUBMENU_EXTENSIONS</menu>
+            <menu link="option=com_csextensionmanager&amp;view=templates">COM_CSEXTENSIONMANAGER_SUBMENU_TEMPLATES</menu>
             <menu link="option=com_csextensionmanager&amp;view=health">COM_CSEXTENSIONMANAGER_SUBMENU_HEALTH</menu>
             <menu link="option=com_csextensionmanager&amp;view=logs">COM_CSEXTENSIONMANAGER_SUBMENU_LOGS</menu>
             <menu link="option=com_config&amp;view=component&amp;component=com_csextensionmanager">COM_CSEXTENSIONMANAGER_SUBMENU_OPTIONS</menu>
