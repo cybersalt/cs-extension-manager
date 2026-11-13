@@ -89,6 +89,18 @@ final class LogsModel extends ListModel
     }
 
     /**
+     * @return  array<int, object>|false
+     *
+     * @since   0.1.0
+     */
+    public function getItems()
+    {
+        $items = parent::getItems();
+
+        return \is_array($items) ? LogHelper::readableTitles($items) : $items;
+    }
+
+    /**
      * @return  QueryInterface
      *
      * @since   0.1.0

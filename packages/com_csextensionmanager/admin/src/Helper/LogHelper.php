@@ -225,9 +225,9 @@ final class LogHelper
             $db     = Factory::getContainer()->get(DatabaseInterface::class);
             $action = self::ACTION_REFRESH;
 
-            return $db->setQuery(
+            $rows = $db->setQuery(
                 $db->createQuery()
-                    ->select($db->quoteName(['created', 'action', 'status', 'title', 'to_version']))
+                    ->select($db->quoteName(['created', 'action', 'status', 'title', 'to_version', 'message']))
                     ->from($db->quoteName('#__csextensionmanager_log'))
                     ->where($db->quoteName('action') . ' != :refresh')
                     ->bind(':refresh', $action)
@@ -238,6 +238,69 @@ final class LogHelper
         } catch (\Throwable $e) {
             return [];
         }
+
+        return self::readableTitles($rows);
+    }
+
+    /**
+     * Older entries can hold an extension's untranslated name, such as
+     * MOD_CYBERSALT_RELATED_ARTICLES, when its language file wasn't loaded
+     * at the time. Show the translated name instead, in the title and in
+     * the message that repeats it.
+     *
+     * @param   array<int, object>  $rows  History rows with title (and message).
+     *
+     * @return  array<int, object>
+     *
+     * @since   0.1.0
+     */
+    public static function readableTitles(array $rows): array
+    {
+        $keys = [];
+
+        foreach ($rows as $row) {
+            if (preg_match('/^[A-Z][A-Z0-9_]+$/', (string) ($row->title ?? '')) === 1) {
+                $keys[(string) $row->title] = (string) $row->title;
+            }
+        }
+
+        if ($keys === []) {
+            return $rows;
+        }
+
+        try {
+            $db         = Factory::getContainer()->get(DatabaseInterface::class);
+            $extensions = $db->setQuery(
+                $db->createQuery()
+                    ->select($db->quoteName(['extension_id', 'name', 'type', 'element', 'folder', 'client_id']))
+                    ->from($db->quoteName('#__extensions'))
+                    ->whereIn($db->quoteName('name'), array_values($keys), ParameterType::STRING)
+            )->loadObjectList() ?: [];
+        } catch (\Throwable $e) {
+            return $rows;
+        }
+
+        $labels = [];
+
+        foreach ($extensions as $extension) {
+            $labels[(string) $extension->name] = InstalledHelper::label($extension);
+        }
+
+        foreach ($rows as $row) {
+            $label = $labels[(string) ($row->title ?? '')] ?? '';
+
+            if ($label === '' || $label === $row->title) {
+                continue;
+            }
+
+            if (isset($row->message)) {
+                $row->message = str_replace((string) $row->title, $label, (string) $row->message);
+            }
+
+            $row->title = $label;
+        }
+
+        return $rows;
     }
 
     /**

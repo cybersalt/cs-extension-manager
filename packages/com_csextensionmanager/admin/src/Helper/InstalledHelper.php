@@ -221,13 +221,18 @@ final class InstalledHelper
         };
 
         if ($source !== '') {
+            // Site modules keep theirs on the site side, in the module folder or site language folder.
+            $client = (string) $row->type === 'module' && (int) ($row->client_id ?? 1) === 0 ? JPATH_SITE : JPATH_ADMINISTRATOR;
+
             // Components ship their language folder inside the component.
             $base = match ((string) $row->type) {
                 'plugin'    => JPATH_PLUGINS . '/' . $row->folder . '/' . $row->element,
                 'component' => JPATH_ADMINISTRATOR . '/components/' . $row->element,
+                'module'    => $client . '/modules/' . $row->element,
                 default     => JPATH_ADMINISTRATOR,
             };
             $lang->load($source . '.sys', JPATH_ADMINISTRATOR, null, false, true)
+                || ($client === JPATH_SITE && $lang->load($source . '.sys', JPATH_SITE, null, false, true))
                 || $lang->load($source . '.sys', $base, null, false, true);
 
             if ($lang->hasKey($name)) {
