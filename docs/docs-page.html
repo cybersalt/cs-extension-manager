@@ -2,9 +2,10 @@
 
 <p><strong>Cybersalt Extension Manager</strong> installs, updates and looks after every Cybersalt
 extension on your Joomla site from one screen. You see what's installed, what has an update and what
-you don't have yet; install or update one extension or all of them in one go; read what changed since
+you don't have yet; install or update one extension or several in one go; read what changed since
 your version; go back to an earlier release if an update causes trouble; and let a daily check email
-you when something new is out. It's free.</p>
+you when something new is out. It also shows the Joomla templates from Energize Themes and VirtueMart
+Templates. It's free.</p>
 
 <div class="csdoc-note">
 <p><strong>Release history.</strong> This page documents the current release. For what changed in
@@ -14,17 +15,17 @@ each version, see the <a href="/extensions/extension-manager/changelog">changelo
 <div class="csdoc-note">
 <p><strong>Requirements.</strong> Joomla 5 or 6 and PHP 8.1 or newer. Your site has to be able to
 reach <code>www.cybersalt.com</code> over https. Extension Manager is free and open source
-(GPL-2.0-or-later); the source is on
+(GPL-2.0-or-later); the source code is on
 <a href="https://github.com/cybersalt/cs-extension-manager">GitHub</a>.</p>
 </div>
 
 <figure class="csdoc-fig">
-  <a class="csdoc-thumb" href="#csdoc-lb-extensions" id="csdoc-fig-extensions">
-    <img src="/images/documentation/extension-manager/01-extensions.webp"
-         alt="The Extensions screen in dark mode: counts for installed, updates, not installed, MCP add-ons and health issues, the Cybersalt account panel, filters, and cards for Page Protector with an update available and Extension Manager up to date">
+  <a class="csdoc-thumb" href="#csdoc-lb-dashboard" id="csdoc-fig-dashboard">
+    <img src="/images/documentation/extension-manager/01-dashboard.webp"
+         alt="The Extension Manager dashboard: the section bar, tiles for Extensions, Templates, Health Check and History, Needs attention, Recent activity, the Cybersalt account card and the release email offer">
     <span class="csdoc-zoom">&#10530; Click to enlarge</span>
   </a>
-  <figcaption>The Extensions screen. Page Protector has an update waiting.</figcaption>
+  <figcaption>The dashboard, where the Extension Manager opens.</figcaption>
 </figure>
 
 <h2>What's included</h2>
@@ -34,7 +35,7 @@ reach <code>www.cybersalt.com</code> over https. Extension Manager is free and o
 <thead><tr><th>Extension</th><th>Job</th></tr></thead>
 <tbody>
 <tr><td><code>com_csextensionmanager</code></td>
-    <td>The Extensions, Health Check and History screens, and the Options.</td></tr>
+    <td>The Dashboard, Extensions, Templates, Health Check and History screens, and the Options.</td></tr>
 <tr><td><em>Installer - Cybersalt Extension Manager</em></td>
     <td>Adds your download ID to Cybersalt downloads and update checks when it's missing, so Pro
         updates also work from Joomla's own <strong>System &rarr; Update &rarr; Extensions</strong>
@@ -44,7 +45,7 @@ reach <code>www.cybersalt.com</code> over https. Extension Manager is free and o
         checks.</td></tr>
 <tr><td><em>Task - Cybersalt Extension Manager</em></td>
     <td>The scheduled task that checks for updates once a day, emails you, and can install updates
-        for you.</td></tr>
+        for you. It's off until you switch it on.</td></tr>
 </tbody>
 </table>
 </div>
@@ -52,8 +53,8 @@ reach <code>www.cybersalt.com</code> over https. Extension Manager is free and o
 <h2>Installing</h2>
 
 <ol>
-  <li>Download <code>pkg_csextensionmanager_v*.zip</code> from
-      <a href="https://www.cybersalt.com/index.php?option=com_csreleasemanager&amp;task=api.userdownload&amp;format=raw&amp;element=pkg_csextensionmanager">cybersalt.com</a>.</li>
+  <li>Download the zip from the
+      <a href="https://www.cybersalt.com/extensions/extension-manager">Extension Manager page on cybersalt.com</a>.</li>
   <li>In your Joomla admin go to <strong>System &rarr; Install &rarr; Extensions</strong> and upload
       the zip. The three plugins are switched on for you.</li>
   <li>Click <strong>Open the Extension Manager</strong> on the card that appears, or go to
@@ -61,86 +62,103 @@ reach <code>www.cybersalt.com</code> over https. Extension Manager is free and o
 </ol>
 
 <p>If you'd like an email when a new release of a Cybersalt extension on your site is out, click
-<strong>Email me about new releases</strong> on the same card. Release emails are off until you ask
-for them; see <a href="#csdoc-emails">Release emails and automatic updates</a>.</p>
-
-<figure class="csdoc-fig">
-  <a class="csdoc-thumb" href="#csdoc-lb-card" id="csdoc-fig-card">
-    <img src="/images/documentation/extension-manager/05-install-card.webp"
-         alt="The card shown after installing: a short description, an Email me about new releases button, and buttons to open the Extension Manager, run the health check and open Options">
-    <span class="csdoc-zoom">&#10530; Click to enlarge</span>
-  </a>
-  <figcaption>The card you see after installing, with the offer to switch on release emails.</figcaption>
-</figure>
+<strong>Email me about new releases</strong> on the same card or on the dashboard. Release emails are
+off until you ask for them; see <a href="#csdoc-emails">Release emails and automatic updates</a>.</p>
 
 <p>Extension Manager updates itself like any Cybersalt extension: from its own Extensions screen, or
 from <strong>System &rarr; Update &rarr; Extensions</strong>.</p>
 
-<h2 id="csdoc-screen">The Extensions screen</h2>
+<h2 id="csdoc-dashboard">The dashboard</h2>
 
-<p>Every Cybersalt extension and MCP for Joomla add-on is listed as a card, in four groups:</p>
+<p>The Extension Manager opens on its dashboard. The <strong>section bar</strong> along the top of every
+screen (Dashboard, Extensions, Templates, Health Check, History) takes you anywhere in one click; the
+same entries are in Joomla's side menu under <strong>Components &rarr; Cybersalt Extension
+Manager</strong>.</p>
 
-<div class="csdoc-table-wrap" tabindex="0" role="region" aria-label="Table: Groups on the Extensions screen">
+<div class="csdoc-table-wrap" tabindex="0" role="region" aria-label="Table: What the dashboard shows">
 <table>
-<thead><tr><th>Group</th><th>What's in it</th></tr></thead>
+<thead><tr><th>Part</th><th>What it shows</th></tr></thead>
 <tbody>
+<tr><td><strong>Extensions</strong> tile</td>
+    <td>How many Cybersalt extensions are installed, and how many updates are waiting (or how many
+        more you could add).</td></tr>
+<tr><td><strong>Templates</strong> tile</td>
+    <td>How many templates the two template sites offer. See <a href="#csdoc-templates">Templates</a>.</td></tr>
+<tr><td><strong>Health Check</strong> tile</td>
+    <td>The number of Health Check findings. <strong>Green</strong>: nothing to look at.
+        <strong>Yellow</strong>: warnings, or notes only. <strong>Red</strong>: a real problem, such as a
+        half-installed package.</td></tr>
+<tr><td><strong>History</strong> tile</td>
+    <td>The last thing that happened.</td></tr>
 <tr><td><strong>Needs attention</strong></td>
-    <td>Updates you haven't installed yet, and anything that's only half installed.</td></tr>
-<tr><td><strong>Installed and up to date</strong></td>
-    <td>Cybersalt extensions on this site running the latest version.</td></tr>
-<tr><td><strong>More Cybersalt extensions</strong></td>
-    <td>The ones not on this site yet.</td></tr>
-<tr><td><strong>MCP for Joomla add-ons</strong></td>
-    <td>Add-ons that let AI apps work with other extensions through MCP for Joomla. The ones for
-        extensions you already have are marked.</td></tr>
+    <td>Updates you haven't installed and anything half installed, each with its own button, plus
+        <strong>Update all</strong>.</td></tr>
+<tr><td><strong>Recent activity</strong></td>
+    <td>The last few installs, updates and changes. <em>Full history</em> opens History.</td></tr>
+<tr><td><strong>Cybersalt account</strong></td>
+    <td>Whether this site is linked to a Cybersalt account for Pro extensions. See
+        <a href="#csdoc-pro">Pro extensions</a>.</td></tr>
+<tr><td><strong>Templates for your next site</strong></td>
+    <td>Four templates that change each day.</td></tr>
 </tbody>
 </table>
 </div>
 
-<p>Each card shows the installed and latest versions, the release date, whether it's free or Pro,
-what kind of extension it is, and anything the latest release needs that this site doesn't have (a
-newer Joomla or PHP, for example). Packages list their parts under <em>N parts</em>.</p>
+<p><strong>Check for updates</strong> in the toolbar asks cybersalt.com again straight away. Otherwise
+what it learned is reused for six hours (change this under <strong>Options &rarr; Catalog</strong>).</p>
 
-<p>The numbers along the top are filters: click <strong>Updates</strong> to see only the extensions
-with an update. You can also search by name or description, filter by status, kind (extensions or
-add-ons) and licence (free or Pro), or tick <em>Only add-ons for extensions on this site</em>. The
-browser remembers your filters for next time.</p>
+<h2 id="csdoc-screen">The Extensions screen</h2>
+
+<p>Every Cybersalt extension and MCP for J add-on is listed, one row each: its name and a one-line
+description, its status, the version installed here and the latest version. Anything that needs
+attention is listed first.</p>
 
 <figure class="csdoc-fig">
-  <a class="csdoc-thumb" href="#csdoc-lb-addons" id="csdoc-fig-addons">
-    <img src="/images/documentation/extension-manager/02-addons.webp"
-         alt="The Extensions screen in light mode filtered to MCP add-ons: MCP for StageIt installed, and cards for MCP for 4SEF, MCP for 4SEO and MCP for AcyMailing with their tier, latest version and the note that MCP for Joomla will be installed first">
+  <a class="csdoc-thumb" href="#csdoc-lb-extensions" id="csdoc-fig-extensions">
+    <img src="/images/documentation/extension-manager/02-extensions.webp"
+         alt="The Extensions screen: counts along the top, search and filters, and a sortable list with Extension, Status, Installed and Latest columns, a tick box and a main button on each row">
     <span class="csdoc-zoom">&#10530; Click to enlarge</span>
   </a>
-  <figcaption>Filtered to MCP add-ons. Each one says which extension it's for and whether that
-  extension is on this site.</figcaption>
+  <figcaption>The Extensions screen. Click a column heading to sort.</figcaption>
 </figure>
 
-<p><strong>Check for updates</strong> in the toolbar asks cybersalt.com again straight away. Otherwise
-the list is reused for six hours (change this under <strong>Options &rarr; Catalog</strong>).</p>
+<ul>
+  <li><strong>Sort</strong> by clicking a column heading: name, status, installed version or release
+      date. The browser remembers your choice.</li>
+  <li><strong>Filter</strong>: the numbers along the top are filters (click <strong>Updates</strong> to
+      see only the extensions with an update). You can also search by name or description, filter by
+      status, kind (extensions or add-ons) and licence (free or Pro), or tick <em>Only add-ons for
+      extensions on this site</em>. A line under the list says how many are showing.</li>
+  <li><strong>Details</strong>: click anywhere on a row to open it. You get the full description, the
+      release date, anything the latest release needs that this site doesn't have (a newer Joomla or
+      PHP, for example), notes such as which extension an add-on is for, and a package's parts.</li>
+</ul>
+
+<figure class="csdoc-fig">
+  <a class="csdoc-thumb" href="#csdoc-lb-details" id="csdoc-fig-details">
+    <img src="/images/documentation/extension-manager/03-details.webp"
+         alt="An extension's row opened: its description and the parts of the package, each with an on/off switch">
+    <span class="csdoc-zoom">&#10530; Click to enlarge</span>
+  </a>
+  <figcaption>An opened row, with each part of the package and its switch.</figcaption>
+</figure>
 
 <h2>Installing and updating extensions</h2>
 
 <ol>
-  <li>Click <strong>Install</strong> or <strong>Update to x.y.z</strong> on a card.</li>
-  <li>To do several at once, tick their boxes (hold <kbd>Shift</kbd> to tick a range, or use
-      <strong>Select all updates</strong>) and click <strong>Install / update selected</strong>. Or
-      click <strong>Update N extensions</strong> in the toolbar.</li>
+  <li>Click the row's main button: <strong>Install</strong>, <strong>Update to x.y.z</strong> or
+      <strong>Repair</strong>. Everything else is under <strong>More</strong>.</li>
+  <li>To do several at once, tick their boxes (the box in the heading ticks every row showing) and
+      click <strong>Install / update selected</strong>, <strong>Reinstall selected</strong> or
+      <strong>Uninstall selected</strong>. Each button counts only the ticked rows it applies to.</li>
   <li>A window lists each one as it goes. Keep it open until it says <em>All done</em>, then click
       <strong>Done, reload the page</strong>.</li>
 </ol>
 
 <p>If one fails, the rest still go ahead, and the window says why that one failed. If an MCP add-on
-needs MCP for Joomla and it isn't installed, MCP for Joomla is installed first, automatically.</p>
-
-<figure class="csdoc-fig">
-  <a class="csdoc-thumb" href="#csdoc-lb-queue" id="csdoc-fig-queue">
-    <img src="/images/documentation/extension-manager/03-update-queue.webp"
-         alt="The Installing and updating window: All done, with Cybersalt Page Protector updated from 0.2.0 to 0.2.1, and a Done, reload the page button">
-    <span class="csdoc-zoom">&#10530; Click to enlarge</span>
-  </a>
-  <figcaption>The progress window after an update.</figcaption>
-</figure>
+needs CS MCP for J and it isn't installed, MCP for J is installed first, automatically. Reinstalling puts
+the latest release over itself and keeps your settings. The Extension Manager can't tick itself; update
+it with its own row's button.</p>
 
 <div class="csdoc-tip">
 <p><strong>Every download is checked before it's installed.</strong> Extension Manager only installs
@@ -151,15 +169,16 @@ reached to confirm the latest release, nothing is installed.</p>
 
 <h3>What's new, and going back to an earlier version</h3>
 
-<p><strong>What's new</strong> (or <strong>Changelog</strong> when you're up to date) opens the release
-notes, with the version installed here marked. If an update causes trouble, open <strong>More &rarr;
-Install another version&hellip;</strong> on the card, or use the <strong>Install x.y.z</strong> button
-next to an older release in the changelog, to go back to it.</p>
+<p><strong>What's new</strong> (or <strong>Changelog</strong> when you're up to date) under
+<strong>More</strong> opens the release notes, with everything newer than the installed version
+highlighted. If an update causes trouble, use the <strong>Install x.y.z</strong> button next to an older
+release in the changelog, or <strong>More &rarr; Install another version&hellip;</strong>, to go back to
+it.</p>
 
 <figure class="csdoc-fig">
   <a class="csdoc-thumb" href="#csdoc-lb-changelog" id="csdoc-fig-changelog">
     <img src="/images/documentation/extension-manager/04-changelog.webp"
-         alt="The changelog window for Cybersalt Page Protector: 0.2.1 marked Installed here, and Install 0.2.0 and Install 0.1.0 buttons next to the older releases">
+         alt="The changelog window for an extension: the installed release marked Installed here, and Install buttons next to the older releases">
     <span class="csdoc-zoom">&#10530; Click to enlarge</span>
   </a>
   <figcaption>The changelog window. The older releases each have an Install button.</figcaption>
@@ -167,10 +186,11 @@ next to an older release in the changelog, to go back to it.</p>
 
 <h3>Switching parts on and off, uninstalling</h3>
 
-<p>Open <em>N parts</em> on a package's card to see each component, module and plugin in it, each with
-an on/off switch. <strong>More &rarr; Uninstall</strong> removes an extension. If installed add-ons
-depend on it (uninstalling MCP for Joomla, for example), you're told which ones will stop working and
-asked to confirm first.</p>
+<p>Open a package's row to see each component, module and plugin in it, each with an on/off switch.
+Hover a switch to see what a click will do; the result shows right beside it, without reloading the
+page. <strong>More &rarr; Uninstall</strong> removes an extension. If installed add-ons depend on it
+(uninstalling MCP for J, for example), you're told which ones will stop working and asked to confirm
+first.</p>
 
 <h2 id="csdoc-pro">Pro extensions</h2>
 
@@ -178,10 +198,10 @@ asked to confirm first.</p>
 download ID. There are three ways to give it one:</p>
 
 <ul>
-  <li><strong>Activate this site</strong> on the Extensions screen with the email address of your
-      cybersalt.com account. This sends the site's domain and your email address to cybersalt.com,
+  <li><strong>Link this site</strong> from the account card on the dashboard with the email address of
+      your cybersalt.com account. This sends the site's domain and your email address to cybersalt.com,
       which emails you to confirm.</li>
-  <li>If <strong>MCP for Joomla</strong> is already activated with a Pro membership on this site, its
+  <li>If <strong>MCP for J</strong> is already activated with a Pro membership on this site, its
       activation is used automatically, so the site isn't registered twice. (You can turn this off
       under <strong>Options &rarr; Account</strong>.)</li>
   <li>Paste a download ID under <strong>Options &rarr; Account &rarr; Download ID</strong>, if
@@ -193,7 +213,7 @@ download ID. There are three ways to give it one:</p>
 Pro updates too. If the update sites are rebuilt, the installer plugin adds it back to the
 download.</p>
 
-<h2>Health Check</h2>
+<h2 id="csdoc-health">Health Check</h2>
 
 <p>The Health Check finds the things that quietly stop updates from arriving, and fixes most of them
 with one click. It looks for:</p>
@@ -206,7 +226,8 @@ with one click. It looks for:</p>
   <li>a package that's only half installed, or parts of a package installed without the package
       (they never get updates);</li>
   <li>parts that are switched off;</li>
-  <li>MCP add-ons without MCP for Joomla, or for an extension that isn't on the site;</li>
+  <li>MCP add-ons without MCP for J, or for an extension that isn't on the site (these have an
+      <strong>Uninstall</strong> button);</li>
   <li>updates Joomla still lists after you've installed them;</li>
   <li>a lapsed membership, or cybersalt.com not answering.</li>
 </ul>
@@ -217,20 +238,57 @@ go; installing and switching things on are left for you to choose one by one.</p
 
 <figure class="csdoc-fig">
   <a class="csdoc-thumb" href="#csdoc-lb-health" id="csdoc-fig-health">
-    <img src="/images/documentation/extension-manager/06-health-check.webp"
-         alt="The Health Check: one problem (MCP for StageIt is installed but MCP for Joomla isn't, with an Install MCP for Joomla button) and two good-to-know notes, one with an Enable button">
+    <img src="/images/documentation/extension-manager/05-health-check.webp"
+         alt="The Health Check: counts for extensions checked, problems, warnings and good to know, then Good to know notes with Enable, Uninstall and Hide buttons">
     <span class="csdoc-zoom">&#10530; Click to enlarge</span>
   </a>
-  <figcaption>The Health Check, with a fix button next to each finding that has one.</figcaption>
+  <figcaption>The Health Check. Each note has a fix or Uninstall button where there is one, and a
+  Hide button.</figcaption>
 </figure>
+
+<h3>Hiding a note</h3>
+
+<p>Some <em>Good to know</em> notes are things you meant to do, such as a part you switched off on
+purpose or an add-on you're keeping for later. Click <strong>Hide</strong> on the note. Hidden notes
+are left out of every count and out of <strong>Fix all</strong>, and are listed under <strong>N hidden
+notes</strong> at the bottom of the Health Check. Open that section and click <strong>Show
+again</strong> on a note (or <strong>Show all again</strong>) to bring it back. Warnings and problems
+can't be hidden.</p>
+
+<h2 id="csdoc-templates">Templates</h2>
+
+<p>The Templates screen shows the Joomla templates from <strong>Energize Themes</strong> and
+<strong>VirtueMart Templates</strong>: a thumbnail, who each one is for, the Joomla versions and shop
+extension it supports, a <strong>Live demo</strong> and its <strong>Details</strong> page. Each site
+has a <strong>See plans</strong> button.</p>
+
+<figure class="csdoc-fig">
+  <a class="csdoc-thumb" href="#csdoc-lb-templates" id="csdoc-fig-templates">
+    <img src="/images/documentation/extension-manager/06-templates.webp"
+         alt="The Templates screen: the Energize Themes and VirtueMart Templates panels with See plans buttons, type chips with counts, filters, and template cards with a thumbnail, Live demo and Details">
+    <span class="csdoc-zoom">&#10530; Click to enlarge</span>
+  </a>
+  <figcaption>The Templates screen. The type chips narrow the list.</figcaption>
+</figure>
+
+<ul>
+  <li>Click a <strong>type</strong> (Business, Technology, Electronics shops and so on: the same types
+      the two template sites use) to narrow the list. The counts follow the other filters.</li>
+  <li>Filter by template site, Joomla version and shop, search, and sort by name, site or newest
+      Joomla.</li>
+</ul>
+
+<p>The list comes from cybersalt.com, which rebuilds it every night from both template sites, so a new
+template appears here without an Extension Manager update. A copy ships with the extension in case
+cybersalt.com can't be reached; the line under the list says which one you're seeing. Nothing is
+installed from this screen: the links open the template sites in a new tab.</p>
 
 <h2 id="csdoc-emails">Release emails and automatic updates</h2>
 
 <p>Extension Manager adds a scheduled task, <em>Cybersalt Extension Manager: check for updates</em>,
 that runs once a day. <strong>It's switched off when you install.</strong> Click <strong>Email me
-about new releases</strong> on the install card or at the top of the Extensions screen to switch it
-on; the emails then go to you (or to the addresses under <strong>Options &rarr; Updates</strong>, if
-you've set any).</p>
+about new releases</strong> on the install card or on the dashboard to switch it on; the emails then
+go to you (or to the addresses under <strong>Options &rarr; Updates</strong>, if you've set any).</p>
 
 <p>To change what the task does, go to <strong>System &rarr; Scheduled Tasks</strong> and open
 <em>Cybersalt Extension Manager: check for updates</em>:</p>
@@ -271,7 +329,7 @@ User Actions Log.</p>
 <figure class="csdoc-fig">
   <a class="csdoc-thumb" href="#csdoc-lb-history" id="csdoc-fig-history">
     <img src="/images/documentation/extension-manager/07-history.webp"
-         alt="The History screen: counts for entries, last 24 hours, installs, updates, success, warning and error, then a list of installs, an uninstall, health fixes, a rollback and an update with their results, versions and timings">
+         alt="The History screen: counts along the top, filters, and a list of installs, updates, switches and fixes with their results and versions">
     <span class="csdoc-zoom">&#10530; Click to enlarge</span>
   </a>
   <figcaption>History. The counts along the top are filters too.</figcaption>
@@ -282,7 +340,7 @@ User Actions Log.</p>
 <figure class="csdoc-fig">
   <a class="csdoc-thumb" href="#csdoc-lb-options" id="csdoc-fig-options">
     <img src="/images/documentation/extension-manager/08-options.webp"
-         alt="The Options Account tab: Download ID, Use MCP for Joomla's activation and Keep update sites in step">
+         alt="The Options Account tab: Download ID, Use MCP for J's activation and Keep update sites in step">
     <span class="csdoc-zoom">&#10530; Click to enlarge</span>
   </a>
   <figcaption>Options, Account tab.</figcaption>
@@ -294,14 +352,14 @@ User Actions Log.</p>
 <tbody>
 <tr><td>Account</td><td><strong>Download ID</strong></td><td>(empty)</td>
     <td>Only if Cybersalt gave you one for this site. Leave empty to use the site's activation.</td></tr>
-<tr><td>Account</td><td><strong>Use MCP for Joomla's activation</strong></td><td>Yes</td>
-    <td>Reuse MCP for Joomla's Pro activation instead of registering the site again.</td></tr>
+<tr><td>Account</td><td><strong>Use MCP for J's activation</strong></td><td>Yes</td>
+    <td>Reuse MCP for J's Pro activation instead of registering the site again.</td></tr>
 <tr><td>Account</td><td><strong>Keep update sites in step</strong></td><td>Yes</td>
     <td>Write the download ID onto every Cybersalt update site.</td></tr>
 <tr><td>Catalog</td><td><strong>Check for updates every (hours)</strong></td><td>6</td>
     <td>How long the list from cybersalt.com is reused. <em>Check for updates</em> always asks
         straight away.</td></tr>
-<tr><td>Catalog</td><td><strong>Show MCP for Joomla add-ons</strong></td><td>All of them</td>
+<tr><td>Catalog</td><td><strong>Show MCP for J add-ons</strong></td><td>All of them</td>
     <td>All, only those for extensions on this site, or none. Installed add-ons are always shown.</td></tr>
 <tr><td>Catalog</td><td><strong>Offer beta releases</strong></td><td>No</td>
     <td>Count beta releases as updates. Leave off on live sites.</td></tr>
@@ -318,8 +376,9 @@ User Actions Log.</p>
 <tr><td>Support</td><td><strong>Support name / email / page</strong></td><td>Cybersalt support</td>
     <td>Who people are pointed at in the help panel and error messages.</td></tr>
 <tr><td>Permissions</td><td>&nbsp;</td><td>&nbsp;</td>
-    <td>Who may view the Extension Manager, install and update, and apply health fixes. Installing
-        also needs access to Joomla's own Extensions Manager.</td></tr>
+    <td>Who may view the Extension Manager, install and update, and apply health fixes. Out of the
+        box, Managers and Administrators can view, and only Super Users can install or fix.
+        Installing also needs access to Joomla's own Extensions Manager.</td></tr>
 </tbody>
 </table>
 </div>
@@ -335,14 +394,17 @@ User Actions Log.</p>
         allow it, or raise <em>Connection timeout</em> under Options &rarr; Catalog if the connection
         is slow.</td></tr>
 <tr><td>A Pro extension says you don't have access</td>
-    <td>Activate the site (or check the email you activated with is the one on your cybersalt.com
-        account), then click <strong>Check for updates</strong>. The account panel shows whether the
-        membership is active or lapsed.</td></tr>
+    <td>Link the site (or check the email you linked with is the one on your cybersalt.com account),
+        then click <strong>Check for updates</strong>. The account card shows whether the membership
+        is active or lapsed.</td></tr>
 <tr><td>An update isn't offered</td>
-    <td>The card says when the latest release needs a newer Joomla or PHP than this site has. Beta
-        releases are only offered with <em>Offer beta releases</em> on.</td></tr>
+    <td>The row's details say when the latest release needs a newer Joomla or PHP than this site has.
+        Beta releases are only offered with <em>Offer beta releases</em> on.</td></tr>
 <tr><td>Joomla's Update screen doesn't show Cybersalt updates</td>
     <td>Run the Health Check: a missing, switched-off or duplicate update site is the usual cause.</td></tr>
+<tr><td>The Health Check count doesn't go away</td>
+    <td>If the remaining findings are notes about something you did on purpose, hide them (see
+        <a href="#csdoc-health">Hiding a note</a>).</td></tr>
 <tr><td>No release emails</td>
     <td>Check that the scheduled task is enabled, that it has run (System &rarr; Scheduled Tasks shows
         the last run), and that the site can send email (System &rarr; Global Configuration &rarr;
@@ -370,21 +432,17 @@ Public License v2 or later.</em></p>
 
 </div><!-- /.csdoc-doc -->
 
+<a class="csdoc-lb" id="csdoc-lb-dashboard" href="#csdoc-fig-dashboard">
+  <span class="csdoc-lb-cap">Dashboard &mdash; click anywhere to close</span><span class="csdoc-lb-x">Close &times;</span>
+  <img src="/images/documentation/extension-manager/01-dashboard.webp" alt="The dashboard">
+</a>
 <a class="csdoc-lb" id="csdoc-lb-extensions" href="#csdoc-fig-extensions">
   <span class="csdoc-lb-cap">Extensions screen &mdash; click anywhere to close</span><span class="csdoc-lb-x">Close &times;</span>
-  <img src="/images/documentation/extension-manager/01-extensions.webp" alt="The Extensions screen">
+  <img src="/images/documentation/extension-manager/02-extensions.webp" alt="The Extensions screen">
 </a>
-<a class="csdoc-lb" id="csdoc-lb-card" href="#csdoc-fig-card">
-  <span class="csdoc-lb-cap">After installing &mdash; click anywhere to close</span><span class="csdoc-lb-x">Close &times;</span>
-  <img src="/images/documentation/extension-manager/05-install-card.webp" alt="The install card">
-</a>
-<a class="csdoc-lb" id="csdoc-lb-addons" href="#csdoc-fig-addons">
-  <span class="csdoc-lb-cap">MCP add-ons &mdash; click anywhere to close</span><span class="csdoc-lb-x">Close &times;</span>
-  <img src="/images/documentation/extension-manager/02-addons.webp" alt="The Extensions screen filtered to MCP add-ons">
-</a>
-<a class="csdoc-lb" id="csdoc-lb-queue" href="#csdoc-fig-queue">
-  <span class="csdoc-lb-cap">Installing and updating &mdash; click anywhere to close</span><span class="csdoc-lb-x">Close &times;</span>
-  <img src="/images/documentation/extension-manager/03-update-queue.webp" alt="The progress window">
+<a class="csdoc-lb" id="csdoc-lb-details" href="#csdoc-fig-details">
+  <span class="csdoc-lb-cap">An opened row &mdash; click anywhere to close</span><span class="csdoc-lb-x">Close &times;</span>
+  <img src="/images/documentation/extension-manager/03-details.webp" alt="An opened row with the package's parts">
 </a>
 <a class="csdoc-lb" id="csdoc-lb-changelog" href="#csdoc-fig-changelog">
   <span class="csdoc-lb-cap">Changelog &mdash; click anywhere to close</span><span class="csdoc-lb-x">Close &times;</span>
@@ -392,7 +450,11 @@ Public License v2 or later.</em></p>
 </a>
 <a class="csdoc-lb" id="csdoc-lb-health" href="#csdoc-fig-health">
   <span class="csdoc-lb-cap">Health Check &mdash; click anywhere to close</span><span class="csdoc-lb-x">Close &times;</span>
-  <img src="/images/documentation/extension-manager/06-health-check.webp" alt="The Health Check">
+  <img src="/images/documentation/extension-manager/05-health-check.webp" alt="The Health Check">
+</a>
+<a class="csdoc-lb" id="csdoc-lb-templates" href="#csdoc-fig-templates">
+  <span class="csdoc-lb-cap">Templates &mdash; click anywhere to close</span><span class="csdoc-lb-x">Close &times;</span>
+  <img src="/images/documentation/extension-manager/06-templates.webp" alt="The Templates screen">
 </a>
 <a class="csdoc-lb" id="csdoc-lb-history" href="#csdoc-fig-history">
   <span class="csdoc-lb-cap">History &mdash; click anywhere to close</span><span class="csdoc-lb-x">Close &times;</span>

@@ -25,7 +25,7 @@ use Joomla\Database\DatabaseInterface;
  *    published package with its latest version in one request);
  * 2. otherwise the bundled `admin/catalog/seed.json` plus one
  *    `api.updatexml` request per product (all fetched in parallel);
- * 3. plus the MCP for Joomla add-ons from `api.catalog&catalog=cs-mcp-for-j`.
+ * 3. plus the MCP for J add-ons from `api.catalog&catalog=cs-mcp-for-j`.
  *
  * The result is cached in `#__csextensionmanager_cache`. When a request
  * fails, the last good data for that item is kept, so one flaky request
@@ -384,7 +384,7 @@ final class CatalogHelper
     }
 
     /**
-     * MCP for Joomla add-ons.
+     * MCP for J add-ons.
      *
      * @param   array<string, mixed>|null  $previous  Last cached catalog.
      * @param   string[]                   $errors    Collected errors.

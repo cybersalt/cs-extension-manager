@@ -20,6 +20,38 @@
     <languages folder="language">
         <language tag="en-GB">en-GB/plg_quickicon_csextensionmanager.ini</language>
         <language tag="en-GB">en-GB/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="cs-CZ">cs-CZ/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="cs-CZ">cs-CZ/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="de-DE">de-DE/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="de-DE">de-DE/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="el-GR">el-GR/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="el-GR">el-GR/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="es-ES">es-ES/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="es-ES">es-ES/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="fr-FR">fr-FR/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="fr-FR">fr-FR/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="it-IT">it-IT/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="it-IT">it-IT/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="ja-JP">ja-JP/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="ja-JP">ja-JP/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="nb-NO">nb-NO/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="nb-NO">nb-NO/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="nl-NL">nl-NL/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="nl-NL">nl-NL/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="nn-NO">nn-NO/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="nn-NO">nn-NO/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="pl-PL">pl-PL/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="pl-PL">pl-PL/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="pt-BR">pt-BR/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="pt-BR">pt-BR/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="ru-RU">ru-RU/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="ru-RU">ru-RU/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="sv-SE">sv-SE/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="sv-SE">sv-SE/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="tr-TR">tr-TR/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="tr-TR">tr-TR/plg_quickicon_csextensionmanager.sys.ini</language>
+        <language tag="zh-CN">zh-CN/plg_quickicon_csextensionmanager.ini</language>
+        <language tag="zh-CN">zh-CN/plg_quickicon_csextensionmanager.sys.ini</language>
     </languages>
 
     <config>

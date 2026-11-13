@@ -413,7 +413,7 @@
     runQueue(keys.map((key) => ({ key, op: 'install', version: items[key]?.latest || undefined })));
   });
 
-  // Add-ons go before what they depend on (MCP for Joomla last), so the
+  // Add-ons go before what they depend on (MCP for J last), so the
   // parent's "add-ons still need me" check passes when both are ticked.
   uninstallBtn?.addEventListener('click', async () => {
     const keys = selectedKeys('canUninstall');
@@ -440,7 +440,7 @@
   async function runQueue(entries) {
     if (!entries.length || !opts.urls) { return; }
 
-    // Pull in missing parents (MCP for Joomla before its add-ons).
+    // Pull in missing parents (MCP for J before its add-ons).
     const queue = [];
     const queued = new Set();
     entries.forEach((entry) => {

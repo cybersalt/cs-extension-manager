@@ -108,7 +108,7 @@ return new class () implements InstallerScriptInterface {
             $this->safely(fn () => ($ns . 'TaskHelper')::create(false));
         }
 
-        // Put whatever download ID the site already has (e.g. MCP for Joomla's)
+        // Put whatever download ID the site already has (e.g. MCP for J's)
         // onto the Cybersalt update sites, including the one just installed.
         $mcpforj = false;
         $this->safely(function () use (&$mcpforj, $ns) {

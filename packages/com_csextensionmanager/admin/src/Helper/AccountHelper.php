@@ -27,7 +27,7 @@ use Joomla\Database\ParameterType;
  *
  * 1. `manual`  - pasted into Options (e.g. from cybersalt.com "My licenses").
  * 2. `account` - this manager's own "activate with your email" flow.
- * 3. `mcpforj` - MCP for Joomla's Pro activation, reused so a site that
+ * 3. `mcpforj` - MCP for J's Pro activation, reused so a site that
  *                already activated there doesn't register a second install
  *                (the store counts installs per account).
  *
@@ -466,7 +466,7 @@ final class AccountHelper
     }
 
     /**
-     * MCP for Joomla's Pro activation, if it has one.
+     * MCP for J's Pro activation, if it has one.
      *
      * @return  array{dlid: string, email: string}
      *

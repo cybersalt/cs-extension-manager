@@ -21,7 +21,7 @@
             "type": "package",
             "folder": "",
             "client": 0,
-            "title": "Cybersalt MCP for Joomla",
+            "title": "CS MCP for J",
             "description": "Turns your site into its own MCP server, so ChatGPT, Claude, Codex, Cursor, VS Code and other AI apps can work with it through an API token or OAuth sign-in.",
             "category": "ai",
             "icon": "pkg_csmcpforj.svg",

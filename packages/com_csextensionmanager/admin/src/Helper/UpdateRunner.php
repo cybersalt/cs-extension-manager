@@ -98,7 +98,7 @@ final class UpdateRunner
             } elseif (!$item['entitled']) {
                 $reason = Text::_('COM_CSEXTENSIONMANAGER_TASK_SKIP_NOT_ENTITLED');
             } elseif ($item['status'] === StateHelper::STATUS_UPDATE && !\in_array($item['update_type'], $allowed, true)) {
-                $reason = Text::sprintf('COM_CSEXTENSIONMANAGER_TASK_SKIP_SIZE', $item['update_type']);
+                $reason = Text::sprintf('COM_CSEXTENSIONMANAGER_TASK_SKIP_SIZE', Text::_('COM_CSEXTENSIONMANAGER_UPDATE_SIZE_' . strtoupper((string) $item['update_type'])));
             }
 
             if ($reason !== '') {

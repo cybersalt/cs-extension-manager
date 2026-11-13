@@ -4,24 +4,27 @@
 
 Install, update and look after every Cybersalt Joomla extension from one screen. Free.
 
-**[Product page](https://www.cybersalt.com/extensions)** · **[Support](https://www.cybersalt.com/services/support-request-form)** · **[Report a bug](https://github.com/cybersalt/cs-extension-manager/issues)**
+**[Download and product page](https://www.cybersalt.com/extensions/extension-manager)** · **[Documentation](https://docs.cybersalt.com/extensions/extension-manager)** · **[Support](https://www.cybersalt.com/services/support-request-form)** · **[Report a bug](https://github.com/cybersalt/cs-extension-manager/issues)**
 
-The Extensions screen lists every Cybersalt extension and MCP for Joomla add-on: what's installed on this site, what has an update, what each one does, and whether it's free or Pro. Install or update with one click, or tick several and do them in one go. It checks every download before installing it, shows what's new since your version, rolls back to an earlier release if an update misbehaves, and its health check finds the problems that stop updates from arriving and fixes them.
+It opens on a dashboard that shows where things stand, and its Extensions screen lists every Cybersalt extension and MCP for J add-on: what's installed on this site, what has an update, what each one does, and whether it's free or Pro. Install or update with one click, or tick several and do them in one go. It checks every download before installing it, shows what's new since your version, rolls back to an earlier release if an update misbehaves, and its health check finds the problems that stop updates from arriving and fixes them.
 
 ## What it does
 
-- **Every Cybersalt extension in one list**, grouped into "needs attention", "installed", "more Cybersalt extensions" and "MCP for Joomla add-ons". Search, filter by status, kind and licence, or show only the add-ons for extensions already on the site. The stat cards at the top are filters too.
-- **One-click install, update, repair and reinstall**, one at a time, ticked in bulk (shift-click for a range) or "Update all". A progress window shows each item as it goes, keeps going past a failure, says why something failed, and can't be closed halfway through.
-- **Dependencies sorted out.** Installing an MCP add-on installs MCP for Joomla first if it isn't there. Uninstalling MCP for Joomla tells you which add-ons would stop working before it does anything.
+- **Dashboard.** Extensions, Templates, Health Check and History tiles, what needs updating (with Update all), recent activity and your Cybersalt account, with a section bar on every screen.
+- **Every Cybersalt extension in one list**, one row each, sortable by name, status, installed version or release date. Search, filter by status, kind and licence, or show only the add-ons for extensions already on the site. The counts at the top are filters too. Click a row for its details and the package's parts, each with an on/off switch.
+- **One-click install, update, repair and reinstall**, one at a time or in bulk: tick rows and use Install / update, Reinstall or Uninstall selected, or "Update all". A progress window shows each item as it goes, keeps going past a failure, says why something failed, and can't be closed halfway through.
+- **Dependencies sorted out.** Installing an MCP add-on installs MCP for J first if it isn't there. Uninstalling MCP for J tells you which add-ons would stop working before it does anything.
 - **Checked downloads.** Packages only come from the Cybersalt store over https, the latest release is checked against the SHA-256 checksum the store publishes, and the zip has to contain the extension you asked for.
 - **What's new since your version.** The changelog window marks every release newer than the one installed.
 - **Roll back** to any earlier release from the same window.
 - **Compatibility first.** An update that needs a newer Joomla or PHP than the site has is shown as such and not offered.
-- **Health check with one-click fixes.** Finds missing, switched-off, duplicate, wrong and orphaned update sites, a missing download ID on Pro update sites, half-installed packages, package parts left without their package (they never get updates), switched-off parts, add-ons without MCP for Joomla or without the extension they're for, updates Joomla still lists after you installed them, a lapsed membership, and the store not answering. "Fix all" repairs the update-site bookkeeping in one go; installs and switching things on are left for you to choose.
-- **Pro extensions without fuss.** Activate the site with your cybersalt.com account email, paste a download ID, or let it reuse MCP for Joomla's existing Pro activation. The download ID goes onto every Cybersalt update site, so Joomla's own **System → Update → Extensions** screen can download Pro updates too, and a small installer plugin puts it back if the update sites get rebuilt.
+- **Health check with one-click fixes.** Finds missing, switched-off, duplicate, wrong and orphaned update sites, a missing download ID on Pro update sites, half-installed packages, package parts left without their package (they never get updates), switched-off parts, add-ons without MCP for J or without the extension they're for, updates Joomla still lists after you installed them, a lapsed membership, and the store not answering. "Fix all" repairs the update-site bookkeeping in one go; installs and switching things on are left for you to choose. "Good to know" notes you don't need can be hidden and shown again later.
+- **Templates.** The Joomla templates from Energize Themes and VirtueMart Templates, with thumbnails, live demos and filters by type, site, Joomla version and shop. The list is rebuilt nightly on cybersalt.com, so new templates appear without an update.
+- **Pro extensions without fuss.** Activate the site with your cybersalt.com account email, paste a download ID, or let it reuse MCP for J's existing Pro activation. The download ID goes onto every Cybersalt update site, so Joomla's own **System → Update → Extensions** screen can download Pro updates too, and a small installer plugin puts it back if the update sites get rebuilt.
 - **Home Dashboard count.** A quick icon next to Joomla's own update checks shows how many Cybersalt updates are waiting. It loads after the dashboard, so it never slows it down.
-- **Release emails, if you want them.** Click **Email me about new releases** (on the install screen or the Extensions screen) and a daily scheduled task emails you when a new release of a Cybersalt extension on the site is out. It's off until you ask for it. The same task can also install updates for you: patch releases only, patch and minor, or everything. You can exclude extensions, and the Extension Manager never updates itself from a task.
+- **Release emails, if you want them.** Click **Email me about new releases** (on the install screen or the dashboard) and a daily scheduled task emails you when a new release of a Cybersalt extension on the site is out. It's off until you ask for it. The same task can also install updates for you: patch releases only, patch and minor, or everything. You can exclude extensions, and the Extension Manager never updates itself from a task.
 - **History.** Every install, update, rollback, uninstall, switch on/off, health fix, update check and email, with who did it and how long it took. Filters for every column, CSV download, a plain-text dump for support tickets. Installs, updates and uninstalls also go into Joomla's User Actions Log.
+- **17 languages.** English plus Czech, Dutch, French, German, Greek, Italian, Japanese, Norwegian (Bokmål and Nynorsk), Polish, Portuguese (Brazil), Russian, Simplified Chinese, Spanish, Swedish and Turkish.
 - **Permissions.** View, install/update and fix are separate permissions. Installing also needs access to Joomla's own Extensions Manager, so a site that locked that down isn't bypassed.
 
 ### How it compares
@@ -67,10 +70,10 @@ The package installs:
 | Tab | Setting | Default |
 |---|---|---|
 | Account | Download ID (overrides everything else) | empty |
-| Account | Use MCP for Joomla's activation | Yes |
+| Account | Use MCP for J's activation | Yes |
 | Account | Keep update sites in step (write the ID onto Cybersalt update sites) | Yes |
 | Catalog | Check for updates every (hours) | 6 |
-| Catalog | Show MCP for Joomla add-ons: all / only for extensions on this site / none | All |
+| Catalog | Show MCP for J add-ons: all / only for extensions on this site / none | All |
 | Catalog | Offer beta releases | No |
 | Catalog | Connection timeout | 10 s |
 | Updates | Email summaries to | whoever clicked "Email me about new releases" (else Super Users with system emails) |
@@ -87,7 +90,7 @@ The manager talks to the Cybersalt Release Manager on cybersalt.com:
 
 1. `api.packages` (when the store has it): every published package and its latest version in one request.
 2. Otherwise the bundled list in `admin/catalog/seed.json` plus one `api.updatexml` request per product (all at once), which carries the version, download, SHA-256 and Joomla/PHP requirements.
-3. MCP for Joomla add-ons from `api.catalog&catalog=cs-mcp-for-j`.
+3. MCP for J add-ons from `api.catalog&catalog=cs-mcp-for-j`.
 
 The result is cached for the configured number of hours. When a request fails, the last good details for that item are kept and the screen says which checks failed.
 

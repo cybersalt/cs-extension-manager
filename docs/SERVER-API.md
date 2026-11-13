@@ -7,10 +7,10 @@ All on cs-release-manager at `https://www.cybersalt.com/index.php?option=com_csr
 | `api.packages` (json) | The whole catalog in one request | **New, on branch `feature/api-packages` of cs-release-manager (commit a1dd15f), not deployed yet.** Until it answers, the manager falls back to `seed.json` + `api.updatexml`. |
 | `api.updatexml&element=X[&dlid=]` | Latest version, download URL, SHA-256, Joomla/PHP requirements; fetched fresh before every install | With a dlid the store says "UPDATE NOT AVAILABLE TO THIS SITE: reason" for Pro items the account doesn't cover. Cached 5 minutes by Cloudflare. |
 | `api.changelogxml&element=X` | Changelog window and the version list for rollbacks | |
-| `api.catalog&catalog=cs-mcp-for-j` (json) | MCP for Joomla add-ons: target extension, tier, advisory, superseded_by | |
+| `api.catalog&catalog=cs-mcp-for-j` (json) | MCP for J add-ons: target extension, tier, advisory, superseded_by | |
 | `api.userdownload&element=X&version=V` | Free downloads | |
 | `api.download&element=X&version=V&dlid=` | Paid downloads | |
-| `api.register` / `api.linkemail` (POST json) | "Activate this site" | Anchor package `csmcpforjpro`, same as MCP for Joomla |
+| `api.register` / `api.linkemail` (POST json) | "Activate this site" | Anchor package `csmcpforjpro`, same as MCP for J |
 | `api.verifyaccess&dlid=` (json) | Account status, entitled elements | Re-checked once a day, and on "Check for updates" |
 
 ## api.packages response

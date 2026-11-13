@@ -60,6 +60,38 @@
         <languages folder="admin/language">
             <language tag="en-GB">en-GB/com_csextensionmanager.ini</language>
             <language tag="en-GB">en-GB/com_csextensionmanager.sys.ini</language>
+            <language tag="cs-CZ">cs-CZ/com_csextensionmanager.ini</language>
+            <language tag="cs-CZ">cs-CZ/com_csextensionmanager.sys.ini</language>
+            <language tag="de-DE">de-DE/com_csextensionmanager.ini</language>
+            <language tag="de-DE">de-DE/com_csextensionmanager.sys.ini</language>
+            <language tag="el-GR">el-GR/com_csextensionmanager.ini</language>
+            <language tag="el-GR">el-GR/com_csextensionmanager.sys.ini</language>
+            <language tag="es-ES">es-ES/com_csextensionmanager.ini</language>
+            <language tag="es-ES">es-ES/com_csextensionmanager.sys.ini</language>
+            <language tag="fr-FR">fr-FR/com_csextensionmanager.ini</language>
+            <language tag="fr-FR">fr-FR/com_csextensionmanager.sys.ini</language>
+            <language tag="it-IT">it-IT/com_csextensionmanager.ini</language>
+            <language tag="it-IT">it-IT/com_csextensionmanager.sys.ini</language>
+            <language tag="ja-JP">ja-JP/com_csextensionmanager.ini</language>
+            <language tag="ja-JP">ja-JP/com_csextensionmanager.sys.ini</language>
+            <language tag="nb-NO">nb-NO/com_csextensionmanager.ini</language>
+            <language tag="nb-NO">nb-NO/com_csextensionmanager.sys.ini</language>
+            <language tag="nl-NL">nl-NL/com_csextensionmanager.ini</language>
+            <language tag="nl-NL">nl-NL/com_csextensionmanager.sys.ini</language>
+            <language tag="nn-NO">nn-NO/com_csextensionmanager.ini</language>
+            <language tag="nn-NO">nn-NO/com_csextensionmanager.sys.ini</language>
+            <language tag="pl-PL">pl-PL/com_csextensionmanager.ini</language>
+            <language tag="pl-PL">pl-PL/com_csextensionmanager.sys.ini</language>
+            <language tag="pt-BR">pt-BR/com_csextensionmanager.ini</language>
+            <language tag="pt-BR">pt-BR/com_csextensionmanager.sys.ini</language>
+            <language tag="ru-RU">ru-RU/com_csextensionmanager.ini</language>
+            <language tag="ru-RU">ru-RU/com_csextensionmanager.sys.ini</language>
+            <language tag="sv-SE">sv-SE/com_csextensionmanager.ini</language>
+            <language tag="sv-SE">sv-SE/com_csextensionmanager.sys.ini</language>
+            <language tag="tr-TR">tr-TR/com_csextensionmanager.ini</language>
+            <language tag="tr-TR">tr-TR/com_csextensionmanager.sys.ini</language>
+            <language tag="zh-CN">zh-CN/com_csextensionmanager.ini</language>
+            <language tag="zh-CN">zh-CN/com_csextensionmanager.sys.ini</language>
         </languages>
     </administration>
 
