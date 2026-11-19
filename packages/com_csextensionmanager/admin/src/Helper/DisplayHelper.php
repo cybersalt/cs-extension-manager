@@ -189,6 +189,34 @@ final class DisplayHelper
     }
 
     /**
+     * The documentation button: a book icon that opens the extension's
+     * documentation page in a new tab. Empty when there's no page to open.
+     *
+     * Plain btn-secondary, not an outline button, so it reads the same in
+     * Atum's light and dark modes. The accessible name carries the extension
+     * and says it opens a new tab.
+     *
+     * @param   array<string, mixed>  $item  Item.
+     *
+     * @return  string  HTML.
+     *
+     * @since   0.1.1
+     */
+    public static function docsButton(array $item): string
+    {
+        $url = (string) ($item['docs_url'] ?? '');
+
+        if ($url === '') {
+            return '';
+        }
+
+        $label = self::e(Text::sprintf('COM_CSEXTENSIONMANAGER_DOCS_FOR', (string) $item['title']));
+
+        return '<a class="btn btn-sm btn-secondary csem-btn-docs" href="' . self::e($url) . '" target="_blank" rel="noopener noreferrer"'
+            . ' title="' . $label . '" aria-label="' . $label . '"><span class="icon-book" aria-hidden="true"></span></a>';
+    }
+
+    /**
      * Where "Get it" / "Renew" goes.
      *
      * @param   array<string, mixed>  $item  Item.

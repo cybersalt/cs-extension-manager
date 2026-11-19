@@ -16,7 +16,7 @@ packages/
 │   ├── StoreClient.php      Every URL to cybersalt.com is built/checked here (isStoreUrl). getMany() = curl_multi.
 │   ├── FeedParser.php       api.updatexml / api.changelogxml parsing, targetplatform matching. Pure, unit tested.
 │   ├── CatalogHelper.php    Builds the catalog: api.packages → else seed.json + updatexml per product; + api.catalog add-ons.
-│   │                        Cached in #__csextensionmanager_cache (key catalog.v1). Per-item fallback to last good data.
+│   │                        Cached in #__csextensionmanager_cache (key catalog.v2). Per-item fallback to last good data.
 │   ├── InstalledHelper.php  #__extensions lookups (one query for the whole catalog), package children, labels.
 │   ├── StateHelper.php      Catalog + installed → status/compat/entitled/requires_missing/update_type. Hides add-ons per Options.
 │   ├── AccountHelper.php    Download ID: manual > own activation > MCP for J's pro_* params. register/linkemail/verifyaccess.

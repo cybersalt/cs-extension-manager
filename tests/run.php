@@ -171,6 +171,19 @@ $check('bundled list: 2 brands, 140+ templates, every one tagged', \count($bundl
     && TemplatesHelper::count($bundled['brands']) >= 140
     && array_filter(TemplatesHelper::flatten($bundled['brands']), static fn (array $t): bool => $t['tags'] === []) === []);
 
+// --- documentation links in seed.json ------------------------------------
+$seed     = json_decode((string) file_get_contents(__DIR__ . '/../packages/com_csextensionmanager/admin/catalog/seed.json'), true);
+$docsUrls = array_merge(
+    array_column($seed['items'], 'docs_url'),
+    array_values($seed['docs_products']),
+    array_values($seed['addon_docs']),
+    [$seed['addon_docs_fallback']]
+);
+$check('docs links: every seed product has one', \count(array_filter(array_column($seed['items'], 'docs_url'))) === \count($seed['items']));
+$check('docs links: all https on docs.cybersalt.com/extensions/', array_filter($docsUrls, static fn ($u): bool => !preg_match('#^https://docs\.cybersalt\.com/extensions/[a-z0-9-]+$#', (string) $u)) === []);
+$check('docs links: add-on pages are mcp-for-* pages, fallback is MCP for J', array_filter($seed['addon_docs'], static fn ($u): bool => !str_contains($u, '/extensions/mcp-for-')) === []
+    && $seed['addon_docs_fallback'] === 'https://docs.cybersalt.com/extensions/mcp-for-j');
+
 echo "\n{$count} checks, {$failures} failed\n";
 
 exit($failures === 0 ? 0 : 1);

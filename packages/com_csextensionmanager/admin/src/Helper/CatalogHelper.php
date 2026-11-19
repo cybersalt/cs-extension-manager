@@ -60,7 +60,7 @@ final class CatalogHelper
      * @var    string
      * @since  0.1.0
      */
-    private const CACHE_KEY = 'catalog.v1';
+    private const CACHE_KEY = 'catalog.v2';
 
     /**
      * @var    array<string, mixed>|null
@@ -304,7 +304,7 @@ final class CatalogHelper
                 'category'       => (string) ($display['category'] ?? ($base['category'] ?? '')),
                 'icon'           => self::iconUrl((string) ($display['icon_url'] ?? ''), (string) ($base['icon'] ?? '')),
                 'product_url'    => self::httpUrl((string) ($display['product_url'] ?? ($base['product_url'] ?? ''))),
-                'docs_url'       => self::httpUrl((string) ($display['docs_url'] ?? ($base['docs_url'] ?? ''))),
+                'docs_url'       => self::firstUrl([$display['docs_url'] ?? '', $base['docs_url'] ?? '', self::seedDocs()['products'][$element] ?? '']),
                 'repo_url'       => self::httpUrl((string) ($display['repo_url'] ?? ($base['repo_url'] ?? ''))),
                 'tier'           => (int) ($pkg['is_public'] ?? 1) === 1 ? 'free' : 'pro',
                 'self'           => !empty($base['self']) || $element === 'pkg_csextensionmanager',
@@ -468,7 +468,7 @@ final class CatalogHelper
                 'category'       => 'ai',
                 'icon'           => self::iconUrl('', 'mcp-addon.svg'),
                 'product_url'    => self::addonPageUrl((string) ($addon['key'] ?? ''), $title),
-                'docs_url'       => 'https://docs.cybersalt.com/extensions/mcp-for-j',
+                'docs_url'       => self::addonDocsUrl($addon),
                 'tier'           => $tier,
                 'available'      => (bool) ($addon['available'] ?? true) && (string) ($addon['version'] ?? '') !== '',
                 'latest_version' => (string) ($addon['version'] ?? ''),
@@ -546,6 +546,79 @@ final class CatalogHelper
     }
 
     /**
+     * The bundled documentation links that aren't part of a seed item: store
+     * products the seed doesn't list, the MCP add-ons that have a page of
+     * their own, and the page the others share.
+     *
+     * @return  array{products: array<string, string>, addons: array<string, string>, fallback: string}
+     *
+     * @since   0.1.1
+     */
+    private static function seedDocs(): array
+    {
+        static $docs = null;
+
+        if ($docs !== null) {
+            return $docs;
+        }
+
+        $file = JPATH_ADMINISTRATOR . '/components/com_csextensionmanager/catalog/seed.json';
+        $data = is_file($file) ? json_decode((string) file_get_contents($file), true) : null;
+        $docs = ['products' => [], 'addons' => [], 'fallback' => self::httpUrl((string) ($data['addon_docs_fallback'] ?? ''))];
+
+        foreach (['products' => 'docs_products', 'addons' => 'addon_docs'] as $to => $from) {
+            foreach ((array) ($data[$from] ?? []) as $name => $url) {
+                $url = self::httpUrl((string) $url);
+
+                if ($url !== '') {
+                    $docs[$to][(string) $name] = $url;
+                }
+            }
+        }
+
+        return $docs;
+    }
+
+    /**
+     * Where an MCP add-on's documentation button goes: a link the store gives,
+     * else the add-on's own page, else the MCP for J manual.
+     *
+     * @param   array<string, mixed>  $addon  One api.catalog add-on.
+     *
+     * @return  string  Empty when there's nothing to link to.
+     *
+     * @since   0.1.1
+     */
+    private static function addonDocsUrl(array $addon): string
+    {
+        $docs = self::seedDocs();
+
+        return self::firstUrl([$addon['docs_url'] ?? '', $docs['addons'][(string) ($addon['key'] ?? '')] ?? '', $docs['fallback']]);
+    }
+
+    /**
+     * The first of these that is an http(s) link; '' when none is.
+     *
+     * @param   array<int, mixed>  $urls  Candidates, best first.
+     *
+     * @return  string
+     *
+     * @since   0.1.1
+     */
+    private static function firstUrl(array $urls): string
+    {
+        foreach ($urls as $url) {
+            $url = self::httpUrl((string) $url);
+
+            if ($url !== '') {
+                return $url;
+            }
+        }
+
+        return '';
+    }
+
+    /**
      * A catalog item from a seed entry, before any feed data.
      *
      * @param   array<string, mixed>  $base  Seed entry.
@@ -565,7 +638,7 @@ final class CatalogHelper
             'category'    => (string) ($base['category'] ?? ''),
             'icon'        => self::iconUrl('', (string) ($base['icon'] ?? '')),
             'product_url' => self::httpUrl((string) ($base['product_url'] ?? '')),
-            'docs_url'    => self::httpUrl((string) ($base['docs_url'] ?? '')),
+            'docs_url'    => self::firstUrl([$base['docs_url'] ?? '', self::seedDocs()['products'][(string) $base['element']] ?? '']),
             'repo_url'    => self::httpUrl((string) ($base['repo_url'] ?? '')),
             'self'        => !empty($base['self']),
         ]);

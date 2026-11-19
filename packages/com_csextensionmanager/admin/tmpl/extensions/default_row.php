@@ -119,6 +119,8 @@ $changelogLabel = $item['installed'] && $status === StateHelper::STATUS_UPDATE ?
                 <?php if (!in_array($action['kind'], [StateHelper::STATUS_CURRENT, StateHelper::STATUS_UNAVAILABLE], true)) : ?>
                     <?php echo DisplayHelper::primaryButton($item, $action); ?>
                 <?php endif; ?>
+                <?php // Visible in the row, not only under More; opens docs.cybersalt.com in a new tab. ?>
+                <?php echo DisplayHelper::docsButton($item); ?>
                 <div class="dropdown">
                     <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false">
                         <?php echo $this->escape(Text::_('COM_CSEXTENSIONMANAGER_BTN_MORE')); ?>

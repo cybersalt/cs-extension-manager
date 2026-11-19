@@ -129,6 +129,7 @@ $tiles = [
                                     <span class="small text-body-secondary"><?php echo $this->escape($item['installed_version']); ?> → <?php echo $this->escape($item['latest_version']); ?></span>
                                 </div>
                                 <?php echo DisplayHelper::primaryButton($item, DisplayHelper::primaryAction($item, $this->canInstall)); ?>
+                                <?php echo DisplayHelper::docsButton($item); ?>
                             </li>
                         <?php endforeach; ?>
                     </ul>

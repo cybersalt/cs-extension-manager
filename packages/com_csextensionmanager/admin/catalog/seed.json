@@ -12,7 +12,7 @@
             "category": "tools",
             "icon": "pkg_csextensionmanager.svg",
             "product_url": "",
-            "docs_url": "",
+            "docs_url": "https://docs.cybersalt.com/extensions/extension-manager",
             "repo_url": "https://github.com/cybersalt/cs-extension-manager",
             "self": true
         },
@@ -39,7 +39,7 @@
             "category": "security",
             "icon": "pkg_cspageprotector.svg",
             "product_url": "https://www.cybersalt.com/extensions/page-protector",
-            "docs_url": "",
+            "docs_url": "https://docs.cybersalt.com/extensions/page-protector",
             "repo_url": "https://github.com/cybersalt/cs-page-protector"
         },
         {
@@ -78,7 +78,7 @@
             "category": "performance",
             "icon": "csedgecachemarker.svg",
             "product_url": "https://www.cybersalt.com/extensions/edge-cache-marker",
-            "docs_url": "",
+            "docs_url": "https://docs.cybersalt.com/extensions/edge-cache-marker",
             "repo_url": "https://github.com/cybersalt/cs-edge-cache-marker"
         },
         {
@@ -91,7 +91,7 @@
             "category": "content",
             "icon": "csarticlesmodulemaxxed.svg",
             "product_url": "https://www.cybersalt.com/extensions/articles-module-maxxed",
-            "docs_url": "",
+            "docs_url": "https://docs.cybersalt.com/extensions/articles-module-maxxed",
             "repo_url": "https://github.com/cybersalt/cs-articles-module-maxxed"
         },
         {
@@ -117,7 +117,7 @@
             "category": "tools",
             "icon": "com_removesampledata.svg",
             "product_url": "https://www.cybersalt.com/extensions/remove-sample-data",
-            "docs_url": "",
+            "docs_url": "https://docs.cybersalt.com/extensions/remove-sample-data",
             "repo_url": "https://github.com/cybersalt/cs-remove-sample-data"
         },
         {
@@ -130,8 +130,30 @@
             "category": "developer",
             "icon": "pkg_csreleasemanager.svg",
             "product_url": "",
-            "docs_url": "",
+            "docs_url": "https://docs.cybersalt.com/extensions/release-manager",
             "repo_url": ""
         }
-    ]
+    ],
+    "docs_comment": "Where the documentation button goes. Every URL here was checked (HTTP 200) on docs.cybersalt.com. Order of use: the store's own docs_url, the item's docs_url above, then docs_products (a product the store lists but this file doesn't, element => URL). For MCP add-ons: addon_docs (add-on key from api.catalog => its own page) and, when it has none, addon_docs_fallback (the MCP for J manual). No URL, no button.",
+    "docs_products": {
+        "mod_currentcat_children_and_articles": "https://docs.cybersalt.com/extensions/related-articles"
+    },
+    "addon_docs": {
+        "acymailing": "https://docs.cybersalt.com/extensions/mcp-for-acymailing",
+        "akeebabackup": "https://docs.cybersalt.com/extensions/mcp-for-akeeba-backup",
+        "communitybuilder": "https://docs.cybersalt.com/extensions/mcp-for-community-builder",
+        "convertformsfree": "https://docs.cybersalt.com/extensions/mcp-for-convert-forms",
+        "gantry5": "https://docs.cybersalt.com/extensions/mcp-for-gantry-5",
+        "j2commerce": "https://docs.cybersalt.com/extensions/mcp-for-j2commerce",
+        "jce": "https://docs.cybersalt.com/extensions/mcp-for-jce",
+        "jcomment": "https://docs.cybersalt.com/extensions/mcp-for-jcomment",
+        "jcomments": "https://docs.cybersalt.com/extensions/mcp-for-jcomments",
+        "jdownloads": "https://docs.cybersalt.com/extensions/mcp-for-jdownloads",
+        "overridechecker": "https://docs.cybersalt.com/extensions/mcp-for-override-checker",
+        "sppagebuilder": "https://docs.cybersalt.com/extensions/mcp-for-sp-page-builder",
+        "stageit": "https://docs.cybersalt.com/extensions/mcp-for-stageit",
+        "virtuemart": "https://docs.cybersalt.com/extensions/mcp-for-virtuemart",
+        "yootheme": "https://docs.cybersalt.com/extensions/mcp-for-yootheme-pro"
+    },
+    "addon_docs_fallback": "https://docs.cybersalt.com/extensions/mcp-for-j"
 }

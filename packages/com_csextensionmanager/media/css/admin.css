@@ -412,6 +412,13 @@ html[data-color-scheme="dark"] .csem .csem-icon.csem-icon-sm {
     color: #fff;
 }
 
+/* Documentation button: a plain book icon. Atum puts a new-tab icon before
+   every target="_blank" link, which here would double up (the tooltip and the
+   accessible name already say it opens in a new tab). */
+.csem a.csem-btn-docs::before {
+    display: none;
+}
+
 .csem .csem-account form {
     max-width: 40rem;
 }
