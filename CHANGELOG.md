@@ -2,7 +2,7 @@
 
 All notable changes to Cybersalt Extension Manager are documented here. Only released versions are listed, plus the version in progress. People whose ideas or reports shaped a change are credited on that entry.
 
-## [Unreleased]
+## [0.1.1] - 2026-11-19
 
 ### 🚀 New
 - **A documentation button in every row.** Each extension on the Extensions screen (and each item under "Needs attention" on the Dashboard) now has a book button beside its main action that opens its page on docs.cybersalt.com in a new tab. It has a tooltip and a screen-reader label naming the extension, "Documentation for <name> (opens in a new tab)". The Documentation entry in the More menu stays.

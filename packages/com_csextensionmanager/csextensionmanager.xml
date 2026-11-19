@@ -3,12 +3,12 @@
     <name>COM_CSEXTENSIONMANAGER</name>
     <element>com_csextensionmanager</element>
     <author>Cybersalt</author>
-    <creationDate>October 2026</creationDate>
+    <creationDate>2026-11-19</creationDate>
     <copyright>Copyright (C) 2026 Cybersalt. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later</license>
     <authorEmail>support@cybersalt.com</authorEmail>
     <authorUrl>https://cybersalt.com</authorUrl>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <description>COM_CSEXTENSIONMANAGER_XML_DESCRIPTION</description>
 
     <namespace path="src">Cybersalt\Component\Csextensionmanager</namespace>
