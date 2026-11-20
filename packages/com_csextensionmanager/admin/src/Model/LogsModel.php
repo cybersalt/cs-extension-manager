@@ -267,7 +267,7 @@ final class LogsModel extends ListModel
         $items = $this->getItems() ?: [];
         $stats = $this->getStats();
 
-        $out  = "Cybersalt Extension Manager - History\n";
+        $out  = "Cybersalt Extensions Manager - History\n";
         $out .= 'Generated (UTC): ' . Factory::getDate()->toSql() . "\n";
         $out .= 'Joomla ' . JVERSION . ' / PHP ' . PHP_VERSION . "\n";
         $out .= \sprintf(

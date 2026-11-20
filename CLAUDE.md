@@ -4,7 +4,7 @@ Project notes for Claude. Layers on top of `~/.claude/CLAUDE.md` and the vault's
 
 ## What this repo is
 
-Cybersalt Extension Manager: a free Joomla 5/6 package that installs, updates and looks after every Cybersalt extension from one admin screen (the Cybersalt answer to Regular Labs' Extension Manager and Extensions Manager CK). **v0.1.1** (0.1.0 released 2026-11-13), built overnight 2026-10-20 at Tim's request.
+Cybersalt Extensions Manager: a free Joomla 5/6 package that installs, updates and looks after every Cybersalt extension from one admin screen (the Cybersalt answer to Regular Labs' Extension Manager and Extensions Manager CK). **v0.1.1** (0.1.0 released 2026-11-13), built overnight 2026-10-20 at Tim's request.
 
 Vault note: `04.knowledge/cs-extension-manager.md` - history, decisions, open items, the competitor research. Update it on every meaningful change.
 

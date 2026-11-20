@@ -1,6 +1,6 @@
-<img src="packages/com_csextensionmanager/media/images/logo.svg" width="96" alt="Cybersalt Extension Manager logo">
+<img src="packages/com_csextensionmanager/media/images/logo.svg" width="96" alt="Cybersalt Extensions Manager logo">
 
-# Cybersalt Extension Manager
+# Cybersalt Extensions Manager
 
 Install, update and look after every Cybersalt Joomla extension from one screen. Free.
 
@@ -22,14 +22,14 @@ It opens on a dashboard that shows where things stand, and its Extensions screen
 - **Templates.** The Joomla templates from Energize Themes and VirtueMart Templates, with thumbnails, live demos and filters by type, site, Joomla version and shop. The list is rebuilt nightly on cybersalt.com, so new templates appear without an update.
 - **Pro extensions without fuss.** Activate the site with your cybersalt.com account email, paste a download ID, or let it reuse MCP for J's existing Pro activation. The download ID goes onto every Cybersalt update site, so Joomla's own **System → Update → Extensions** screen can download Pro updates too, and a small installer plugin puts it back if the update sites get rebuilt.
 - **Home Dashboard count.** A quick icon next to Joomla's own update checks shows how many Cybersalt updates are waiting. It loads after the dashboard, so it never slows it down.
-- **Release emails, if you want them.** Click **Email me about new releases** (on the install screen or the dashboard) and a daily scheduled task emails you when a new release of a Cybersalt extension on the site is out. It's off until you ask for it. The same task can also install updates for you: patch releases only, patch and minor, or everything. You can exclude extensions, and the Extension Manager never updates itself from a task.
+- **Release emails, if you want them.** Click **Email me about new releases** (on the install screen or the dashboard) and a daily scheduled task emails you when a new release of a Cybersalt extension on the site is out. It's off until you ask for it. The same task can also install updates for you: patch releases only, patch and minor, or everything. You can exclude extensions, and the Extensions Manager never updates itself from a task.
 - **History.** Every install, update, rollback, uninstall, switch on/off, health fix, update check and email, with who did it and how long it took. Filters for every column, CSV download, a plain-text dump for support tickets. Installs, updates and uninstalls also go into Joomla's User Actions Log.
 - **17 languages.** English plus Czech, Dutch, French, German, Greek, Italian, Japanese, Norwegian (Bokmål and Nynorsk), Polish, Portuguese (Brazil), Russian, Simplified Chinese, Spanish, Swedish and Turkish.
 - **Permissions.** View, install/update and fix are separate permissions. Installing also needs access to Joomla's own Extensions Manager, so a site that locked that down isn't bypassed.
 
 ### How it compares
 
-| | Cybersalt Extension Manager | Regular Labs Extension Manager | Extensions Manager CK |
+| | Cybersalt Extensions Manager | Regular Labs Extension Manager | Extensions Manager CK |
 |---|---|---|---|
 | Live catalog (new products appear without updating the manager) | ✔ | ✔ | ✘ (list ships inside the manager) |
 | Bulk install / Update all | ✔ | ✔ | ✘ |
@@ -52,7 +52,7 @@ It opens on a dashboard that shows where things stand, and its Extensions screen
 
 ## Installation
 
-Install `pkg_csextensionmanager_v{version}.zip` through **System → Install → Extensions**. Then open **Components → Cybersalt Extension Manager**.
+Install `pkg_csextensionmanager_v{version}.zip` through **System → Install → Extensions**. Then open **Components → Cybersalt Extensions Manager**.
 
 The package installs:
 
@@ -65,7 +65,7 @@ The package installs:
 
 ## Configuration
 
-**Components → Cybersalt Extension Manager → Options**
+**Components → Cybersalt Extensions Manager → Options**
 
 | Tab | Setting | Default |
 |---|---|---|

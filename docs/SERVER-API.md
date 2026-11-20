@@ -1,4 +1,4 @@
-# Store API the Extension Manager uses
+# Store API the Extensions Manager uses
 
 All on cs-release-manager at `https://www.cybersalt.com/index.php?option=com_csreleasemanager&task=api.<task>&format=raw|json`.
 
@@ -65,4 +65,4 @@ All on cs-release-manager at `https://www.cybersalt.com/index.php?option=com_csr
 2. Release and install it on cybersalt.com.
 3. Optionally fill in `display` keys in each package's catalog metadata.
 
-No Extension Manager release is needed: it starts using the endpoint on its next catalog refresh.
+No Extensions Manager release is needed: it starts using the endpoint on its next catalog refresh.

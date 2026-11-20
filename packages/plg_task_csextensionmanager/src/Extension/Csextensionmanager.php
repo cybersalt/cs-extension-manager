@@ -21,7 +21,7 @@ use Joomla\Component\Scheduler\Administrator\Traits\TaskPluginTrait;
 use Joomla\Event\SubscriberInterface;
 
 /**
- * Scheduler task "Cybersalt Extension Manager: check for updates": check the
+ * Scheduler task "Cybersalt Extensions Manager: check for updates": check the
  * store, optionally install updates (patch only / patch + minor / all), and
  * email a summary.
  *
@@ -73,7 +73,7 @@ final class Csextensionmanager extends CMSPlugin implements SubscriberInterface
     private function checkUpdates(ExecuteTaskEvent $event): int
     {
         if (!class_exists(UpdateRunner::class)) {
-            $this->logTask('Cybersalt Extension Manager component is not installed.', 'error');
+            $this->logTask('Cybersalt Extensions Manager component is not installed.', 'error');
 
             return Status::KNOCKOUT;
         }
@@ -97,7 +97,7 @@ final class Csextensionmanager extends CMSPlugin implements SubscriberInterface
         try {
             $summary = UpdateRunner::run($mode, $notify);
         } catch (\Throwable $e) {
-            $this->logTask('Cybersalt Extension Manager check failed: ' . $e->getMessage(), 'error');
+            $this->logTask('Cybersalt Extensions Manager check failed: ' . $e->getMessage(), 'error');
 
             return Status::KNOCKOUT;
         } finally {
@@ -105,7 +105,7 @@ final class Csextensionmanager extends CMSPlugin implements SubscriberInterface
         }
 
         $this->logTask(\sprintf(
-            'Cybersalt Extension Manager: %d pending, %d installed, %d failed, %d skipped%s.',
+            'Cybersalt Extensions Manager: %d pending, %d installed, %d failed, %d skipped%s.',
             \count($summary['pending']),
             \count($summary['installed']),
             \count($summary['failed']),

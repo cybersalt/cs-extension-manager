@@ -7,7 +7,7 @@
             "type": "package",
             "folder": "",
             "client": 0,
-            "title": "Cybersalt Extension Manager",
+            "title": "Cybersalt Extensions Manager",
             "description": "Install, update and look after every Cybersalt extension from one screen.",
             "category": "tools",
             "icon": "pkg_csextensionmanager.svg",

@@ -17,7 +17,7 @@ use Joomla\CMS\Extension\MVCComponent;
 use Psr\Container\ContainerInterface;
 
 /**
- * Component class for Cybersalt Extension Manager.
+ * Component class for Cybersalt Extensions Manager.
  *
  * @since  0.1.0
  */

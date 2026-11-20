@@ -1,7 +1,7 @@
 <?php
 /**
  * Builds https://www.cybersalt.com/images/csextensionmanager/templates.json, the template list the Cybersalt
- * Extension Manager shows on its Templates screen, from the two template sites' own catalogs:
+ * Extensions Manager shows on its Templates screen, from the two template sites' own catalogs:
  *
  *   https://www.energizethemes.com/?tmpl=catalog-feed          (templates/et2026/catalog-feed.php)
  *   https://www.virtuemarttemplates.net/?tmpl=catalog-feed     (templates/vmt2026/catalog-feed.php)
@@ -13,7 +13,7 @@
  * replaced when the content changed. Every run appends one line to build.log.
  *
  * Types: each template's type is its site's own "Template types" (ET) / "Shop types" (VMT) tag, keyed by the
- * tag alias. Retag a template on its site and the Extension Manager follows the next night.
+ * tag alias. Retag a template on its site and the Extensions Manager follows the next night.
  */
 
 declare(strict_types=1);

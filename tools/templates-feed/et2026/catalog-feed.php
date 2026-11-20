@@ -1,6 +1,6 @@
 <?php
 /**
- * et2026: the template catalog as JSON, for the Cybersalt Extension Manager's Templates screen.
+ * et2026: the template catalog as JSON, for the Cybersalt Extensions Manager's Templates screen.
  *
  *   https://www.energizethemes.com/?tmpl=catalog-feed
  *

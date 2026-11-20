@@ -1,6 +1,11 @@
 # Changelog
 
-All notable changes to Cybersalt Extension Manager are documented here. Only released versions are listed, plus the version in progress. People whose ideas or reports shaped a change are credited on that entry.
+All notable changes to Cybersalt Extensions Manager are documented here. Only released versions are listed, plus the version in progress. People whose ideas or reports shaped a change are credited on that entry.
+
+## [0.1.2] - 2026-11-19
+
+### 🔧 Improvements
+- **New name: Cybersalt Extensions Manager** (was Cybersalt Extension Manager), ready for its Joomla Extensions Directory listing. Only the name you see has changed: the menu, page titles, plugins, scheduled task and emails use the new name in all 17 languages. Updating from 0.1.0 or 0.1.1 keeps your settings, history and download ID. The update also renames the update site and the release-email scheduled task, which Joomla would otherwise leave under the old name.
 
 ## [0.1.1] - 2026-11-19
 
@@ -8,7 +13,7 @@ All notable changes to Cybersalt Extension Manager are documented here. Only rel
 - **A documentation button in every row.** Each extension on the Extensions screen (and each item under "Needs attention" on the Dashboard) now has a book button beside its main action that opens its page on docs.cybersalt.com in a new tab. It has a tooltip and a screen-reader label naming the extension, "Documentation for <name> (opens in a new tab)". The Documentation entry in the More menu stays.
 
 ### 🔧 Improvements
-- **Documentation links filled in for every Cybersalt extension that has a docs page**: Extension Manager, Page Protector, Edge Cache Marker, Articles Module Maxxed, Remove Sample Data, Release Manager and Related Articles join the ones that already had one. An extension with no page gets no button.
+- **Documentation links filled in for every Cybersalt extension that has a docs page**: Extensions Manager, Page Protector, Edge Cache Marker, Articles Module Maxxed, Remove Sample Data, Release Manager and Related Articles join the ones that already had one. An extension with no page gets no button.
 - **MCP add-ons link to their own manual** when docs.cybersalt.com has one (AcyMailing, Akeeba Backup, Community Builder, Convert Forms, Gantry 5, J2Commerce, JCE, JComment, JComments, jDownloads, Override Checker, SP Page Builder, StageIt, VirtueMart and YOOtheme Pro) instead of all pointing at the MCP for J page, which stays the fallback for the rest. A link supplied by the store takes priority over the bundled ones.
 - The cached catalog is rebuilt once after updating, so the new buttons show straight away.
 
@@ -27,10 +32,10 @@ First public release.
 - **Switch parts on and off** from an extension's details. The result shows right beside the switch: no page reload, no jump when you're scrolled down.
 - **Health Check with one-click fixes**: missing, switched-off, duplicate, wrong or orphaned update sites; a missing download ID on Pro update sites; half-installed packages; package parts installed without their package (so they never get updates); disabled parts; add-ons without MCP for J or without the extension they're for (with an Uninstall button); updates Joomla still lists after they were installed; a lapsed membership; and the store not answering. "Fix all" repairs the update-site bookkeeping in one go. The Health Check tile is green with nothing to look at, yellow for warnings or notes, and red for real problems.
 - **Hide a "Good to know" note** you don't need, such as a part you switched off on purpose. Hidden notes leave the counts and Fix all, and can be shown again from the bottom of the Health Check.
-- **Templates.** A Templates screen shows the Joomla templates from Energize Themes and VirtueMart Templates: a thumbnail, who each one is for, the Joomla versions and shop extension it supports, a live demo and its details page. Filter by type (the same template types the two sites use), template site, Joomla version and shop, search, and sort. The list comes from cybersalt.com and is rebuilt every night from both sites, so a new template appears without an Extension Manager update; a copy ships with the extension in case cybersalt.com can't be reached. Nothing is installed from here. (Idea from Bjørn Ove Bremnes.)
+- **Templates.** A Templates screen shows the Joomla templates from Energize Themes and VirtueMart Templates: a thumbnail, who each one is for, the Joomla versions and shop extension it supports, a live demo and its details page. Filter by type (the same template types the two sites use), template site, Joomla version and shop, search, and sort. The list comes from cybersalt.com and is rebuilt every night from both sites, so a new template appears without an Extensions Manager update; a copy ships with the extension in case cybersalt.com can't be reached. Nothing is installed from here. (Idea from Bjørn Ove Bremnes.)
 - **Pro extensions**: activate the site with your cybersalt.com account email, paste a download ID in Options, or reuse MCP for J's existing Pro activation automatically. The download ID is written onto every Cybersalt update site, so Joomla's own System → Update screen can download Pro updates too, and an installer plugin adds it back if update sites are rebuilt.
 - **Home Dashboard quick icon** with the number of Cybersalt updates, fetched after the dashboard loads so it never slows it down.
-- **Release emails, opt-in.** "Email me about new releases" switches on a daily scheduled check that emails you when something new is out (off until you ask). The same task can also install updates automatically, limited to patch releases, patch and minor releases, or all. Extensions can be excluded from automatic updates; the Extension Manager never updates itself from a task.
+- **Release emails, opt-in.** "Email me about new releases" switches on a daily scheduled check that emails you when something new is out (off until you ask). The same task can also install updates automatically, limited to patch releases, patch and minor releases, or all. Extensions can be excluded from automatic updates; the Extensions Manager never updates itself from a task.
 - **History**: every install, update, rollback, uninstall, enable/disable, health fix, update check and email, with filters for every column, CSV download, a text dump for support, delete and clear all. Installs, updates and uninstalls also go to Joomla's User Actions Log.
 - Options: download ID, MCP for J activation reuse, how often to check, which MCP add-ons to show, beta releases, timeout, email recipients, auto-update exclusions, history retention, support contact details and permissions (view / install / fix).
 - **17 languages**: English, Czech, Dutch, French, German, Greek, Italian, Japanese, Norwegian (Bokmål and Nynorsk), Polish, Portuguese (Brazil), Russian, Simplified Chinese, Spanish, Swedish and Turkish.

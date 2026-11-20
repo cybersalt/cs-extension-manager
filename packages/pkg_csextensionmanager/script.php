@@ -52,13 +52,13 @@ return new class () implements InstallerScriptInterface {
         $lang->load('pkg_csextensionmanager.sys', $adapter->getParent()->getPath('source'), null, true);
 
         if (version_compare(PHP_VERSION, self::MIN_PHP, '<')) {
-            $this->error(Text::sprintf('PKG_CSEXTENSIONMANAGER_ERROR_PHP', self::MIN_PHP, PHP_VERSION), \sprintf('Cybersalt Extension Manager needs PHP %s or later (this server runs %s).', self::MIN_PHP, PHP_VERSION));
+            $this->error(Text::sprintf('PKG_CSEXTENSIONMANAGER_ERROR_PHP', self::MIN_PHP, PHP_VERSION), \sprintf('Cybersalt Extensions Manager needs PHP %s or later (this server runs %s).', self::MIN_PHP, PHP_VERSION));
 
             return false;
         }
 
         if (version_compare(JVERSION, '5.0.0', '<')) {
-            $this->error(Text::sprintf('PKG_CSEXTENSIONMANAGER_ERROR_JOOMLA', JVERSION), \sprintf('Cybersalt Extension Manager needs Joomla 5 or 6 (this site runs %s).', JVERSION));
+            $this->error(Text::sprintf('PKG_CSEXTENSIONMANAGER_ERROR_JOOMLA', JVERSION), \sprintf('Cybersalt Extensions Manager needs Joomla 5 or 6 (this site runs %s).', JVERSION));
 
             return false;
         }
@@ -106,6 +106,8 @@ return new class () implements InstallerScriptInterface {
             // Email updates are opt-in (Tim, 2026-10-20): the task is created
             // switched off and the card offers to switch it on.
             $this->safely(fn () => ($ns . 'TaskHelper')::create(false));
+        } else {
+            $this->safely(fn () => $this->renameStoredTitles($db));
         }
 
         // Put whatever download ID the site already has (e.g. MCP for J's)
@@ -201,6 +203,38 @@ return new class () implements InstallerScriptInterface {
                 ->where($db->quoteName('id') . ' = :id')
                 ->bind(':rules', $json)
                 ->bind(':id', $assetId, ParameterType::INTEGER)
+        )->execute();
+    }
+
+    /**
+     * 0.1.2 renamed "Cybersalt Extension Manager" to "Cybersalt Extensions Manager".
+     * Joomla keeps the update site name and our task title as first saved, so
+     * swap the old name in those two places.
+     */
+    private function renameStoredTitles(DatabaseInterface $db): void
+    {
+        $old = 'Cybersalt Extension Manager';
+        $new = 'Cybersalt Extensions Manager';
+        $like = '%' . $old . '%';
+        $location = '%element=pkg_csextensionmanager%';
+
+        $db->setQuery(
+            $db->createQuery()
+                ->update($db->quoteName('#__update_sites'))
+                ->set($db->quoteName('name') . ' = REPLACE(' . $db->quoteName('name') . ', ' . $db->quote($old) . ', ' . $db->quote($new) . ')')
+                ->where($db->quoteName('name') . ' LIKE :like')
+                ->where($db->quoteName('location') . ' LIKE :location')
+                ->bind(':like', $like)
+                ->bind(':location', $location)
+        )->execute();
+
+        $db->setQuery(
+            $db->createQuery()
+                ->update($db->quoteName('#__scheduler_tasks'))
+                ->set($db->quoteName('title') . ' = REPLACE(' . $db->quoteName('title') . ', ' . $db->quote($old) . ', ' . $db->quote($new) . ')')
+                ->where($db->quoteName('type') . ' = ' . $db->quote('csextensionmanager.check'))
+                ->where($db->quoteName('title') . ' LIKE :like')
+                ->bind(':like', $like)
         )->execute();
     }
 

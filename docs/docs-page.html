@@ -1,6 +1,6 @@
 <div class="csdoc-doc">
 
-<p><strong>Cybersalt Extension Manager</strong> installs, updates and looks after every Cybersalt
+<p><strong>Cybersalt Extensions Manager</strong> installs, updates and looks after every Cybersalt
 extension on your Joomla site from one screen. You see what's installed, what has an update and what
 you don't have yet; install or update one extension or several in one go; read what changed since
 your version; go back to an earlier release if an update causes trouble; and let a daily check email
@@ -14,7 +14,7 @@ each version, see the <a href="/extensions/extension-manager/changelog">changelo
 
 <div class="csdoc-note">
 <p><strong>Requirements.</strong> Joomla 5 or 6 and PHP 8.1 or newer. Your site has to be able to
-reach <code>www.cybersalt.com</code> over https. Extension Manager is free and open source
+reach <code>www.cybersalt.com</code> over https. Extensions Manager is free and open source
 (GPL-2.0-or-later); the source code is on
 <a href="https://github.com/cybersalt/cs-extension-manager" target="_blank" rel="noopener">GitHub</a>.</p>
 </div>
@@ -22,10 +22,10 @@ reach <code>www.cybersalt.com</code> over https. Extension Manager is free and o
 <figure class="csdoc-fig">
   <a class="csdoc-thumb" href="#csdoc-lb-dashboard" id="csdoc-fig-dashboard">
     <img src="/images/documentation/extension-manager/01-dashboard.webp"
-         alt="The Extension Manager dashboard: the section bar, tiles for Extensions, Templates, Health Check and History, Needs attention, Recent activity, the Cybersalt account card and the release email offer">
+         alt="The Extensions Manager dashboard: the section bar, tiles for Extensions, Templates, Health Check and History, Needs attention, Recent activity, the Cybersalt account card and the release email offer">
     <span class="csdoc-zoom">&#10530; Click to enlarge</span>
   </a>
-  <figcaption>The dashboard, where the Extension Manager opens.</figcaption>
+  <figcaption>The dashboard, where the Extensions Manager opens.</figcaption>
 </figure>
 
 <h2>What's included</h2>
@@ -36,14 +36,14 @@ reach <code>www.cybersalt.com</code> over https. Extension Manager is free and o
 <tbody>
 <tr><td><code>com_csextensionmanager</code></td>
     <td>The Dashboard, Extensions, Templates, Health Check and History screens, and the Options.</td></tr>
-<tr><td><em>Installer - Cybersalt Extension Manager</em></td>
+<tr><td><em>Installer - Cybersalt Extensions Manager</em></td>
     <td>Adds your download ID to Cybersalt downloads and update checks when it's missing, so Pro
         updates also work from Joomla's own <strong>System &rarr; Update &rarr; Extensions</strong>
         screen.</td></tr>
-<tr><td><em>Quick Icon - Cybersalt Extension Manager</em></td>
+<tr><td><em>Quick Icon - Cybersalt Extensions Manager</em></td>
     <td>Shows the number of Cybersalt updates on the Home Dashboard, next to Joomla's own update
         checks.</td></tr>
-<tr><td><em>Task - Cybersalt Extension Manager</em></td>
+<tr><td><em>Task - Cybersalt Extensions Manager</em></td>
     <td>The scheduled task that checks for updates once a day, emails you, and can install updates
         for you. It's off until you switch it on.</td></tr>
 </tbody>
@@ -54,23 +54,23 @@ reach <code>www.cybersalt.com</code> over https. Extension Manager is free and o
 
 <ol>
   <li>Download the zip from the
-      <a href="https://www.cybersalt.com/extensions/extension-manager" target="_blank" rel="noopener">Extension Manager page on cybersalt.com</a>.</li>
+      <a href="https://www.cybersalt.com/extensions/extension-manager" target="_blank" rel="noopener">Extensions Manager page on cybersalt.com</a>.</li>
   <li>In your Joomla admin go to <strong>System &rarr; Install &rarr; Extensions</strong> and upload
       the zip. The three plugins are switched on for you.</li>
-  <li>Click <strong>Open the Extension Manager</strong> on the card that appears, or go to
-      <strong>Components &rarr; Cybersalt Extension Manager</strong>.</li>
+  <li>Click <strong>Open the Extensions Manager</strong> on the card that appears, or go to
+      <strong>Components &rarr; Cybersalt Extensions Manager</strong>.</li>
 </ol>
 
 <p>If you'd like an email when a new release of a Cybersalt extension on your site is out, click
 <strong>Email me about new releases</strong> on the same card or on the dashboard. Release emails are
 off until you ask for them; see <a href="#csdoc-emails">Release emails and automatic updates</a>.</p>
 
-<p>Extension Manager updates itself like any Cybersalt extension: from its own Extensions screen, or
+<p>Extensions Manager updates itself like any Cybersalt extension: from its own Extensions screen, or
 from <strong>System &rarr; Update &rarr; Extensions</strong>.</p>
 
 <h2 id="csdoc-dashboard">The dashboard</h2>
 
-<p>The Extension Manager opens on its dashboard. The <strong>section bar</strong> along the top of every
+<p>The Extensions Manager opens on its dashboard. The <strong>section bar</strong> along the top of every
 screen (Dashboard, Extensions, Templates, Health Check, History) takes you anywhere in one click; the
 same entries are in Joomla's side menu under <strong>Components &rarr; Cybersalt Extension
 Manager</strong>.</p>
@@ -157,11 +157,11 @@ attention is listed first.</p>
 
 <p>If one fails, the rest still go ahead, and the window says why that one failed. If an MCP add-on
 needs CS MCP for J and it isn't installed, MCP for J is installed first, automatically. Reinstalling puts
-the latest release over itself and keeps your settings. The Extension Manager can't tick itself; update
+the latest release over itself and keeps your settings. The Extensions Manager can't tick itself; update
 it with its own row's button.</p>
 
 <div class="csdoc-tip">
-<p><strong>Every download is checked before it's installed.</strong> Extension Manager only installs
+<p><strong>Every download is checked before it's installed.</strong> Extensions Manager only installs
 from cybersalt.com over https, compares each download with the SHA-256 checksum published with the
 release, and checks that the zip contains the extension you asked for. If cybersalt.com can't be
 reached to confirm the latest release, nothing is installed.</p>
@@ -279,19 +279,19 @@ has a <strong>See plans</strong> button.</p>
 </ul>
 
 <p>The list comes from cybersalt.com, which rebuilds it every night from both template sites, so a new
-template appears here without an Extension Manager update. A copy ships with the extension in case
+template appears here without an Extensions Manager update. A copy ships with the extension in case
 cybersalt.com can't be reached; the line under the list says which one you're seeing. Nothing is
 installed from this screen: the links open the template sites in a new tab.</p>
 
 <h2 id="csdoc-emails">Release emails and automatic updates</h2>
 
-<p>Extension Manager adds a scheduled task, <em>Cybersalt Extension Manager: check for updates</em>,
+<p>Extensions Manager adds a scheduled task, <em>Cybersalt Extensions Manager: check for updates</em>,
 that runs once a day. <strong>It's switched off when you install.</strong> Click <strong>Email me
 about new releases</strong> on the install card or on the dashboard to switch it on; the emails then
 go to you (or to the addresses under <strong>Options &rarr; Updates</strong>, if you've set any).</p>
 
 <p>To change what the task does, go to <strong>System &rarr; Scheduled Tasks</strong> and open
-<em>Cybersalt Extension Manager: check for updates</em>:</p>
+<em>Cybersalt Extensions Manager: check for updates</em>:</p>
 
 <div class="csdoc-table-wrap" tabindex="0" role="region" aria-label="Table: Scheduled task settings">
 <table>
@@ -308,7 +308,7 @@ go to you (or to the addresses under <strong>Options &rarr; Updates</strong>, if
 </table>
 </div>
 
-<p>The task never updates Extension Manager itself (update it from its own screen), skips anything
+<p>The task never updates Extensions Manager itself (update it from its own screen), skips anything
 listed under <strong>Options &rarr; Updates &rarr; Never auto-update</strong>, and skips updates this
 site's Joomla or PHP version can't run. Every run is recorded in History.</p>
 
@@ -376,7 +376,7 @@ User Actions Log.</p>
 <tr><td>Support</td><td><strong>Support name / email / page</strong></td><td>Cybersalt support</td>
     <td>Who people are pointed at in the help panel and error messages.</td></tr>
 <tr><td>Permissions</td><td>&nbsp;</td><td>&nbsp;</td>
-    <td>Who may view the Extension Manager, install and update, and apply health fixes. Out of the
+    <td>Who may view the Extensions Manager, install and update, and apply health fixes. Out of the
         box, Managers and Administrators can view, and only Super Users can install or fix.
         Installing also needs access to Joomla's own Extensions Manager.</td></tr>
 </tbody>
@@ -420,13 +420,13 @@ User Actions Log.</p>
 
 <div class="csdoc-note">
 <p>You'll get the quickest answer if you include your <strong>Joomla and PHP versions</strong>, the
-<strong>Extension Manager version</strong>, the extension involved and, for install or update
+<strong>Extensions Manager version</strong>, the extension involved and, for install or update
 problems, the text from <strong>History &rarr; Dump</strong>.</p>
 </div>
 
 <hr>
 
-<p><em>Cybersalt Extension Manager is developed by
+<p><em>Cybersalt Extensions Manager is developed by
 <a href="https://www.cybersalt.com/" target="_blank" rel="noopener">Cybersalt Consulting Ltd.</a> and released under the GNU General
 Public License v2 or later.</em></p>
 

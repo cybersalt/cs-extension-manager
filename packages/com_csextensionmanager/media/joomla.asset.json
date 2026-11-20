@@ -1,8 +1,8 @@
 {
   "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
   "name": "com_csextensionmanager",
-  "version": "0.1.1",
-  "description": "Cybersalt Extension Manager assets",
+  "version": "0.1.2",
+  "description": "Cybersalt Extensions Manager assets",
   "license": "GPL-2.0-or-later",
   "assets": [
     {

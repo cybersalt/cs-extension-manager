@@ -1,6 +1,6 @@
 <?php
 /**
- * vmt2026: the template catalog as JSON, for the Cybersalt Extension Manager's Templates screen.
+ * vmt2026: the template catalog as JSON, for the Cybersalt Extensions Manager's Templates screen.
  *
  *   https://www.virtuemarttemplates.net/?tmpl=catalog-feed
  *

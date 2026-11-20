@@ -3,7 +3,7 @@
  * @copyright  Copyright (C) 2026 Cybersalt. All rights reserved.
  * @license    GNU General Public License version 2 or later
  *
- * Cybersalt Extension Manager admin behaviour: filters, selection, the
+ * Cybersalt Extensions Manager admin behaviour: filters, selection, the
  * install/update queue (lock-out modal), changelog and version picker,
  * uninstall and enable/disable. No dependencies beyond Joomla core +
  * Bootstrap 5 (loaded by the view).
